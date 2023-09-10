@@ -1,0 +1,185 @@
+---
+title: "Descriptive Statistics"
+format:
+  revealjs:
+    slide-number: true
+    preview-links: true
+    scrollable: true
+editor: visual
+---
+
+## Introduction to Statistics
+
+::: columns
+::: {.column width="50%"}
+Statistics is the science of collecting, analyzing, interpreting, presenting, and organizing data.
+
+- **Descriptive Statistics**: Summarize and interpret data to provide meaningful insights.
+
+- **Inferential Statistics**: Make predictions about a population based on sample data.
+:::
+
+::: {.column width="50%"}
+![](images/data_science_vs_stats.jpeg)
+:::
+:::
+
+::: {.notes}
+Hello everyone! So, what is statistics? It's essentially a way to make sense of data. We use statistics to collect, analyze, and make conclusions from data. You'll often hear two main types: descriptive and inferential. Descriptive statistics help us summarize and understand data, while inferential statistics let us make educated guesses about larger groups based on smaller samples. Imagine a university survey to understand student satisfaction. Descriptive statistics would tell us the average satisfaction score, while inferential statistics would predict how satisfied all students are based on a sample.
+:::
+
+## Why Do We Need Statistics?
+
+- **Data-Driven Decision Making**: Provides a basis for informed decisions.
+- **Understanding Trends**: Helps identify patterns and trends.
+- **Predict Future Events**: Allows for forecasting.
+- **Scientific Research**: Essential in hypothesis testing and experimentation.
+
+::: {.notes}
+So, why do we even need statistics? Well, it's crucial for making informed decisions. Imagine university administrators trying to figure out which courses to offer next semester. They could guess, or they could use statistics to understand what students really want. It's also essential for spotting trends, making future predictions, and even for scientific research. Simply put, statistics helps us make smarter, data-driven choices.
+:::
+
+## Importance of Sampling
+
+- **Efficiency**: It's often impractical to collect data from an entire population.
+  
+  - **Example**: Surveying all 7,000 AUC students vs. a sample of 100 students.
+
+- **Cost-Effectiveness**: Sampling can be less expensive.
+
+  - **Example**: Reduced cost in time and resources for surveying a smaller sample.
+
+- **Accuracy**: Proper sampling techniques can yield highly accurate estimates.
+  
+  - **Example**: A well-designed survey of 100 students can accurately reflect the opinions of all 7,000 students.
+
+::: {.notes}
+Sampling is super important in statistics, but why? First, it's efficient. It would be really time-consuming for a university to survey every single student about every single issue, right? Second, it's cost-effective; you save resources. And lastly, if done correctly, sampling can be highly accurate, giving us a good estimate of what the entire student body thinks or feels.
+:::
+
+## Population vs. Sample
+
+::: columns
+::: {.column width="75%"}
+- **Population**: The entire group that is the subject of the study.
+
+  - **Example**: All 7,000 students at AUC
+  - **Notation**: $N$ for size, $\mu$ for mean, $\sigma$ for standard deviation
+
+- **Sample**: A subset of the population used for making inferences about the population.
+
+  - **Example**: A survey of 100 AUC students
+  - **Notation**: $n$ for size, $\bar{x}$ for mean, $s$ for standard deviation
+:::
+
+::: {.column width="25%"}
+![](https://media.geeksforgeeks.org/wp-content/cdn-uploads/20220302154028/Group-13.jpg)
+:::
+:::
+
+::: {.notes}
+When we say 'Population', we mean the whole group we're interested in. For example, if we're studying university students, the population would be all students enrolled. For 'Sample', we mean a smaller group we actually study. For instance, 100 students from different departments.
+:::
+
+## Methods of Collecting Data
+
+- **Surveys**: Questionnaires or interviews.
+- **Observations**: Systematic observation and recording.
+- **Experiments**: Controlled settings to observe effects.
+- **Archival Data**: Existing records and databases.
+
+::: {.notes}
+So how do we get this data? There are various methods. One way is through surveys, like those end-of-semester course evaluations. Observations could mean watching how students use the library. Experiments involve controlled settings, like seeing how students perform with different types of study aids. And archival data? That's like looking at past graduation rates. Different methods work best for different kinds of questions.
+:::
+
+## Types of Variables
+
+- **Quantitative Variables**: Numeric data that can be measured.
+
+  -  **Continuous**: Can take any value within a range (e.g., GPA).
+  -  **Discrete**: Specific, countable values (e.g., Number of Courses).
+
+-   **Qualitative Variables**: Descriptive, non-numeric data.
+
+  -  **Nominal**: Categories without order (e.g., Majors).
+  -  **Ordinal**: Categories with order but not equally spaced (e.g., Class Standing: Freshman, Sophomore, etc.).
+
+::: {.notes}
+Alright, let's talk about types of variables. We've got two big categories: Quantitative and Qualitative. Quantitative is all about numbers. Think of your GPA; it can range from 0 to 4.0, so it's continuous. The number of courses you're taking is also numeric, but it can only be whole numbers, making it discrete.
+
+Qualitative variables are more about descriptions. For example, your major---like Computer Science or History---is nominal because there's no order. But your class standing, like Freshman or Sophomore, is ordinal because there's a clear order, even if the spaces between them aren't equal.
+:::
+
+## Measures of Central Tendency 1/3
+
+-   **Mean**: The average of all data points.
+
+    -   **Population Mean**: $\mu = \frac{\sum_{i=1}^{N} x_i}{N}$
+
+        -   **Example**: Average GPA of all 7,000 AUC students is $\mu = 3.5$
+
+    -   **Sample Mean**: $\bar{x} = \frac{\sum_{i=1}^{n} x_i}{n}$
+
+        -   **Example**: Average GPA of a sampled 100 AUC students is $\bar{x} = 3.48$
+
+## Measures of Central Tendency 2/3
+
+-   **Median**: Middle value when data is sorted
+
+    -   Steps to find Median:
+
+        -   Sort the data in ascending order
+
+            -   If $n$ is odd, the median is the value at $\frac{n+1} 2$th position
+            -   If $n$ is even, the median is the average of values at $\frac{n} 2$ and $\frac{n} 2 + 1$ positions
+
+-   **Mode**: The most frequently occurring value.
+
+## Measures of Central Tendency 3/3
+
+### When to use each measure
+
+-   Use the mean for normally distributed data
+-   Use the median when the data is skewed or has outliers
+-   Use the mode when dealing with categorical data
+
+![](images/outliers.png)
+
+## Measures of Dispersion 1/2
+
+-   **Range**: Difference between the **highest** and **lowest** values.
+
+    -   **Example**: highest GPA: $4.0$, lowest GPA: $2.9$
+
+        -   Range: $4.0−2.9=1.1$
+
+-   **Variance**: Average of the squared differences from the Mean.
+
+    -   **Population Variance**: $\sigma^2 = \frac{\sum_{i=1}^{N} (x_i - \mu)^2}{N}$
+    -   **Sample Variance**: $s^2 = \frac{\sum_{i=1}^{n} (x_i - \bar{x})^2}{n-1}$
+
+-  **Standard Deviation**: Square root of the variance.
+
+   - **Population Standard Deviation**: $\sigma = \sqrt{\sigma^2}$
+   - **Sample Standard Deviation**: $s = \sqrt{s^2}$
+
+::: {.notes}
+After understanding what's 'typical,' you want how spread out the data is. We call these measures of dispersion. 'Range' is the simplest; it's the difference between the highest and lowest values, like the highest and lowest GPAs in a class.
+
+'Variance' is a bit more complicated. It measures how far each data point is from the mean, but it's not straightforward to interpret because it's in squared units.
+
+'Standard Deviation' is the square root of the variance and is in the same unit as the data, making it easier to understand. For instance, a higher standard deviation in GPAs would mean that the grades are more spread out.
+:::
+
+## Measures of Dispersion 2/2
+
+### When to use each measure
+
+-  The range is great for a quick overview, but it is sensitive to outliers.
+-  Variance and standard deviation are more robust and provide a clearer picture of the spread in your data.
+
+![](images/outliers.png)
+
+## R & RStudio & Google Colab
+
+![](images/R.png)
