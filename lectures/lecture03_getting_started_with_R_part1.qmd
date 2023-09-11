@@ -254,7 +254,7 @@ result_mod = 8 %% 3      # Modulus
 
 ## Order of Operations
 
-PEMDA Rule:
+PEDMAS Rule:
 
 - `P`: Parentheses - Always start with operations inside parentheses or brackets.
 - `E`: Exponents - Next, handle powers and square root operations.
