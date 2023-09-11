@@ -1,11 +1,10 @@
 ---
-title: "Descriptive Statistics"
+title: "Introduction to Statistics"
 format:
   revealjs:
     slide-number: true
     preview-links: true
     scrollable: true
-editor: visual
 ---
 
 ## Introduction to Statistics
@@ -24,10 +23,6 @@ Statistics is the science of collecting, analyzing, interpreting, presenting, an
 :::
 :::
 
-::: {.notes}
-Hello everyone! So, what is statistics? It's essentially a way to make sense of data. We use statistics to collect, analyze, and make conclusions from data. You'll often hear two main types: descriptive and inferential. Descriptive statistics help us summarize and understand data, while inferential statistics let us make educated guesses about larger groups based on smaller samples. Imagine a university survey to understand student satisfaction. Descriptive statistics would tell us the average satisfaction score, while inferential statistics would predict how satisfied all students are based on a sample.
-:::
-
 ## Why Do We Need Statistics?
 
 - **Data-Driven Decision Making**: Provides a basis for informed decisions.
@@ -35,9 +30,6 @@ Hello everyone! So, what is statistics? It's essentially a way to make sense of 
 - **Predict Future Events**: Allows for forecasting.
 - **Scientific Research**: Essential in hypothesis testing and experimentation.
 
-::: {.notes}
-So, why do we even need statistics? Well, it's crucial for making informed decisions. Imagine university administrators trying to figure out which courses to offer next semester. They could guess, or they could use statistics to understand what students really want. It's also essential for spotting trends, making future predictions, and even for scientific research. Simply put, statistics helps us make smarter, data-driven choices.
-:::
 
 ## Importance of Sampling
 
@@ -53,9 +45,6 @@ So, why do we even need statistics? Well, it's crucial for making informed decis
   
   - **Example**: A well-designed survey of 100 students can accurately reflect the opinions of all 7,000 students.
 
-::: {.notes}
-Sampling is super important in statistics, but why? First, it's efficient. It would be really time-consuming for a university to survey every single student about every single issue, right? Second, it's cost-effective; you save resources. And lastly, if done correctly, sampling can be highly accurate, giving us a good estimate of what the entire student body thinks or feels.
-:::
 
 ## Population vs. Sample
 
@@ -77,10 +66,6 @@ Sampling is super important in statistics, but why? First, it's efficient. It wo
 :::
 :::
 
-::: {.notes}
-When we say 'Population', we mean the whole group we're interested in. For example, if we're studying university students, the population would be all students enrolled. For 'Sample', we mean a smaller group we actually study. For instance, 100 students from different departments.
-:::
-
 ## Methods of Collecting Data
 
 - **Surveys**: Questionnaires or interviews.
@@ -88,9 +73,6 @@ When we say 'Population', we mean the whole group we're interested in. For examp
 - **Experiments**: Controlled settings to observe effects.
 - **Archival Data**: Existing records and databases.
 
-::: {.notes}
-So how do we get this data? There are various methods. One way is through surveys, like those end-of-semester course evaluations. Observations could mean watching how students use the library. Experiments involve controlled settings, like seeing how students perform with different types of study aids. And archival data? That's like looking at past graduation rates. Different methods work best for different kinds of questions.
-:::
 
 ## Types of Variables
 
@@ -104,11 +86,6 @@ So how do we get this data? There are various methods. One way is through survey
   -  **Nominal**: Categories without order (e.g., Majors).
   -  **Ordinal**: Categories with order but not equally spaced (e.g., Class Standing: Freshman, Sophomore, etc.).
 
-::: {.notes}
-Alright, let's talk about types of variables. We've got two big categories: Quantitative and Qualitative. Quantitative is all about numbers. Think of your GPA; it can range from 0 to 4.0, so it's continuous. The number of courses you're taking is also numeric, but it can only be whole numbers, making it discrete.
-
-Qualitative variables are more about descriptions. For example, your major---like Computer Science or History---is nominal because there's no order. But your class standing, like Freshman or Sophomore, is ordinal because there's a clear order, even if the spaces between them aren't equal.
-:::
 
 ## Measures of Central Tendency 1/3
 
@@ -163,13 +140,6 @@ Qualitative variables are more about descriptions. For example, your major---lik
    - **Population Standard Deviation**: $\sigma = \sqrt{\sigma^2}$
    - **Sample Standard Deviation**: $s = \sqrt{s^2}$
 
-::: {.notes}
-After understanding what's 'typical,' you want how spread out the data is. We call these measures of dispersion. 'Range' is the simplest; it's the difference between the highest and lowest values, like the highest and lowest GPAs in a class.
-
-'Variance' is a bit more complicated. It measures how far each data point is from the mean, but it's not straightforward to interpret because it's in squared units.
-
-'Standard Deviation' is the square root of the variance and is in the same unit as the data, making it easier to understand. For instance, a higher standard deviation in GPAs would mean that the grades are more spread out.
-:::
 
 ## Measures of Dispersion 2/2
 
@@ -180,6 +150,6 @@ After understanding what's 'typical,' you want how spread out the data is. We ca
 
 ![](images/outliers.png)
 
-## R & RStudio & Google Colab
+## Setting-up R & RStudio & Google Colab
 
-![](images/R.png)
+<center>![](images/R.png)</center>

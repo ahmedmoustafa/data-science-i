@@ -1,0 +1,353 @@
+---
+title: "Getting Started with R"
+subtitle: "Part 1"
+format:
+  revealjs:
+    slide-number: true
+    preview-links: true
+    scrollable: true
+---
+
+## Programming in R
+
+- **Programming:** Writing instructions for a computer to perform specific tasks.
+
+- **R Language:** A language and environment designed for statistical computing and graphics.
+
+<center>![](images/R.png)</center>
+
+## Why R?
+
+- **Comprehensive Statistical Analysis**: `R` provides a wide array of statistical tests, models, and analyses.
+- **Rich Visualization Libraries**: Libraries like `ggplot2` allow for sophisticated data visualizations.
+- **Open Source**: Free to use, and benefits from a large community that contributes packages and updates.
+- **Extensible**: Over **15,000** packages in the `CRAN` repository for various applications.
+- **Data Handling Capabilities**: `R` can process both structured and unstructured data.
+- **Platform Independent**: Runs on various **operating systems**.
+
+**Notable Companies Using R**: [Google](https://www.google.com/), [Facebook](https://www.facebook.com/), [Airbnb](https://www.airbnb.com/), [Uber](https://www.uber.com/), and many more use `R` for data analysis.
+
+
+## Variables
+
+-   **Definition:** A storage area in programming to hold and manipulate data.
+
+-   **Importance:** Allows for data storage, retrieval, and manipulation.
+
+-   **Analogy:** Think of variables as labeled storage boxes.
+
+## Naming Variables
+
+- Begin with a letter
+- Avoid spaces (use underscores)
+- Case-sensitive.
+
+``` {r}
+#| echo: true
+age <- 25
+student_name <- "John"
+pi_value = 3.14
+```
+
+## Assignment
+
+Storing a value inside a variable.
+
+``` {r}
+#| echo: true
+x <- 5          # Preferred in R
+total = 100     # Also works
+7 -> z          # Rare
+```
+
+## Displaying Variable Value
+
+- Type the variable name, or
+
+``` {r}
+#| echo: true
+x
+```
+
+- Use the **`print()`** function
+
+``` {r}
+#| echo: true
+print(total)
+```
+
+##  Data Types
+
+Classifications of data based on its nature.
+
+```{r}
+#| echo: true
+number = 5                        # Numeric (Scalar)
+number
+messsage = "Hello"                # Character (String)
+messsage
+flag = TRUE                       # Logical
+flag
+grades_vector = c(90, 85, 88)     # Vector
+grades_vector
+matrix_data = matrix(1:6, nrow=2) # Matrix
+matrix_data
+students_df = data.frame(Name=c("Anna", "Bob"), 
+                         Age=c(23, 25))  # Dataframe
+students_df
+info = list(Name="John", Scores=c(90, 85, 88))  # List
+info
+```
+
+## Accessing Data Elements
+
+Methods to extract specific data or subsets from data structures.
+
+-   **Using Square Brackets:**
+
+1.  For **vectors**: Extract specific elements
+
+``` {r}
+#| echo: true
+third_grade = grades_vector[3]
+third_grade
+```
+
+2.  For **matrices**: Extract rows, columns, or individual elements.
+
+``` {r}
+#| echo: true
+first_row = matrix_data[1,]
+first_row
+second_column = matrix_data[,2]
+second_column
+element_1_2 = matrix_data[1,2]
+element_1_2
+```
+
+3.  For **data frames**: Extract rows, columns, or specific data.
+
+``` {r}
+#| echo: true
+Anna_data = students_df[1,]
+Anna_data
+Age_column = students_df[, "Age"]
+Age_column
+```
+
+4.  Exclude specific elements using negative indices:
+
+``` {r}
+#| echo: true
+all_but_third = grades_vector[-3]
+all_but_third
+```
+
+5.  Access rows using boolean logic:
+    
+``` {r}
+#| echo: true
+students_above_23 = students_df[students_df$Age > 23,]
+students_above_23
+```
+
+- **Using `$` for Data Frames:** To access specific columns by name.
+
+``` {r}
+#| echo: true
+ages = students_df$Age
+ages
+```
+
+
+## Checking Object Type
+- **Purpose**: To identify the data type or structure of an object.
+- **Function**: `class()`
+
+```{r}
+#| echo: true
+class(number)
+class(grades_vector)
+class(students_df)
+```
+
+## Changing Object Type
+- **Purpose**: To convert data from one type to another.
+- **Functions**: `as.numeric()`, `as.character()`, `as.logical()`, etc.
+
+```{r}
+#| echo: true
+number
+class(number)
+converted_number = as.character(number)
+converted_number
+class(converted_number)
+```
+
+::: {.incremental}
+
+- **Q**: What will happen when running the following line?
+```r
+converted_number + 5
+```
+
+- **A**: Error in `converted_number + 5`: ! non-numeric argument to binary operator
+
+:::
+
+## Special Values
+- `NA`: Missing data
+- `Inf`: Infinity e.g., `10/0`
+- `NaN`: Result of invalid operations e.g., `0/0`
+- `NULL`: Absence of a value
+
+## Factors
+
+Data type for categorical data
+
+```{r}
+#| echo: true
+gender = factor(c("male", "female", "male"))
+gender
+levels(gender)
+```
+
+::: {.incremental}
+
+- **Question**: what will be the output of the following? `as.numeric(gender)`
+
+- **Answer**: ``r as.numeric(gender)``
+
+:::
+
+## Size of Objects
+
+- **Purpose**: Determine dimensions or length.
+
+```{r}
+#| echo: true
+length(grades_vector)
+nrow(students_df)
+ncol(students_df)
+dim(students_df)
+```
+
+
+## Mathematical Operations
+
+- `+`: Addition
+- `-`: Subtraction
+- `*`: Multiplication
+- `/`: Division
+- `^`: Exponentiation (raising to a power)
+- `%%`: Modulus (remainder after division)
+
+```{r}
+#| echo: true
+result_add = 3 + 5       # Addition
+result_sub = 8 - 3       # Subtraction
+result_mul = 4 * 7       # Multiplication
+result_div = 8 / 2       # Division
+result_exp = 2^3         # Exponentiation
+result_mod = 8 %% 3      # Modulus
+```
+
+## Order of Operations
+
+PEMDA Rule:
+
+- `P`: Parentheses - Always start with operations inside parentheses or brackets.
+- `E`: Exponents - Next, handle powers and square root operations.
+- `MD`: Multiplication and Division - Process them as they appear from left to right.
+- `AS`: Addition and Subtraction - Handle them last, moving from left to right.
+
+::: {.incremental} 
+
+- **Q**: `3 + 5 * 2`
+- **A**: `r 3 + 5 * 2`
+
+- **Q**: `(3 + 5) * 2`
+- **A**: `r (3 + 5) * 2`
+
+- **Q**: `2 ^ 2 * 3`
+- **A**: `r 2 ^ 2 * 3`
+
+- **Tip**: Always use parentheses for clarity, even if not strictly needed.
+:::
+
+## Logical Operations
+
+Operations that return `TRUE` or `FALSE` based on certain conditions:
+
+- `==`: Equal to
+- `!=`: Not equal to
+- `<`: Less than
+- `>`: Greater than
+- `<=`: Less than or equal to
+- `>=`: Greater than or equal to
+- `&`: Logical `AND`
+- `|`: Logical `OR`
+- `!`: Logical `NOT`
+
+```r
+(3 < 4) & (7 > 6)
+(3 > 4) | (7 > 6)
+!(5 == 5)
+```
+
+## Vector and Matrix Operations
+
+```{r}
+#| echo: true
+grades_vector
+grades_vector + c(5, 5, 5)
+grades_vector * 1.1
+matrix_data
+matrix_data * 2
+matrix_data %*% t(matrix_data)
+```
+
+## Useful Functions
+
+```{r}
+#| echo: true
+paste("Hello", "World!", sep=" ")
+c("apple"=5, "banana"=10)
+colnames(students_df)
+min(grades_vector)
+highest_grade = max(grades_vector)
+highest_grade
+which(grades_vector == highest_grade)
+```
+
+## Sorting and Ranking
+
+1. `sort()`: Organize elements in ascending or descending order.
+
+```{r}
+#| echo: true
+numbers = c(5, 2, 9, 3)
+sort(numbers)
+```
+
+2. `order()`: Returns the indices that would arrange the data into ascending or descending order.
+
+```{r}
+#| echo: true
+names = c("Vicky", "Cristina", "Barcelona")
+order(names)
+```
+
+3. `rank()`: Provides the rank of each element when the data is sorted. In case of ties, it assigns the average rank.
+
+```{r}
+#| echo: true
+scores = c(85, 95, 85, 90)
+rank(scores)
+```
+
+Briefly,
+
+- `sort()` directly arranges the data.
+- `order()` provides indices for the arranged data.
+- `rank()` gives the position of each data point in the sorted order.
