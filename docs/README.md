@@ -1,5 +1,3 @@
-# Data Science I
-
 | Lecture | slides | pdfs | Classroom Notebook |
 | - | - | - | - |
 | Lecture 2 - Introduction to Statistics | [slides](https://ahmedmoustafa.github.io/data-science-i/lectures/lecture02_introduction_to_statistics.html)        | [pdf](../pdf/lecture02_introduction_to_statistics.pdf)   |                    |
