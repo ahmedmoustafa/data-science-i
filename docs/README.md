@@ -6,3 +6,4 @@
 | - | - | - | - |
 | Lecture 2: Introduction to Statistics | [slides](https://ahmedmoustafa.github.io/data-science-i/lectures/lecture02_introduction_to_statistics.html)        | [pdf](pdfs/lecture02_introduction_to_statistics.pdf)   |                    |
 | Lecture 3: Getting Started with R - Part 1 | [slides](https://ahmedmoustafa.github.io/data-science-i/lectures/lecture03_getting_started_with_R_part1.html) | [pdf](pdfs/lecture03_getting_started_with_R_part1.pdf) | [notebook](https://colab.research.google.com/drive/18am_tYKG0KxNmLLfTXnUCUpX3rJwUUk4?usp=sharing) |
+| Lecture 4: Getting Started with R - Part 2 | [slides](https://ahmedmoustafa.github.io/data-science-i/lectures/lecture04_getting_started_with_R_part2.html) | [pdf](pdfs/lecture04_getting_started_with_R_part2.pdf) | [notebook](https://colab.research.google.com/drive/1F_TkDMgMldXiax1LURuk9tQLcRVTBNto?usp=sharing) |

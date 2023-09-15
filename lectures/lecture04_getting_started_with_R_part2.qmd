@@ -1,0 +1,206 @@
+---
+title: "Getting Started with R"
+subtitle: "Part 2"
+format:
+  revealjs:
+    slide-number: true
+    preview-links: true
+    scrollable: true
+---
+
+```{r echo=FALSE,message=FALSE}
+library(printr)
+```
+
+## The CSV & TSV File Formats
+
+`CSV` (**Comma**-Separated Values) and `TSV` (**Tab**-Separated Values) are **plain text** formats used for storing data in a tabular structure. Both formats human-readable and easy to handle in many programming environments, including R.
+
+- CSV (Comma-Separated Values):
+  - Fields (columns) are separated by commas.
+  - Lines (rows) are separated by line breaks.
+  - Commonly used due to its simplicity and broad application in systems that handle tabular data.
+  - Example:
+  ```
+  Name,Age,Occupation
+  Alice,28,Engineer
+  Bob,35,Data Scientist
+  ```
+
+- TSV (Tab-Separated Values):
+  - Fields are separated by tabs.
+  - Often preferred when data values may contain commas, to avoid confusion.
+  - Example:
+  ```
+  Name    Age    Occupation
+  Alice    28    Engineer
+  Bob    35    Data Scientist
+  ```
+
+## Loading Data in R
+
+- There are different ways (functions) to read (or load, or import) data files into R.
+
+- One simple and easy way  is using the [`read.csv()`](https://www.geeksforgeeks.org/read-contents-of-a-csv-file-in-r-programming-read-csv-function/) function.
+- Example:
+
+```r
+df = read.csv("filename.csv")
+```
+
+## The Dataset: The Happiness Index 2019
+
+<center>
+![](images/qr_happiness_dataset.png)
+
+<small>[The World Happiness Report 2019](https://github.com/ahmedmoustafa/datasets/tree/main/happiness)</small>
+</center>
+
+
+## Reading the Happines Dataset
+
+```{r}
+#| echo: true
+df = read.csv("https://raw.githubusercontent.com/ahmedmoustafa/datasets/main/happiness/happiness2019.csv")
+head(df)
+```
+
+## Exploring the Structure of the Dataset
+
+- **Shape of the Data**: check the dimensions (number of rows and columns) of the dataset
+
+```{r}
+#| echo: true
+dim(df)
+paste("Number of rows (countries):", nrow(df))
+paste("Number of columns (attributes):", ncol(df))
+```
+
+- **Column Names**: generate a list of all the attributes/columns in the dataset
+
+```{r}
+#| echo: true
+colnames(df)
+```
+
+- **Column Data Types**: understand the kind of data each column holds (numeric, character, factor, etc.).
+
+```{r}
+#| echo: true
+sapply(df, class)
+```
+
+## Categorical Variables
+
+- Which columns make sense to be converted to `factor`? `category` is a **qualitative** variable.
+
+```{r}
+#| echo: true
+df$category = factor(df$category)
+levels(df$category)
+```
+
+- It is actually an **ordinal** qualitative variable. So, instead of the default levels (alphabetical), let's provide a real order.
+
+```{r}
+#| echo: true
+df$category = factor(df$category, levels = c("Developed", "Transitioning", "Developing", "Underdeveloped"))
+levels(df$category)
+```
+
+## The Happiest Country
+
+- We need to determine the highest score using the `max()` function, then locate the index (position) of the country with that max score using the `which()` function.
+
+```{r}
+#| echo: true
+df$country[which(df$score == max(df$score))]
+```
+
+- Alternatively, there is also the 2-in-1 function [`which.max()`](https://www.geeksforgeeks.org/return-the-index-of-the-first-maximum-value-of-a-numeric-vector-in-r-programming-which-max-function/)
+
+```{r}
+#| echo: true
+df$country[which.max(df$score)]
+```
+
+## The Least Happy Country
+
+```{r}
+#| echo: true
+df$country[which(df$score == min(df$score))]
+```
+
+```{r}
+#| echo: true
+df$country[which.min(df$score)]
+```
+
+## The Top 10 Happiest Countries
+
+We need to obtain the **descending** `order()` of the countries according to the `score` column then obtain the first 10:
+
+- Using the `decreasing` parameter:
+
+```{r}
+#| echo: true
+df$country[order(df$score, decreasing = TRUE)][1:10]
+```
+
+- Using the **negative** (`-`) scores:
+
+```{r}
+#| echo: true
+df$country[order(-df$score)][1:10]
+```
+
+## The Top 10 Happiest Countries
+
+- The full records of the top 10 happiest countries:
+
+```{r}
+#| echo: true
+df[order(-df$score)[1:10], ]
+```
+
+## Egypt's Happy Score & Rank
+
+- Find the row number (index) with the country **equals** (`==`) "Egypt" to obtain the score in that row (at that index)
+
+```{r}
+#| echo: true
+df$score[which(df$country == "Egypt")]
+```
+
+- Similarly, we obtain the row number of Egypt then use that index to obtain the corresponding rank of the score, after **ranking** the scores
+
+```{r}
+#| echo: true
+rank(-df$score)[which(df$country == "Egypt")]
+```
+
+- Note the use of the **negative sign** (`-`) above with the score to switch the direction of ranking from ascending (which is the default) to descending
+
+## A Glimpse of Data Visualization in R
+
+- Using the basic [`plot`](https://www.geeksforgeeks.org/plotting-of-data-using-generic-plots-in-r-programming-plot-function/) function in R, we can visualize the relationship between two variables as a [scatter plot](https://en.wikipedia.org/wiki/Scatter_plot).
+
+![](https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Scatter_diagram_for_quality_characteristic_XXX.svg/1920px-Scatter_diagram_for_quality_characteristic_XXX.svg.png)
+
+- For example, let's investigate the relationship between the `score` (on the y-axis) and the `gdp_per_capita`
+
+## Relationship Between Happiness and GDP, Visually
+
+```{r}
+#| echo: true
+plot(df$score ~ df$gdp_per_capita)
+```
+
+## Relationship Between Happiness and GDP, Quantitatively
+
+```{r}
+#| echo: true
+cor(df$score, df$gdp_per_capita)
+```
+
+Both the graph and the correlation coefficient suggest a strong association between population happiness and the country's GDP.
