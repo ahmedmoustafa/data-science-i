@@ -1,0 +1,259 @@
+---
+title: "Descriptive Statistics using R"
+format:
+  revealjs:
+    slide-number: true
+    preview-links: true
+    scrollable: true
+---
+
+```{r echo=FALSE,message=FALSE}
+library(printr)
+```
+
+## The Dataset: Student Transcript
+
+<center>
+![](images/qr_transcript_dataset.png)
+
+<small>[Student Transcript](https://github.com/ahmedmoustafa/datasets/tree/main/transcript)</small>
+</center>
+
+## Objective
+
+Analyzing a student's transcript dataset to understand performance metrics.
+
+## Dataset Overview
+- Columns: year, semester, course_number, credits, letter_grade, numerical_value (GPA)
+- Four academic years of data
+- Grades for both major and non-major courses
+
+## Loading the Dataset
+
+```{r}
+#| echo: true
+df = read.csv ("https://raw.githubusercontent.com/ahmedmoustafa/datasets/main/transcript/transcript.csv")
+head(df)
+```
+
+## Measures of Central Tendency - Mean & Median
+
+- **Mean**: The average of a set of numbers, $\bar{x} = \frac{\sum_{i=1}^{n} x_i}{n}$
+
+```{r}
+#| echo: true
+mean(df$numerical_value)
+```
+
+- **Weighted Mean**: The mean where some values contribute more than others, $\bar{x}_w = \frac{\sum_{i=1}^{n} w_i x_i}{\sum_{i=1}^{n} w_i}$
+
+```{r}
+#| echo: true
+sum(df$numerical_value * df$credits)/sum(df$credits)
+```
+
+```{r}
+#| echo: true
+weighted.mean(df$numerical_value, w = df$credits)
+```
+
+- **Trimmed Mean**: The mean after removing a specified number of the highest and lowest values.
+
+```{r}
+#| echo: true
+mean(df$numerical_value, trim = 0.1)
+```
+
+- **Median**: The middle value in a sorted list of numbers
+
+```{r}
+#| echo: true
+median(df$numerical_value)
+```
+
+## Measures of Central Tendency - Mode
+
+- **Mode**: The value that appears most frequently in a set.
+- As discussed before, mode is more appropriate for qualitative data values.
+- So, let's compute mode for the `letter_grade`
+- However, in R, there is no built-in function to compute the mode directly.
+- Therefore, we need to install the [`DescTools`](https://cran.r-project.org/web/packages/DescTools/) package
+
+```{r}
+#| echo: true
+if(!require(DescTools))
+  install.packages("DescTools",repos = "http://cran.us.r-project.org")
+```
+
+- Now we can run the [`Mode()`](https://rdrr.io/cran/DescTools/man/Mode.html) function from `DescTools` package
+
+```{r}
+#| echo: true
+library(DescTools)
+Mode(df$letter_grade)
+```
+
+## Descriptive Statistics using `DescTools`
+
+| Measure                | Function          | Description                                                                                      |
+|------------------------|-------------------|--------------------------------------------------------------------------------------------------|
+| **Mode**               | `Mode(data)`      | Computes the mode. Returns multiple modes if they exist.                                         |
+| **Mean**               | `Mean(data)`      | Computes the arithmetic mean.                                                                    |
+| **Weighted Mean**      | `WtdMean(data)`   | Computes the weighted mean.                                                                      |
+| **Median**             | `Median(data)`    | Computes the median.                                                                             |
+| **Trimmed Mean**       | `Mean(data, trim)`| Computes trimmed mean. `trim` is fraction (0 to 0.5) of observations to be trimmed.               |
+| **Standard Deviation** | `Std(data)`       | Computes the sample standard deviation.                                                          |
+| **Variance**           | `Var(data)`       | Computes the variance.                                                                           |
+| **Range**              | `Range(data)`     | Computes the range (difference between max and min).                                             |
+| **Interquartile Range**| `IQR(data)`       | Computes the interquartile range.                                                                |
+
+## Measures of Spread - Range
+
+- **Range**: Difference between the largest and smallest values, $$ \text{Range} = x_{\text{max}} - x_{\text{min}} $$
+
+```{r}
+#| echo: true
+max(df$numerical_value) - min(df$numerical_value)
+```
+
+```{r}
+#| echo: true
+range(df$numerical_value) # The base R (built-in) 
+```
+
+```{r}
+#| echo: true
+Range(df$numerical_value) # From DescTools
+```
+
+## Measures of Spread - IQR
+
+- **Interquartile Range (IQR)**: Difference between the first and third quartiles, $$ \text{IQR} = Q_3 - Q_1 $$
+  - First Quartile:
+      - Also known as the lower quartile or the 25th percentile.
+      - It is the value below which 25% of the data falls. In other words, it cuts off the lowest 25% of the data.
+  - Third Quartile:
+      - Also known as the upper quartile or the 75th percentile.
+      - It is the value below which 75% of the data falls, meaning it cuts off the lowest 75% of data points.
+
+```{r}
+#| echo: true
+quantile(df$numerical_value)
+```
+
+```{r}
+#| echo: true
+quantiles = quantile(df$numerical_value)
+quantiles[4] - quantiles[2]
+```
+
+```{r}
+#| echo: true
+IQR(df$numerical_value)
+```
+
+## Measures of Spread - Standard Deviation & Variance
+
+- **Standard Deviation**: Measures the amount of variation or dispersion of a set of values, $$s = \sqrt {\frac{\sum_{i=1}^{n} (x_i - \bar{x})^2}{n-1}}$$
+
+```{r}
+#| echo: true
+sd(df$numerical_value)
+```
+
+- **Variance**:
+  $$var(x) =  \frac{\sum_{i=1}^{n} (x_i - \bar{x})^2}{n-1} = s^2$$
+  
+```{r}
+#| echo: true
+s = sd(df$numerical_value)
+s^2
+```
+
+```{r}
+#| echo: true
+Var(df$numerical_value) # From DescTools
+```
+
+##  Measures of Spread - Mean Absolute Deviation (MAD)
+
+- **Mean Absolute Deviation**: (**MAD**) a measure of dispersion representing the average distance of each data point from the mean
+
+$$ MAD = \frac{1}{n} \sum_{i=1}^{n} |x_i - \bar{x}| $$
+
+
+```{r}
+#| echo: true
+mean(abs(df$numerical_value - mean(df$numerical_value)))
+```
+
+- MAD is sensitive to outliers.
+
+## Exericse - Major GPA *vs.* non-Major GPA
+
+- Using the provided dataset, compare the GPA (the `numerical_value` column) of the student in their major courses versus the non-major courses. For this dataset, Computer Science courses are the major courses, and their course numbers start with `"COMP"`.
+
+- Hint: You might find the [`startsWith()`](https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/startsWith) function in R useful to filter rows based on the course number.
+
+## Solution - Major GPA *vs.* non-Major GPA
+
+- Major Courses
+
+We can search for the rows with major courses using `startsWith()`
+
+```{r}
+#| echo: true
+flag = startsWith(df$course_number, "COMP")
+flag
+```
+
+- `TRUE` : a major course
+- `FALSE` : a non-major course
+
+```{r}
+#| echo: true
+major_courses = df[flag, ]
+head(major_courses)
+```
+
+```{r}
+#| echo: true
+major_gpa = median(major_courses$numerical_value)
+major_gpa
+```
+
+- Non-Major Courses
+
+To filter for non-major courses, we can just *negate* `flag` i.e.,
+
+```{r}
+#| echo: true
+!flag
+```
+
+- `TRUE` : a non-major course
+- `FALSE` : a major course
+
+```{r}
+#| echo: true
+nonmajor_courses = df[!flag, ]
+head(nonmajor_courses)
+```
+
+```{r}
+#| echo: true
+nonmajor_gpa = median(nonmajor_courses$numerical_value)
+nonmajor_gpa
+```
+
+- Using the `summary()` function 
+
+```{r}
+#| echo: true
+summary(major_courses$numerical_value)
+```
+
+```{r}
+#| echo: true
+summary(nonmajor_courses$numerical_value)
+```
