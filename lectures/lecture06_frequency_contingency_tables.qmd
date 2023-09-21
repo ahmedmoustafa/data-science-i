@@ -1,0 +1,227 @@
+---
+title: "Analyzing Data Distribution using Frequency and Contingency Tables"
+format:
+  revealjs:
+    slide-number: true
+    preview-links: true
+    scrollable: true
+---
+
+```{r echo=FALSE,message=FALSE}
+library(printr)
+```
+
+## The Dataset: Course Evaluation
+
+<center>
+![](images/qr_evaluation_dataset.png)
+
+<small>[Course Evaluation](https://github.com/ahmedmoustafa/datasets/tree/main/evaluation)</small>
+</center>
+
+## Introduction to the Dataset
+
+This dataset represents student data, comprising of fields such as majors, courses, scores, grades, and evaluations. The data provides insights into students' academic performance and feedback across different disciplines.
+
+| Column        | Description                                                                 |
+|---------------|-----------------------------------------------------------------------------|
+| `Major`       | The major or department of the course (e.g., `CS` for Computer Science).    |
+| `Course`      | The specific course identifier within the major (e.g., `CS_101`).           |
+| `Score`       | Numerical score obtained by a student in the course.                        |
+| `Grade`       | Alphabetical grade awarded to the student based on the score.               |
+| `Evaluation`  | A numerical rating (1-10 scale) representing student evaluations for the course. |
+
+
+
+## Dataset Loading
+
+```{r setup, echo=TRUE}
+df <- read.csv("https://raw.githubusercontent.com/ahmedmoustafa/datasets/main/evaluation/evaluation.csv")
+head(df)
+```
+
+## Frequency Tables
+
+A frequency table is a way to organize data by recording the number of times each value or range of values appears in the dataset. The formula for frequency for a category $i$ is given by:
+
+$$ f_i = \text{ Number of times category } i \text{ appears in the data } $$
+**Example**:
+Suppose we have the following grades: 85, 90, 88, 82, 92, and we use two bins: 80-89 and 90-99. 
+The frequency table would look like:
+
+| Bin     | Frequency |
+|---------|-----------|
+| 80-89   | 3         |
+| 90-99   | 2         |
+
+
+## Frequency Metrics
+
+- **Normalized Frequency**
+$$ f_{norm}=\frac{\text{Frequency of bin}}{{\text{Total number of data points}}} $$
+- **Cumulative Frequency** $$ f_{cum} = f_1 + f_2 + \dots + f_i $$
+
+- **Normalized Cumulative Frequency** 
+
+$$ f_{cum\_norm} = \frac{{f_1 + f_2 + \dots + f_i}}{{n}} $$
+
+**Example**:
+
+Using the same data from the previous slide:
+
+| Bin     | $f$       | $f_{norm}$     | $f_{cum}$     | $f_{cum\_norm}$    |
+|---------|-----------|----------------|---------------|--------------------|
+| 80-89   | 3         | 0.6            | 3             | 0.6                |
+| 90-99   | 2         | 0.4            | 5             | 1                  |
+
+
+## For Qualitative Data
+
+Qualitative (or categorical) data can be summarized using basic frequency tables. Each unique category gets its own entry in the table.
+
+```{r qualitative_freq_table, echo=TRUE}
+table(df$Major) # Creating a frequency table for the 'Major' column
+```
+
+## For Quantitative Data
+
+Quantitative data requires binning, where data is grouped into ranges.  There are several methods to decide on the number of bins:
+
+1. **Square-root Rule**: $\text{number of bins} = \sqrt{n}$
+
+2. **Sturges' Rule**: $\text{number of bins} = 1 + log_2(n)$
+
+3. **Rice Rule**: $\text{number of bins} = 2 	\times \sqrt[3]{n}$
+
+4. **Freedman-Diaconis Rule**:
+   - $\text{bin width} = 2 \times \frac{{\text{IQR}(x)}}{{\sqrt[3]{n}}}$
+  
+   - $\text{number of bins} = \left\lceil \frac{{\text{max}(x) - \text{min}(x)}}{{\text{bin width}}} \right\rceil$
+
+## Number of Bins
+
+Let's calculate the number of bins using these methods, for $n=$ `r length(df$Score)`:
+
+```{r bins_calculation, echo=TRUE}
+# Number of data points
+n = length(df$Score)
+
+# Calculating number of bins using various methods
+bins_sqrt = round(sqrt(n)) # Square-root
+bins_sturges = round(log2(n) + 1) # Sturges
+bins_rice = round(2 * (n^(1/3))) # Rice
+iqr = IQR(df$Score) # IQQ
+bin_width_fd = 2 * iqr / (n^(1/3)) # Bin width for Freedman-Diaconis
+bins_fd = round((max(df$Score) - min(df$Score)) / bin_width_fd) # Freedman-Diaconis
+
+data.frame(Method=c("Square root", "Sturges", "Rice", "Freedman-Diaconis"), Number_of_Bins=c(bins_sqrt, bins_sturges, bins_rice, bins_fd))
+```
+
+## Creating the Frequency Table
+
+We'll calculate frequencies using Sturges' rule for the sake of demonstration:
+
+```{r quantitative_freq_table, echo=TRUE}
+# Break points for the bins using square root rule
+break_points = seq(min(df$Score), 
+                   max(df$Score), 
+                   length.out=bins_sturges+1)
+break_points
+```
+
+```{r quantitative_freq_table2, echo=TRUE}
+# Calculate frequencies
+frequencies = table(cut(df$Score, 
+                        breaks=break_points,
+                        include.lowest=TRUE))
+frequencies
+```
+
+```{r quantitative_freq_table3, echo=TRUE}
+# Calculating normalized and cumulative frequencies
+norm_freq <- frequencies / sum(frequencies)
+cum_freq <- cumsum(frequencies)
+norm_cum_freq <- cumsum(norm_freq)
+
+data.frame(Bin = names(frequencies),
+           Frequency = as.vector(frequencies),
+           Normalized_Frequency = as.vector(norm_freq), 
+           Cumulative_Frequency = as.vector(cum_freq), 
+           Normalized_Cumulative_Frequency = as.vector(norm_cum_freq))
+```
+
+## Using `DescTools::Freq()`
+
+```{r quantitative_freq_table_using_DescTools, echo=TRUE}
+DescTools::Freq(df$Score) # Creating a frequency table for the 'Score' column using DescTools
+```
+
+## Visualization of Frequency Tables
+
+Bar plots and histograms and provide visual representations of frequency tables:
+
+## Qualitative using `barplot()`
+
+```{r visualization_frequency, echo=TRUE, fig.height=4, fig.width=6}
+# Bar plot for 'Major'
+barplot(table(df$Major), col="salmon", border="black", main="Bar Plot of Majors", ylab="Count")
+```
+
+## Quantitative using `barplot()`
+
+```{r echo=TRUE}
+# Bar plot for 'Major'
+barplot(norm_freq, col="lightgreen", border="black", main="Bar Plot of Scores", ylab="Count")
+```
+
+## Quantitative using `hist()`
+
+```{r echo=TRUE}
+# Histogram for 'Score'
+hist(df$Score, breaks=break_points, col="skyblue", border="black", main="Histogram of Scores", xlab="Scores")
+```
+
+## Contingency Tables: Multivariate Categorical Data
+
+Contingency tables help to understand the relationship between **two categorical** variables by listing the frequency of every combination of categories:
+
+$$ f_{ij} = \text{Number of occurrences where variable 1 is in category } i \text{ and variable 2 is in category } j $$
+
+```{r contingency_table, echo=TRUE}
+# Creating a contingency table for 'Major' and 'Grade'
+contingency <- table(df$Major, df$Grade)
+contingency
+```
+
+## Visualization of Contingency Tables
+
+Mosaic plots provide a visual representation of contingency tables, highlighting the distribution and relationship between two categorical variables.
+
+```{r visualization_contingency, echo=TRUE, fig.height=4, fig.width=6}
+# Mosaic plot for the contingency table
+mosaicplot(contingency, main="Mosaic Plot of Major vs Grade", color=c("skyblue", "salmon", "lightgreen"))
+```
+
+## Exercise
+
+1. Frequency Table for the `Evaluation` Column
+ a. Construct a frequency table for the `Evaluation` column in the provided dataset.
+ b. Visualize the frequency table using an appropriate plot.
+ c. Analyze the resulting visualization and articulate any relationships, trends, or patterns observed in the `Evaluation` data.
+
+2. Relationship between `Score` and `Evaluation`
+ a. Employ suitable visualization techniques to explore the relationship between the `Score` and `Evaluation` columns in the dataset.
+ b. Examine the visual representation and infer any relationships, trends, or patterns between `Score` and `Evaluation`.
+
+3. Contingency Table for Computer Science (`CS`) Major Courses
+ a. Filter the dataset to include only rows where the courses belong to the Computer Science major.
+ b. Develop a contingency table between `Courses` and `Grades` from the filtered data.
+ c. Visualize the contingency table using suitable graphical representations.
+ d. Analyze the visualization and deduce any notable relationships, trends, or patterns between different courses and grades within the Computer Science major.
+
+## In Summary
+
+- Frequency tables are fundamental in data analysis to understand data distribution.
+- The choice of binning is pivotal for meaningful interpretation of quantitative data.
+- Contingency tables offer insights into the relationships between two categorical variables.
+- Both tables can be visualized effectively for better understanding and interpretation.
