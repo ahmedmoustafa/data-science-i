@@ -1,0 +1,502 @@
+---
+title: "Data Science I"
+subtitle: Getting Started with R Problem Set - Answers
+format:
+  pdf:
+    colorlinks: true
+---
+
+### 1. Given a vector `v` with values `[1, 2, 3, 4, 5]`, what will be the output of the expression `v[v > 3]`?
+
+```{r}
+v = c(1, 2, 3, 4, 5)
+v
+```
+
+
+```{r}
+v[v > 3]
+```
+
+### 2. Create a matrix `m` of dimensions $3\times3$ with elements from $1$ to $9$. What will be the output of `m[2,]`?
+
+```{r}
+m = matrix(1:9, nrow = 3)
+m
+```
+
+```{r}
+m[2, ]
+```
+
+
+### 3. Given a data frame `df` with two columns: `Name` and `Age`. If Name has values `['Tom', 'Jerry', 'Mickey']` and Age has values `[25, 22, 30]`, what will be the output of the expression `df[df$Age > 24,]`?
+
+```{r}
+df = data.frame (Name = c('Tom', 'Jerry', 'Mickey'), Age = c(25, 22, 30))
+df
+```
+
+```{r}
+df[df$Age > 24,]
+```
+
+### 4. What will be the output of the function call `seq(2, 10, by=3)`?
+
+```{r}
+seq(2, 10, by=3)
+```
+
+### 5. Given a vector `v = c(10, 20, 10, 40, 50)`, what will be the output of `which(v == 10) `?
+
+```{r}
+v = c(10, 20, 10, 40, 50)
+v
+```
+
+
+```{r}
+which(v == 10)
+```
+
+### 6. Given the same vector `v`, what will be the output of `sort(v, decreasing = TRUE)`?
+
+```{r}
+sort(v, decreasing = TRUE)
+```
+
+### 7. Using the same vector `v`, what will be the output of `order(v)`?
+
+```{r}
+order(v)
+```
+
+
+### 8. What will be the result of the expression ` startsWith("Hello", "He") `?
+
+```{r}
+startsWith("Hello", "He")
+```
+
+
+### 9. Given a matrix `m` of dimensions $2\times3$ with elements from $1$ to $6$. What will be the output of the expression `m[1, 2] > m[2, 1]`?
+
+```{r}
+m = matrix(1:6, nrow = 2)
+m
+```
+
+```{r}
+m[1, 2]
+```
+
+```{r}
+m[2, 1]
+```
+
+
+```{r}
+m[1, 2] > m[2, 1]
+```
+
+### 10. Identify the logical error in the following code:
+
+```
+x <- c(1, 2, 3, 4, 5)
+y <- x[6]
+print(y)
+```
+
+```{r}
+x <- c(1, 2, 3, 4, 5)
+y <- x[6] # index out of range
+print(y)
+```
+
+### 11. What will be the result of the expression `startsWith("world", "Hello")`?
+
+```{r}
+startsWith("world", "Hello")
+```
+
+### 12. Given a matrix `m` with values:
+
+```
+1 2 3
+4 5 6
+7 8 9
+```
+
+### What will be the output of `m[2:3, 1:2]`?
+
+```{r}
+m = matrix (1:9, nrow = 3, byrow = TRUE)
+m
+```
+
+```{r}
+m[2:3, 1:2]
+```
+
+### 13. If `v` is a vector with values `[5, 7, 9, 11, 13]`, what will be the result of `max(v) - min(v)`?
+
+```{r}
+v = c(5, 7, 9, 11, 13)
+v
+```
+
+
+```{r}
+max(v) - min(v)
+```
+
+
+### 14. Using the previous vector `v`, what will be the output of `v[v < 10 | v > 12]`?
+
+```{r}
+v[v < 10 | v > 12]
+```
+
+
+### 15. Consider a data frame `df` with columns `A`, `B`, and `C`. If `A`' has values `[3, 6, 9]`, `B` has values `[5, 10, 15]`, and `C` has values `[7, 14, 21]`. What will be the output of `df[df$A == 6 & df$B == 10,]`?
+
+```{r}
+df = data.frame (A = c(3, 6, 9), B = c(5, 10, 15), C = c(7, 14, 21))
+df
+```
+
+```{r}
+df[df$A == 6 & df$B == 10,]
+```
+
+
+### 16. What will be the output of the expression `seq(3, 30, length.out = 10)`?
+
+```{r}
+seq(3, 30, length.out = 10)
+```
+
+
+### 17. Given a vector `w` with values `[45, 22, 89, 67, 34]`, what will be the output of `sort(w)[which(w > 50)]`?
+
+```{r}
+w = c(45, 22, 89, 67, 34)
+w
+```
+
+
+```{r}
+w > 50
+```
+
+
+```{r}
+which(w > 50)
+```
+
+
+```{r}
+sort(w)
+```
+
+
+```{r}
+sort(w)[c(3, 4)]
+```
+
+
+```{r}
+sort(w)[which(w > 50)]
+```
+
+### 18. Identify the logical error in the following code:
+
+```R
+x <- c(1, 2, 3, 4, 5)
+y <- x[6]
+print(y)
+```
+
+```{r}
+x <- c(1, 2, 3, 4, 5)
+y <- x[6] # index out of range
+print(y)
+```
+
+
+### 19. If `z` is a vector with values `[10, 20, 30, 40, 50]`, what will be the result of `z[1] + z[5]`?
+
+```{r}
+z = c(10, 20, 30, 40, 50)
+z
+```
+
+
+```{r}
+z[1] + z[5]
+```
+
+
+### 20. Given the previous vector `z`, what will be the output of the expression `z[z > 15 & z < 45]`?
+
+```{r}
+z[z > 15 & z < 45]
+```
+
+### 21. Using the vector `v` with values [5, 7, 9, 11, 13], what will be the output of `order(v, decreasing = TRUE)[1]`?
+
+```{r}
+v = c(5, 7, 9, 11, 13)
+v
+```
+
+
+```{r}
+order(v, decreasing = TRUE)
+```
+
+
+```{r}
+order(v, decreasing = TRUE)[1]
+```
+
+
+### 22. Consider a matrix `n` with values:
+
+```
+3 6 9
+12 15 18
+21 24 27
+```
+
+### What will be the output of `n[1,] + n[3,]`?
+
+```{r}
+n = matrix(seq(3,27,3), nrow = 3, byrow = TRUE)
+n
+```
+
+
+```{r}
+n[1,]
+```
+
+
+```{r}
+n[3,]
+```
+
+
+```{r}
+n[1,] + n[3,]
+```
+
+
+### 23. If `u` is a vector with values [2, 4, 8, 16, 32], what will be the result of `u[2] * u[4]`?
+
+```{r}
+u = c(2, 4, 8, 16, 32)
+u
+```
+
+
+```{r}
+u[2] * u[4]
+```
+
+
+### 24. Given a matrix `p` with dimensions $4\times4$ containing values from $1$ to $16$, what will be the output of `p[2:3, 2:3]`?
+
+```{r}
+p = matrix(1:16, nrow = 4)
+p
+```
+
+```{r}
+p[2:3, 2:3]
+```
+
+
+### 25. What will be the output of the function call `seq(1, 1.9, by=0.3)`?
+
+```{r}
+seq(1, 1.9, by=0.3)
+```
+
+
+### 26. Given a vector `q` with values `[40, 10, 30, 20, 50]`, what will be the output of the expression `sort(q)`?
+
+```{r}
+q = c(40, 10, 30, 20, 50)
+q
+```
+
+
+```{r}
+sort(q)
+```
+
+
+### 27. Using the same vector `q`, what will be the output of the expression `order(q)`?
+
+```{r}
+order(q)
+```
+
+
+### 28. Given a data frame `df` with a single column `Value` and values `[50, 20, 40, 10, 30]`, if you want to rearrange the rows of the data frame in ascending order based on the `Value` column, which of the following codes should you use?
+
+a. `df[sort(df$Value), ]`
+b. `df[order(df$Value), ]`
+c. `sort(df$Value)`
+d. `order(df$Value)`
+
+
+```{r}
+df = data.frame (Value = c(50, 20, 40, 10, 30))
+df
+```
+
+
+
+```{r}
+df[order(df$Value), ]
+```
+
+
+### 29. If `r` is a vector with values `[-5, -3, 0, 3, 5]`, what will be the result of `sort(r, decreasing = TRUE)`?
+
+```{r}
+r = c(-5, -3, 0, 3, 5)
+r
+```
+
+
+```{r}
+sort(r, decreasing = TRUE)
+```
+
+
+### 30. Using the same vector `r`, what will be the output of `order(r)`?
+
+```{r}
+order(r)
+```
+
+
+### 31. Given a vector `s` with values `["apple", "banana", "cherry"]`, what will be the result of `sort(s)`?
+
+```{r}
+s = c("apple", "banana", "cherry")
+s
+```
+
+
+```{r}
+sort(s)
+```
+
+
+### 32. Using the same vector `s`, what will be the output of `order(s)`?
+
+```{r}
+order(s)
+```
+
+
+### 33. Consider a vector `t` with values `[5, 3, 4, 1, 2]`. If you want to get the second smallest value, which of the following codes will give the correct result?
+  a. `sort(t)[2]`
+  b. `order(t)[2]`
+  c. `t[order(t)[2]]`
+  d. `t[sort(t)[2]]`
+
+```{r}
+t = c(5, 3, 4, 1, 2)
+t
+```
+
+
+```{r}
+sort(t)[2]
+```
+
+
+### 34. Given a vector `u` with values `[2.5, 2.7, 2.3, 2.6]`, what will be the output of `order(u)`?
+
+```{r}
+u = c(2.5, 2.7, 2.3, 2.6)
+u
+```
+
+
+```{r}
+order(u)
+```
+
+
+### 35. Using the same vector `u`, what will be the result of `sort(u, decreasing = TRUE)`?
+
+```{r}
+sort(u, decreasing = TRUE)
+```
+
+
+### 36. Identify the error in the following code:
+
+```{R}
+vector <- c(1, 2, 3, 4, 5)
+sum(vector = vector)
+```
+
+```{r}
+vector <- c(1, 2, 3, 4, 5)
+sum(vector = vector)
+```
+
+Nothing is wrong
+
+### 37. Spot the mistake in the code below:
+
+```{R}
+df <- data.frame(Name=c("Anna", "Bob", "Charlie"), Age=c(25, 30, 35))
+df$Name[2]
+```
+
+```{r}
+df <- data.frame(Name=c("Anna", "Bob", "Charlie"), Age=c(25, 30, 35))
+df$Name[2]
+```
+
+
+Nothing is wrong
+
+### 38. What's wrong with the following code?
+```{R}
+x <- c(5, 10, 15, 20)
+mean(x, trim = 2)
+```
+
+```{r}
+x <- c(5, 10, 15, 20)
+mean(x, trim = 2)
+```
+
+
+`trim` must be between 0 and 1.
+
+### 39. Identify the issue in the following function call:
+
+```
+seq(from = 1, to = 10, by = 0)
+```
+
+`by` cannot be zero
+
+### 40. Spot the mistake in this code:
+```
+matrix <- matrix(1:12, nrow = 3)
+matrix[4, 2]
+```
+
+There are only 3 rows. So, 4 is a wrong row index
+

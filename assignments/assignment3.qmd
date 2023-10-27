@@ -1,0 +1,87 @@
+---
+title: "Assignment 3"
+subtitle: "R Programming"
+format: pdf
+---
+
+# Instructions
+To successfully submit your R assignment, please follow these steps:
+
+1. Prepare Your Notebook
+
+    - At the beginning of your Google Colab notebook, create a text cell and include your full name
+    - Ensure that all the code in your notebook runs correctly.
+
+2. Share Your Google Colab Notebook
+
+    - Open your Google Colab notebook and click on the `Share` button at the top right corner.
+    - Enter the email addresses of the teaching team.
+    - Ensure that both recipients have access to the notebook and click `Send`.
+
+3. Upload a Copy of Your Notebook
+
+    - In Google Colab, click on `File` and then `Download` to download your notebook in the `.ipynb` format to your computer.
+    - Navigate to the assignment submission page on your course management system.
+    - Locate and use the 'Upload' button to submit the downloaded `.ipynb` file.
+
+$\pagebreak$
+
+# Q1: Diamond Pattern
+
+Write an R function `print_diamond()` to print a diamond pattern for a given number $n$.
+
+**Example:**
+
+```{r echo=FALSE}
+print_diamond <- function(n) {
+  # Top half of the diamond including the middle row
+  for (i in 1:n) {
+    cat(rep(" ", n - i), sep = "")
+    cat(rep(i, 2 * i - 1), sep = "")
+    cat("\n")
+  }
+  # Bottom half of the diamond
+  for (i in (n-1):1) {
+    cat(rep(" ", n - i), sep = "")
+    cat(rep(i, 2 * i - 1), sep = "")
+    cat("\n")
+  }
+}
+```
+
+
+- Input: `print_diamond(3)`
+- Output: 
+  ```{r echo=FALSE}
+  print_diamond(3)
+  ```
+
+Use loops and conditionals to achieve this. Test your program with $n = 3$ and $n = 4$.
+
+# Q2: Random Number Generator
+
+Write an R code to generate random numbers between $1$ and $10$ until you get a number that is divisible by $5$.  Use a `while` loop to achieve this, as you cannot predict how many random numbers you will need to generate before getting a number divisible by $5$.
+
+**Example:**
+
+```{r echo=FALSE}
+random_number_generator = function() {
+  set.seed(-123)
+  numbers = c()
+  number = sample(1:10, 1)
+  while (number %% 5 != 0) {
+    numbers = c(numbers, number)
+    number = sample(1:10, 1)
+  }
+  numbers = c(numbers, number)
+  return (list(numbers, number))
+}
+```
+
+```{r echo=FALSE}
+output = random_number_generator()
+cat ("Generated Numbers: ", output[[1]], "\n")
+cat ("Number divisible by 5 found: ", output[[2]], "\n")
+```
+
+**Hint:** Use the R function [`sample()`](https://www.digitalocean.com/community/tutorials/sample-in-r) for random sampling
