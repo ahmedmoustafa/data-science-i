@@ -1,5 +1,6 @@
 ---
-title: "Essential Functions"
+title: "R Programming - Part 2"
+subtitle: "Essential Functions"
 format:
   revealjs:
     slide-number: true
@@ -35,13 +36,11 @@ any(v)
 all(v)
 ```
 
-# Set Functions
+## Set Functions
+- Set is a collection of distinct elements.
 - Set functions perform operations on sets of elements.
-- Common functions include `union`, `intersect`, `setdiff`, and `setequal`.
 
-# Mathematical Definitions of Set Operations
-
-- **Set**: A collection of distinct elements.
+![Set Theory](https://oercommons.s3.amazonaws.com/media/courseware/lesson/image/VENN_DIAGRAMS_8BzRaEe.png)
 
 ## Union (A ∪ B)
 - The set of all elements in A, or in B, or in both.
@@ -76,10 +75,6 @@ B = c(3, 4, 5, 6)
 setdiff(A, B)
 ```
 
-## Complement (A^C)
-- The set of all elements not in A.
-- $A^C = \{x | x \notin A\}$
-
 ## Subset (A ⊆ B)
 - A is a subset of B if every element of A is also an element of B.
 - $A \subseteq B \iff (\forall x)(x \in A \implies x \in B)$
@@ -105,75 +100,68 @@ B = c(3, 4, 5, 6)
 setequal(A, B)
 ```
 
-# Sample
-- The `sample` function draws random samples from a vector.
+## Random Sampling
 
-## Syntax
+A simple random sample is a subset of a population, chosen in such a way that **every possible sample** of a given size has an **equal chance** of being selected. 
+
+![Random Sampling](https://www.questionpro.com/blog/wp-content/uploads/2018/03/Simple-random-sampling-wt-logo.jpg)
+
+## Sample
+
+- The `sample()` function draws random samples from a vector.
+
+- Syntax:
+
 ```R
 sample(x, size, replace = FALSE, prob = NULL)
 ```
-
-## Example
+- Example:
 ```{r}
 sample(1:10, 5)
 ```
 
----
-
-# Cbind and Rbind
-- `cbind` combines vectors, matrices, or data frames by columns.
-- `rbind` combines vectors, matrices, or data frames by rows.
+## Cbind and Rbind
+- `cbind()` combines vectors, matrices, or data frames by columns.
+- `rbind()` combines vectors, matrices, or data frames by rows.
 
 ## Example: `cbind`
-```{r}
-A <- matrix(1:4, ncol=2)
-B <- matrix(5:8, ncol=2)
+```{r echo=TRUE}
+A = matrix(1:4, ncol=2)
+A
+```
+
+```{r echo=TRUE}
+B = matrix(5:8, ncol=2)
+B
+```
+
+```{r echo=TRUE}
 cbind(A, B)
 ```
 
 ## Example: `rbind`
-```{r}
+```{r echo=TRUE}
 rbind(A, B)
 ```
 
----
-
-# Ifelse
+## `ifelse`
 - The `ifelse` function applies a function to elements of a vector depending on a condition.
 
-## Ifelse Flowchart
-```{mermaid}
-flowchart TD
-  A[Vector Element] -->|Test Condition| B{Test Result?}
-  B -->|TRUE| C[Apply "yes" Expression]
-  B -->|FALSE| D[Apply "no" Expression]
+- Example:
+```{r echo=TRUE}
+numbers = 1:10
+numbers
 ```
 
-## Example
-```{r}
-nums <- 1:10
-ifelse(nums %% 2 == 0, "Even", "Odd")
+```{r echo=TRUE}
+ifelse(numbers %% 2 == 0, "Even", "Odd")
 ```
 
----
-
-# Testing Data Types
+## Testing Data Types
 - R provides functions to test the data type of a variable.
 
-## Data Type Testing Flowchart
-```{mermaid}
-flowchart TD
-  A[Variable] -->|is.character?| B{Result}
-  A -->|is.numeric?| C{Result}
-  A -->|is.na?| D{Result}
-  A -->|is.vector?| E{Result}
-  A -->|is.matrix?| F{Result}
-  A -->|is.data.frame?| G{Result}
-  A -->|is.factor?| H{Result}
-```
-
-## Examples
-```{r}
+- Examples:
+```{r echo=TRUE}
 is.character("Hello")
 is.numeric(10)
 is.na(NA)
@@ -183,9 +171,76 @@ is.data.frame(data.frame(x=1:4, y=4:1))
 is.factor(factor(c("a", "b", "a")))
 ```
 
----
+## Exercise: Coin Flip Simulation
 
-# Exercises
+## Part 1: Single Simulation
+
+Write a function coin_flip that simulates flipping a coin. The function should return "H" (for head) or "T" (for tail).
+
+## Part 1: Single Simulation - Solution
+
+```{r echo=TRUE}
+coin_flip = function() {
+  flip = sample(c("H", "T"), size = 1)
+  return (flip)
+}
+
+coin_flip()
+```
+
+## Part 2: Multiple Simulations
+
+Now, extend your function to perform multiple simulations of coin flips and return the number of heads and tails.
+
+## Part 2: Multiple Simulations - Solution
+
+```{r echo=TRUE}
+coin_flip = function(n) {
+  heads = 0
+  tails = 0
+  for (i in 1:n) {
+    flip = sample(c("H", "T"), size = 1)
+    if (flip == "H") {
+      heads = heads + 1
+    } else {
+      tails = tails + 1
+    }
+  }
+  result = list ("H" = heads, "T" = tails)
+  return (result)
+}
+
+coin_flip(5)
+```
+
+## Part 3: Analysis
+
+Analyze the results of your multiple simulations. What do you observe as the number of flips increases?
+
+## Part 3: Analysis - Solution
+
+```{r echo=TRUE}
+coin_flip(5)
+```
+
+```{r echo=TRUE}
+coin_flip(10)
+```
+
+```{r echo=TRUE}
+coin_flip(100)
+```
+
+```{r echo=TRUE}
+coin_flip(1000)
+```
+
+```{r echo=TRUE}
+coin_flip(10000)
+```
+
+
+## Exercises
 1. Create a vector of numbers and find the unique values.
 2. Use `setdiff` to find the difference between two sets of characters.
 3. Generate a random sample of size 10 from the numbers 1 to 100, with replacement.
