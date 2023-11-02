@@ -12,7 +12,7 @@ format:
 library(printr)
 ```
 
-## Unique
+## `unique()`
 - The `unique()` function removes duplicated elements from a vector or data frame.
 - Example: `unique()`
 ```{r echo=TRUE}
@@ -21,7 +21,7 @@ unique(x)
 ```
 
 
-## Any and All
+## `any()` and `all()`
 - `any()` returns `TRUE` if any of the values are `TRUE`.
 - `all()` returns `TRUE` if all of the values are `TRUE`.
 
@@ -41,41 +41,51 @@ all(v)
 - Set functions perform operations on sets of elements.
 
 ![Set Theory](https://oercommons.s3.amazonaws.com/media/courseware/lesson/image/VENN_DIAGRAMS_8BzRaEe.png)
+---
 
-## Union (A ∪ B)
+### Union ($A \cup B$)
 - The set of all elements in A, or in B, or in both.
 - $A \cup B = \{x | x \in A \text{ or } x \in B\}$
 - `union()`
 - Example:
+
 ```{r echo=TRUE}
 A = c(1, 2, 3, 4)
 B = c(3, 4, 5, 6)
 union(A, B)
 ```
 
-## Intersection (A ∩ B)
+---
+
+### Intersection ($A \cap B$)
 - The set of all elements that are both in A and B.
 - $A \cap B = \{x | x \in A \text{ and } x \in B\}$
 - `intersect()`
 - Example:
+
 ```{r echo=TRUE}
 A = c(1, 2, 3, 4)
 B = c(3, 4, 5, 6)
 intersect(A, B)
 ```
 
-## Set Difference (A - B)
+---
+
+### Set Difference ($A - B$)
 - The set of all elements that are in A but not in B.
 - $A - B = \{x | x \in A \text{ and } x \notin B\}$
 - `setdiff()`
 - Example:
+
 ```{r echo=TRUE}
 A = c(1, 2, 3, 4)
 B = c(3, 4, 5, 6)
 setdiff(A, B)
 ```
 
-## Subset (A ⊆ B)
+---
+
+### Subset ($A \subseteq B$)
 - A is a subset of B if every element of A is also an element of B.
 - $A \subseteq B \iff (\forall x)(x \in A \implies x \in B)$
 - Example:
@@ -89,11 +99,14 @@ all(A %in% c(1, 2, 3, 4, 5))
 all(A %in% c(1, 2, 3))
 ```
 
-## Set Equality (A = B)
+---
+
+### Set Equality ($A = B$)
 - Two sets are equal if they have exactly the same elements.
 - $A = B \iff (A \subseteq B) \text{ and } (B \subseteq A)$
 - `setequal()`
 - Example:
+
 ```{r echo=TRUE}
 A = c(1, 2, 3, 4)
 B = c(3, 4, 5, 6)
@@ -102,11 +115,20 @@ setequal(A, B)
 
 ## Random Sampling
 
-A simple random sample is a subset of a population, chosen in such a way that **every possible sample** of a given size has an **equal chance** of being selected. 
+**Simple Random Sample (SRS):** is a subset of a population, chosen in such a way that every possible sample of a given size has an equal chance of being selected. This method ensures that each individual or item within the population has an equal probability of being included in the sample, and the selection process is entirely by chance, without any bias.
 
 ![Random Sampling](https://www.questionpro.com/blog/wp-content/uploads/2018/03/Simple-random-sampling-wt-logo.jpg)
+---
 
-## Sample
+### With *vs.* Without Replacement
+
+**Sampling With Replacement (SWR):** In this method, after an individual or item is selected for the sample, it is placed back into the population before the next selection is made, allowing for the possibility of being chosen more than once. This method is particularly useful when dealing with small population sizes or when it's important to maintain the same population size for each draw.
+
+**Sampling Without Replacement (SWOR):** Contrary to SWR, in Sampling Without Replacement, once an individual or item is selected, it is not placed back into the population, and hence, cannot be selected again. This method is often utilized when the population size is large, or when maintaining the same population size for each draw is not crucial.
+
+--- 
+
+### `sample()`
 
 - The `sample()` function draws random samples from a vector.
 
@@ -116,15 +138,19 @@ A simple random sample is a subset of a population, chosen in such a way that **
 sample(x, size, replace = FALSE, prob = NULL)
 ```
 - Example:
+
 ```{r}
 sample(1:10, 5)
 ```
 
-## Cbind and Rbind
+## `cbind()` and `rbind()`
 - `cbind()` combines vectors, matrices, or data frames by columns.
 - `rbind()` combines vectors, matrices, or data frames by rows.
 
-## Example: `cbind`
+---
+
+### Example: `cbind`
+
 ```{r echo=TRUE}
 A = matrix(1:4, ncol=2)
 A
@@ -139,15 +165,18 @@ B
 cbind(A, B)
 ```
 
-## Example: `rbind`
+---
+
+### Example: `rbind`
 ```{r echo=TRUE}
 rbind(A, B)
 ```
 
-## `ifelse`
+## `ifelse()`
 - The `ifelse` function applies a function to elements of a vector depending on a condition.
 
 - Example:
+
 ```{r echo=TRUE}
 numbers = 1:10
 numbers
@@ -161,6 +190,7 @@ ifelse(numbers %% 2 == 0, "Even", "Odd")
 - R provides functions to test the data type of a variable.
 
 - Examples:
+
 ```{r echo=TRUE}
 is.character("Hello")
 is.numeric(10)
@@ -173,11 +203,9 @@ is.factor(factor(c("a", "b", "a")))
 
 ## Exercise: Coin Flip Simulation
 
-## Part 1: Single Simulation
+### Part 1: Single Simulation
 
-Write a function coin_flip that simulates flipping a coin. The function should return "H" (for head) or "T" (for tail).
-
-## Part 1: Single Simulation - Solution
+Write an R function `coin_flip()` that simulates flipping a coin. The function should return `H` (for head) or `T` (for tail).
 
 ```{r echo=TRUE}
 coin_flip = function() {
@@ -188,54 +216,40 @@ coin_flip = function() {
 coin_flip()
 ```
 
-## Part 2: Multiple Simulations
+---
+
+### Part 2: Multiple Simulations
 
 Now, extend your function to perform multiple simulations of coin flips and return the number of heads and tails.
 
-## Part 2: Multiple Simulations - Solution
-
 ```{r echo=TRUE}
 coin_flip = function(n) {
-  heads = 0
-  tails = 0
-  for (i in 1:n) {
-    flip = sample(c("H", "T"), size = 1)
-    if (flip == "H") {
-      heads = heads + 1
-    } else {
-      tails = tails + 1
-    }
-  }
-  result = list ("H" = heads, "T" = tails)
-  return (result)
+  flips = sample(c("H", "T"), size = n, replace = TRUE)
+  return(table(flips))
 }
 
 coin_flip(5)
 ```
 
-## Part 3: Analysis
+---
+
+### Part 3: Analysis
 
 Analyze the results of your multiple simulations. What do you observe as the number of flips increases?
 
-## Part 3: Analysis - Solution
-
 ```{r echo=TRUE}
-coin_flip(5)
+coin_flip(10)/10
 ```
 
 ```{r echo=TRUE}
-coin_flip(10)
+coin_flip(100)/100
 ```
 
 ```{r echo=TRUE}
-coin_flip(100)
+coin_flip(1000)/1000
 ```
 
 ```{r echo=TRUE}
-coin_flip(1000)
-```
-
-```{r echo=TRUE}
-coin_flip(10000)
+coin_flip(10000)/10000
 ```
 
