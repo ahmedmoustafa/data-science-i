@@ -549,7 +549,7 @@
 </ul>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 8 4 9 7 6</code></pre>
+<pre><code>[1] 5 9 1 3 4</code></pre>
 </div>
 </div>
 </section>
@@ -722,7 +722,7 @@
 <span id="cb43-5"><a href="#cb43-5"></a></span>
 <span id="cb43-6"><a href="#cb43-6"></a><span class="fu">coin_flip</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "H"</code></pre>
+<pre><code>[1] "T"</code></pre>
 </div>
 </div>
 </section>
@@ -768,214 +768,52 @@ $T
 <div class="sourceCode cell-code" id="cb47"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1"></a><span class="fu">coin_flip</span>(<span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>$H
-[1] 1
+[1] 4
 
 $T
-[1] 4</code></pre>
+[1] 1</code></pre>
 </div>
 </div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb49"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1"></a><span class="fu">coin_flip</span>(<span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>$H
-[1] 7
+[1] 6
 
 $T
-[1] 3</code></pre>
+[1] 4</code></pre>
 </div>
 </div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb51"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1"></a><span class="fu">coin_flip</span>(<span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>$H
-[1] 46
+[1] 47
 
 $T
-[1] 54</code></pre>
+[1] 53</code></pre>
 </div>
 </div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb53"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1"></a><span class="fu">coin_flip</span>(<span class="dv">1000</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>$H
-[1] 518
+[1] 509
 
 $T
-[1] 482</code></pre>
+[1] 491</code></pre>
 </div>
 </div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb55"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1"></a><span class="fu">coin_flip</span>(<span class="dv">10000</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>$H
-[1] 4962
+[1] 4987
 
 $T
-[1] 5038</code></pre>
+[1] 5013</code></pre>
 </div>
 </div>
-</section>
-<section id="exercises" class="slide level2">
-<h2>Exercises</h2>
-<ol type="1">
-<li>Create a vector of numbers and find the unique values.</li>
-<li>Use <code>setdiff</code> to find the difference between two sets of characters.</li>
-<li>Generate a random sample of size 10 from the numbers 1 to 100, with replacement.</li>
-<li>Combine two data frames using <code>rbind</code> and <code>cbind</code>.</li>
-<li>Use <code>ifelse</code> to categorize a vector of numbers into “High” and “Low” based on a threshold.</li>
-<li>Test the data type of different R objects using the functions discussed.</li>
-</ol>
-</section>
-<section class="slide level2">
-
-</section>
-<section>
-<section id="solutions" class="title-slide slide level1 center">
-<h1>Solutions</h1>
-
-</section>
-<section id="exercise-1" class="slide level2">
-<h2>Exercise 1</h2>
-<div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 1 2 3 4 5</code></pre>
-</div>
-</div>
-</section>
-<section id="exercise-2" class="slide level2">
-<h2>Exercise 2</h2>
-<div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "a" "b"</code></pre>
-</div>
-</div>
-</section>
-<section id="exercise-3" class="slide level2">
-<h2>Exercise 3</h2>
-<div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code> [1] 74 36 62 86 24 91 64 10 47 50</code></pre>
-</div>
-</div>
-</section>
-<section id="exercise-4" class="slide level2">
-<h2>Exercise 4</h2>
-<div class="cell">
-<div class="cell-output-display">
-<table>
-<thead>
-<tr class="header">
-<th style="text-align: right;">A</th>
-<th style="text-align: right;">B</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">4</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">2</td>
-<td style="text-align: right;">5</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">3</td>
-<td style="text-align: right;">6</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">7</td>
-<td style="text-align: right;">10</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">8</td>
-<td style="text-align: right;">11</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">9</td>
-<td style="text-align: right;">12</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="cell-output-display">
-<table>
-<thead>
-<tr class="header">
-<th style="text-align: right;">A</th>
-<th style="text-align: right;">B</th>
-<th style="text-align: right;">A</th>
-<th style="text-align: right;">B</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">4</td>
-<td style="text-align: right;">7</td>
-<td style="text-align: right;">10</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">2</td>
-<td style="text-align: right;">5</td>
-<td style="text-align: right;">8</td>
-<td style="text-align: right;">11</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">3</td>
-<td style="text-align: right;">6</td>
-<td style="text-align: right;">9</td>
-<td style="text-align: right;">12</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</section>
-<section id="exercise-5" class="slide level2">
-<h2>Exercise 5</h2>
-<div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "Low"  "High" "Low"  "Low"  "High"</code></pre>
-</div>
-</div>
-</section>
-<section id="exercise-6" class="slide level2">
-<h2>Exercise 6</h2>
-<div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] TRUE</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] TRUE</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] TRUE</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] TRUE</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] TRUE</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] TRUE</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] TRUE</code></pre>
-</div>
-</div>
-</section>
-<section class="slide level2">
-
-</section></section>
-<section id="conclusion" class="title-slide slide level1 center">
-<h1>Conclusion</h1>
-<ul>
-<li>Today, we’ve covered a variety of essential functions in R, all of which are fundamental for data manipulation and analysis.</li>
-<li>Understanding and mastering these functions will streamline your workflow and enhance your data analysis capabilities.</li>
-<li>Remember, practice is key! Continue to experiment and apply these functions to different datasets to solidify your knowledge.</li>
-<li>Stay curious, keep learning, and happy coding in R!</li>
-</ul>
 <div class="footer footer-default">
 
 </div>
