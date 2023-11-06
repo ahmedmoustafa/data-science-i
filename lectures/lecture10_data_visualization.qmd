@@ -1,0 +1,451 @@
+---
+title: "Data Visualization"
+format:
+  revealjs:
+    slide-number: true
+    preview-links: true
+    scrollable: true
+---
+
+```{r echo=FALSE, message=FALSE}
+library(tidyverse)
+library(printr)
+```
+
+# Data Visualization
+
+Data visualization is a key step in the data analysis process that helps to turn abstract data into actionable insights. Data visualization helps in making sense of data, revealing hidden patterns, and communicating results effectively.
+
+![](https://media.gettyimages.com/id/1362873117/photo/abstract-data-visualisation.jpg?s=1024x1024&w=gi&k=20&c=TxkH8zaB6luAtyXdLwlkTPixCW1AiEjJE6t4puZwqtg=)
+
+# `ggplot2`: An Overview
+
+A visualization package in R that uses the grammar of graphics. 
+
+![](https://ggplot2.tidyverse.org/logo.png)
+
+# Installing & Loading `ggplot2`
+
+- First, we need install the `ggplot2` library
+
+```{r echo=TRUE,eval=FALSE}
+if (!require(ggplot2)) install.packages("ggplot2")
+```
+
+(Typically, required only *once* for a workspace/environment)
+
+- After installation, let us load the `ggplot2` library
+
+```{r echo=TRUE, message=FALSE}
+library(ggplot2)
+```
+
+# The Grammar of Graphics in `ggplot2`
+
+- Explains how to compose graphs from a dataset, aesthetic mappings, and geometric objects.
+
+- A flexible template that forms the foundation of any ggplot2 graph.
+
+```r
+ggplot(data = <DATA>) + 
+  <GEOM_FUNCTION>(mapping = aes(<MAPPINGS>))
+```
+
+# The `mpg` Dataset
+
+The `mpg` dataset contains fuel economy data for 234 cars ranging from 1999 to 2008.
+
+![US Environmental Protection Agency (EPA)](images/epa.png)
+
+## Dataset Overview
+
+A look at the dataset's variables: manufacturer, model, displacement, year, number of cylinders, and fuel economy measurements.
+
+| Variable        | Description                                                   |
+|-----------------|---------------------------------------------------------------|
+| `manufacturer`  | Name of the car manufacturer                                  |
+| `model`         | Model of the car                                              |
+| `displ`         | Engine displacement, in liters                                |
+| `year`          | Year of manufacture                                           |
+| `cyl`           | Number of cylinders                                           |
+| `trans`         | Type of transmission                                          |
+| `drv`           | Type of drive train (`f` = front-wheel, `r` = rear-wheel, `4` = 4wd)|
+| `cty`           | City miles per gallon                                         |
+| `hwy`           | Highway miles per gallon                                      |
+| `fl`            | Fuel type                                                     |
+| `class`         | Vehicle class                                                 |
+
+## Dataset `head()`
+
+```{r echo=TRUE}
+head(mpg)
+```
+
+## Dataset `summary()`
+
+```{r echo=TRUE}
+summary(mpg)
+```
+
+
+## Visualization Objectives
+
+- **Fuel Economy Trends**: Identify trends in fuel efficiency over time.
+- **Displacement vs. Mileage**: Understand how engine size affects fuel economy.
+- **Manufacturer Comparison**: Compare different manufacturers based on fuel economy.
+
+## Univariate Analysis: Highway Mileage
+
+Analyzing the highway miles per gallon (`hwy`) distribution.
+
+```{r echo=TRUE,eval=FALSE}
+ggplot(mpg, aes(x = hwy)) + 
+  geom_histogram()
+```
+
+::: {.fragment}
+
+```{r echo=FALSE,eval=TRUE}
+ggplot(mpg, aes(x = hwy)) + 
+  geom_histogram()
+```
+
+:::
+
+::: {.fragment}
+- **Insight**: The majority of cars have highway mileage ratings between 25 to 35 miles per gallon.
+:::
+
+## Univariate Analysis: Displacement
+
+Exploring engine displacement (`displ`) across all cars.
+
+```{r echo=TRUE,eval=FALSE}
+ggplot(mpg, aes(x = displ)) + 
+  geom_histogram() +
+  theme_light()
+```
+
+::: {.fragment}
+
+```{r echo=FALSE,eval=TRUE}
+ggplot(mpg, aes(x = displ)) + 
+  geom_histogram() +
+  theme_light()
+```
+
+:::
+
+::: {.fragment}
+- **Insight**: Smaller engine displacements are more common, suggesting a concentration of more fuel-efficient vehicles.
+:::
+
+## Bivariate Analysis: Displacement vs. Highway Mileage
+
+Investigating the relationship between engine displacement (`displ`) and highway mileage (`hwy`).
+
+```{r echo=TRUE,eval=FALSE}
+ggplot(mpg, aes(x = displ, y = hwy)) + 
+  geom_point() + 
+  theme_bw()
+```
+
+::: {.fragment}
+
+```{r echo=FALSE,eval=TRUE}
+ggplot(mpg, aes(x = displ, y = hwy)) + 
+  geom_point() + 
+  theme_bw()
+```
+
+:::
+
+::: {.fragment}
+- **Insight**: There is a clear negative trend indicating that larger engine sizes are associated with lower highway mileage.
+:::
+
+## Bivariate Analysis: Manufacturer Comparison
+
+Comparing fuel economy across manufacturers with boxplots.
+
+```{r echo=TRUE,eval=FALSE}
+ggplot(mpg, aes(x = manufacturer, y = hwy)) + 
+  geom_boxplot()
+```
+
+::: {.fragment}
+
+```{r echo=FALSE,eval=TRUE}
+ggplot(mpg, aes(x = manufacturer, y = hwy)) + 
+  geom_boxplot()
+```
+
+:::
+
+::: {.fragment}
+- **Insight**: There is significant variability in highway mileage among manufacturers, with some consistently outperforming others.
+:::
+
+
+## Multivariate Analysis: Engine Size, Cylinders, and Fuel Economy
+
+Analyzing how engine size and the number of cylinders relate to fuel economy.
+
+```{r echo=TRUE,eval=FALSE}
+ggplot(mpg, aes(x = displ, y = hwy, color = factor(cyl))) + 
+  geom_point() +
+  theme_minimal()
+```
+
+::: {.fragment}
+
+```{r echo=FALSE,eval=TRUE}
+ggplot(mpg, aes(x = displ, y = hwy, color = factor(cyl))) + 
+  geom_point() +
+  theme_minimal()
+```
+
+:::
+
+::: {.fragment}
+- **Insight**: Cars with fewer cylinders tend to have better highway mileage, despite the size of the engine.
+:::
+
+# The `diamonds` Dataset
+
+The `diamonds` dataset contains prices and attributes of approximately 54,000 round-cut diamonds.
+
+![](https://media.gettyimages.com/id/520112808/photo/mining-for-tanzanite-in-tanzania.jpg?s=2048x2048&w=gi&k=20&c=tAKdfqldIiFoi_9FW67q92hhjxsatgydyB-Nn7Ey4bk=)
+
+## Dataset Overview
+
+A quick overview of the dataset's structure and variables: `carat`, `cut`, `color`, `clarity`, `depth`, `table`, `price`, `x` (length), `y` (width), and `z` (depth).
+
+| Variable | Description                                                                                   |
+|----------|-----------------------------------------------------------------------------------------------|
+| `carat`    | Weight of the diamond                                                                         |
+| `cut`      | Quality of the cut (`Fair`, `Good`, `Very Good`, `Premium`, `Ideal`)                                    |
+| `color`    | Diamond color, from `J` (worst) to `D` (best)                                                     |
+| `clarity`  | How clear the diamond is (`I1`, `SI2`, `SI1`, `VS2`, `VS1`, `VVS2`, `VVS1`, `IF`)                             |
+| `depth`    | $\text{Depth percentage} = \left( \frac{z}{\frac{x + y}{2}} \right) \times 100$                                     |
+| `table`    | Width of the top of the diamond relative to the widest point                                  |
+| `price`    | Price in US dollars                                                                           |
+| `x`        | Length in mm                                                                                  |
+| `y`        | Width in mm                                                                                   |
+| `z`        | Depth in mm                                                                                   |
+## Dataset `head()`
+
+```{r echo=TRUE}
+head(diamonds)
+```
+
+## Dataset `summary()`
+
+```{r echo=TRUE}
+summary(diamonds)
+```
+
+
+## Visualization Objectives
+
+- **Price Distribution**: Analyzing the distribution of diamond prices.
+- **Carat Size Analysis**: Understanding how carat size affects price.
+- **Cut Quality**: Examining the relationship between diamond cut and other attributes.
+
+## Univariate Analysis: Price
+
+Visualizing the distribution of diamond prices using histograms and density plots.
+
+```{r echo=TRUE,eval=FALSE}
+ggplot(diamonds, aes(x = price)) + 
+  geom_histogram() +
+  theme_minimal()
+```
+
+::: {.fragment}
+
+```{r echo=FALSE,eval=TRUE}
+ggplot(diamonds, aes(x = price)) + 
+  geom_histogram() +
+  theme_minimal()
+```
+
+:::
+
+## Univariate Analysis: Carat
+
+Understanding carat distribution with a histogram.
+
+```{r echo=TRUE,eval=FALSE}
+ggplot(diamonds, aes(x = carat)) + 
+  geom_histogram() +
+  theme_light()
+```
+
+::: {.fragment}
+
+```{r echo=FALSE,eval=TRUE}
+ggplot(diamonds, aes(x = carat)) + 
+  geom_histogram() +
+  theme_light()
+```
+
+:::
+
+## Bivariate Analysis: Price vs. Carat
+
+Exploring the relationship between price and carat size with scatter plots.
+
+```{r echo=TRUE,eval=FALSE}
+ggplot(diamonds, aes(x = carat, y = price)) + 
+  geom_point(alpha = 0.1) + 
+  theme_bw()
+```
+
+::: {.fragment}
+
+```{r echo=FALSE,eval=TRUE}
+ggplot(diamonds, aes(x = carat, y = price)) + 
+  geom_point(alpha = 0.1) + 
+  theme_bw()
+```
+
+:::
+
+## Bivariate Analysis: Cut vs. Price
+
+Comparing average price across different cuts using boxplots.
+
+```{r echo=TRUE,eval=FALSE}
+ggplot(diamonds, aes(x = cut, y = price)) + 
+  geom_boxplot() +
+  theme_classic()
+```
+
+
+::: {.fragment}
+
+```{r echo=FALSE,eval=TRUE}
+ggplot(diamonds, aes(x = cut, y = price)) + 
+  geom_boxplot() +
+  theme_classic()
+```
+
+:::
+
+## Multivariate Analysis
+
+Incorporating multiple attributes into our visual analysis, like cut and color versus price.
+
+```{r echo=TRUE,eval=FALSE}
+ggplot(diamonds, aes(x = carat, y = price, color = cut)) + 
+  geom_point(alpha = 0.3) + 
+  theme_minimal()
+```
+
+
+::: {.fragment}
+
+```{r echo=FALSE,eval=TRUE}
+ggplot(diamonds, aes(x = carat, y = price, color = cut)) + 
+  geom_point(alpha = 0.3) + 
+  theme_minimal()
+```
+
+:::
+
+
+## Exercise
+
+Generate a plot to show the relationship between the following variables from the diamonds dataset: `carat`, `cut`, `clarity`, and `price`.
+
+::: {.fragment}
+
+- Solution
+
+```{r echo=TRUE,eval=TRUE}
+ggplot(diamonds) +
+  geom_point(aes(x = carat, y = price, color = clarity, shape = cut))
+```
+
+:::
+
+## A bar chart of the `cut`
+
+```{r echo=TRUE,eval=FALSE}
+ggplot(data = diamonds) + 
+  geom_bar(mapping = aes(x = cut))
+```
+
+::: {.fragment}
+
+```{r echo=FALSE,eval=TRUE}
+ggplot(data = diamonds) + 
+  geom_bar(mapping = aes(x = cut))
+```
+
+:::
+
+---
+
+### categorized by `clarity`, stakced
+
+```{r echo=TRUE,eval=FALSE}
+ggplot(data = diamonds) + 
+  geom_bar(mapping = aes(x = cut, fill = clarity))
+```
+
+::: {.fragment}
+
+```{r echo=FALSE,eval=TRUE}
+ggplot(data = diamonds) + 
+  geom_bar(mapping = aes(x = cut, fill = clarity))
+```
+
+:::
+
+---
+
+### categorized by `clarity`, clustered
+
+```{r echo=TRUE,eval=FALSE}
+ggplot(data = diamonds) + 
+  geom_bar(mapping = aes(x = cut, fill = clarity), position = "dodge")
+```
+
+::: {.fragment}
+
+```{r echo=FALSE,eval=TRUE}
+ggplot(data = diamonds) + 
+  geom_bar(mapping = aes(x = cut, fill = clarity), position = "dodge")
+```
+
+:::
+
+---
+
+### categorized by `clarity`, normalized
+
+```{r echo=TRUE,eval=FALSE}
+ggplot(data = diamonds) + 
+  geom_bar(mapping = aes(x = cut, fill = clarity), position = "fill")
+```
+
+::: {.fragment}
+
+```{r echo=FALSE,eval=TRUE}
+ggplot(data = diamonds) + 
+  geom_bar(mapping = aes(x = cut, fill = clarity), position = "fill")
+```
+
+:::
+
+# Useful ggplot2 References
+
+- [ggplot2 Documentation](https://ggplot2.tidyverse.org/reference/)
+- [ggplot2 Cheat Sheet](https://www.rstudio.com/resources/cheatsheets/)
+- [R Graphics Cookbook](https://r-graphics.org/)
+- [ggplot2 Book](https://ggplot2-book.org/)
+- [ggplot2 Extension Gallery](https://exts.ggplot2.tidyverse.org/gallery/)
+- [ggplot2 Example Gallery](https://www.r-graph-gallery.com/ggplot2-package.html)
+- [ggplot2 Visualization Catalog](https://ggplot2.tidyverse.org/articles/ggplot2-specs.html)
