@@ -18,9 +18,9 @@ We are going to **visually** analyze two datasets and see if we can tell stories
 library(printr)
 ```
 
-## Load the `ggplot2` package
+# Setting up
 
-Let's first load the `ggplot2` package.
+Let's first load the `ggplot2` package:
 
 ```{r echo=TRUE}
 if (!require(ggplot2)) {
@@ -118,7 +118,7 @@ ggplot(titanic) +
 
 ```{r echo=TRUE}
 ggplot(titanic) +
-  geom_boxplot(aes(x = survived, y = age, fill = sex), alpha = 0.5)
+  geom_boxplot(aes(x = sex, y = age, fill = survived), alpha = 0.5)
 ```
 
 :::
