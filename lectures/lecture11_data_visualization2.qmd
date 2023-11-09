@@ -2,10 +2,16 @@
 title: "Data Visualization"
 subtitle: "Part II"
 format:
-  revealjs:
-    slide-number: true
-    preview-links: true
-    scrollable: true
+  pdf:
+    toc: true
+    number-sections: true
+    colorlinks: true
+    fig-align: "center"
+    code-line-numbers: true
+include-in-header: 
+  text: |
+    \usepackage{fvextra}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{breaklines,commandchars=\\\{\}}
 ---
 
 # Agenda
@@ -34,13 +40,27 @@ library (ggplot2)
 
 ![](https://media.gettyimages.com/id/188056589/photo/digitally-restored-vintage-maritime-history-photo-of-the-rms-titantic-departing-southampton-on.jpg?s=2048x2048&w=gi&k=20&c=UUgRikYArk0uhrOMQbs994YaoRuCWU4TrcsjYGI8Tj0=)
 
-## Load the dataset
+## Load and explore the dataset
 
 ```{r echo=TRUE}
 titanic = read.csv ("https://raw.githubusercontent.com/ahmedmoustafa/datasets/main/titanic/titanic.csv")
 head(titanic)
 ```
 
+---
+
+```{r echo=TRUE}
+titanic$survived = factor(titanic$survived)
+titanic$sex = factor(titanic$sex)
+titanic$class = factor(titanic$class, levels = c("1st", "2nd", "3rd"))
+head(titanic)
+```
+
+---
+
+```{r echo=TRUE}
+summary(titanic)
+```
 
 ## Survival by class
 
@@ -138,11 +158,33 @@ ggplot(titanic) +
 
 ![](https://media.gettyimages.com/id/702551325/photo/pregnant-woman-finishing-cigarette.jpg?s=2048x2048&w=gi&k=20&c=zUKT8g49WaCFyNnuyvyYRFTAuLB74IEwn9JQ8hg0Li0=)
 
-## Load the dataset
+## Load and explore the dataset
 
 ```{r echo=TRUE}
 smoking = read.csv("https://raw.githubusercontent.com/ahmedmoustafa/datasets/main/smoking/smoking.csv")
 head(smoking)
+```
+
+---
+
+```{r echo=TRUE}
+smoking$parity = factor(smoking$parity)
+smoking$mom.race = factor(smoking$mom.race)
+smoking$mom.edu = factor(smoking$mom.edu)
+smoking$dad.race = factor(smoking$dad.race)
+smoking$dad.edu = factor(smoking$dad.edu)
+smoking$marital = factor(smoking$marital)
+smoking$income = factor(smoking$income)
+smoking$smoke = factor(smoking$smoke)
+smoking$quit.time = factor(smoking$quit.time)
+smoking$cigs = factor(smoking$cigs)
+head(smoking)
+```
+
+---
+
+```{r echo=TRUE}
+summary(smoking)
 ```
 
 ## Mom's smoking and baby's weight

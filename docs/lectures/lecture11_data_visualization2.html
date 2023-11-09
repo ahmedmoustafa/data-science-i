@@ -419,8 +419,8 @@
 <h1>Titanic Survival</h1>
 
 <img data-src="https://media.gettyimages.com/id/188056589/photo/digitally-restored-vintage-maritime-history-photo-of-the-rms-titantic-departing-southampton-on.jpg?s=2048x2048&amp;w=gi&amp;k=20&amp;c=UUgRikYArk0uhrOMQbs994YaoRuCWU4TrcsjYGI8Tj0=" class="r-stretch"></section>
-<section id="load-the-dataset" class="slide level2">
-<h2>Load the dataset</h2>
+<section id="load-and-explore-the-dataset" class="slide level2">
+<h2>Load and explore the dataset</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>titanic <span class="ot">=</span> <span class="fu">read.csv</span> (<span class="st">"https://raw.githubusercontent.com/ahmedmoustafa/datasets/main/titanic/titanic.csv"</span>)</span>
 <span id="cb2-2"><a href="#cb2-2"></a><span class="fu">head</span>(titanic)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -483,33 +483,156 @@
 </div>
 </div>
 </section>
+<section class="slide level2">
+
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>titanic<span class="sc">$</span>survived <span class="ot">=</span> <span class="fu">factor</span>(titanic<span class="sc">$</span>survived)</span>
+<span id="cb3-2"><a href="#cb3-2"></a>titanic<span class="sc">$</span>sex <span class="ot">=</span> <span class="fu">factor</span>(titanic<span class="sc">$</span>sex)</span>
+<span id="cb3-3"><a href="#cb3-3"></a>titanic<span class="sc">$</span>class <span class="ot">=</span> <span class="fu">factor</span>(titanic<span class="sc">$</span>class, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"1st"</span>, <span class="st">"2nd"</span>, <span class="st">"3rd"</span>))</span>
+<span id="cb3-4"><a href="#cb3-4"></a><span class="fu">head</span>(titanic)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">name</th>
+<th style="text-align: left;">survived</th>
+<th style="text-align: left;">sex</th>
+<th style="text-align: right;">age</th>
+<th style="text-align: left;">class</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Allen, Miss. Elisabeth Walton</td>
+<td style="text-align: left;">yes</td>
+<td style="text-align: left;">female</td>
+<td style="text-align: right;">29.0000</td>
+<td style="text-align: left;">1st</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Allison, Master. Hudson Trevor</td>
+<td style="text-align: left;">yes</td>
+<td style="text-align: left;">male</td>
+<td style="text-align: right;">0.9167</td>
+<td style="text-align: left;">1st</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Allison, Miss. Helen Loraine</td>
+<td style="text-align: left;">no</td>
+<td style="text-align: left;">female</td>
+<td style="text-align: right;">2.0000</td>
+<td style="text-align: left;">1st</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Allison, Mr.&nbsp;Hudson Joshua Crei</td>
+<td style="text-align: left;">no</td>
+<td style="text-align: left;">male</td>
+<td style="text-align: right;">30.0000</td>
+<td style="text-align: left;">1st</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Allison, Mrs.&nbsp;Hudson J C (Bessi</td>
+<td style="text-align: left;">no</td>
+<td style="text-align: left;">female</td>
+<td style="text-align: right;">25.0000</td>
+<td style="text-align: left;">1st</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Anderson, Mr.&nbsp;Harry</td>
+<td style="text-align: left;">yes</td>
+<td style="text-align: left;">male</td>
+<td style="text-align: right;">48.0000</td>
+<td style="text-align: left;">1st</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="fu">summary</span>(titanic)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: left;">name</th>
+<th style="text-align: left;">survived</th>
+<th style="text-align: left;">sex</th>
+<th style="text-align: left;">age</th>
+<th style="text-align: left;">class</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Length:1309</td>
+<td style="text-align: left;">no :809</td>
+<td style="text-align: left;">female:466</td>
+<td style="text-align: left;">Min. : 0.1667</td>
+<td style="text-align: left;">1st:323</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Class :character</td>
+<td style="text-align: left;">yes:500</td>
+<td style="text-align: left;">male :843</td>
+<td style="text-align: left;">1st Qu.:21.0000</td>
+<td style="text-align: left;">2nd:277</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Mode :character</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">Median :28.0000</td>
+<td style="text-align: left;">3rd:709</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">Mean :29.8811</td>
+<td style="text-align: left;">NA</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">3rd Qu.:39.0000</td>
+<td style="text-align: left;">NA</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">Max. :80.0000</td>
+<td style="text-align: left;">NA</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA’s :263</td>
+<td style="text-align: left;">NA</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
 <section id="survival-by-class" class="slide level2">
 <h2>Survival by class</h2>
 <div class="fragment">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">ggplot</span>(titanic) <span class="sc">+</span></span>
-<span id="cb3-2"><a href="#cb3-2"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x =</span> class, <span class="at">fill =</span> survived), <span class="at">position =</span> <span class="st">"dodge"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<p><img data-src="lecture11_data_visualization2_files/figure-revealjs/unnamed-chunk-4-1.png" width="960"></p>
-</div>
-</div>
-</div>
-<div class="fragment">
-<div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="fu">ggplot</span>(titanic) <span class="sc">+</span></span>
-<span id="cb4-2"><a href="#cb4-2"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x =</span> class, <span class="at">fill =</span> survived), <span class="at">position =</span> <span class="st">"fill"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<p><img data-src="lecture11_data_visualization2_files/figure-revealjs/unnamed-chunk-5-1.png" width="960"></p>
-</div>
-</div>
-</div>
-</section>
-<section id="survival-by-sex" class="slide level2">
-<h2>Survival by sex</h2>
-<div class="fragment">
-<div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="fu">ggplot</span>(titanic) <span class="sc">+</span></span>
-<span id="cb5-2"><a href="#cb5-2"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x =</span> sex, <span class="at">fill =</span> survived), <span class="at">position =</span> <span class="st">"dodge"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-2"><a href="#cb5-2"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x =</span> class, <span class="at">fill =</span> survived), <span class="at">position =</span> <span class="st">"dodge"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img data-src="lecture11_data_visualization2_files/figure-revealjs/unnamed-chunk-6-1.png" width="960"></p>
 </div>
@@ -518,19 +641,19 @@
 <div class="fragment">
 <div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="fu">ggplot</span>(titanic) <span class="sc">+</span></span>
-<span id="cb6-2"><a href="#cb6-2"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x =</span> sex, <span class="at">fill =</span> survived), <span class="at">position =</span> <span class="st">"fill"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-2"><a href="#cb6-2"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x =</span> class, <span class="at">fill =</span> survived), <span class="at">position =</span> <span class="st">"fill"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img data-src="lecture11_data_visualization2_files/figure-revealjs/unnamed-chunk-7-1.png" width="960"></p>
 </div>
 </div>
 </div>
 </section>
-<section id="survival-by-age" class="slide level2">
-<h2>Survival by age</h2>
+<section id="survival-by-sex" class="slide level2">
+<h2>Survival by sex</h2>
 <div class="fragment">
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="fu">ggplot</span>(titanic) <span class="sc">+</span></span>
-<span id="cb7-2"><a href="#cb7-2"></a>  <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">x =</span> age, <span class="at">fill =</span> survived), <span class="at">alpha =</span> <span class="fl">0.5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-2"><a href="#cb7-2"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x =</span> sex, <span class="at">fill =</span> survived), <span class="at">position =</span> <span class="st">"dodge"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img data-src="lecture11_data_visualization2_files/figure-revealjs/unnamed-chunk-8-1.png" width="960"></p>
 </div>
@@ -539,18 +662,39 @@
 <div class="fragment">
 <div class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="fu">ggplot</span>(titanic) <span class="sc">+</span></span>
-<span id="cb8-2"><a href="#cb8-2"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> survived, <span class="at">y =</span> age))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-2"><a href="#cb8-2"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x =</span> sex, <span class="at">fill =</span> survived), <span class="at">position =</span> <span class="st">"fill"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img data-src="lecture11_data_visualization2_files/figure-revealjs/unnamed-chunk-9-1.png" width="960"></p>
 </div>
 </div>
 </div>
+</section>
+<section id="survival-by-age" class="slide level2">
+<h2>Survival by age</h2>
 <div class="fragment">
 <div class="cell">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="fu">ggplot</span>(titanic) <span class="sc">+</span></span>
-<span id="cb9-2"><a href="#cb9-2"></a>  <span class="fu">geom_violin</span>(<span class="fu">aes</span>(<span class="at">x =</span> survived, <span class="at">y =</span> age))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-2"><a href="#cb9-2"></a>  <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">x =</span> age, <span class="at">fill =</span> survived), <span class="at">alpha =</span> <span class="fl">0.5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img data-src="lecture11_data_visualization2_files/figure-revealjs/unnamed-chunk-10-1.png" width="960"></p>
+</div>
+</div>
+</div>
+<div class="fragment">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="fu">ggplot</span>(titanic) <span class="sc">+</span></span>
+<span id="cb10-2"><a href="#cb10-2"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> survived, <span class="at">y =</span> age))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img data-src="lecture11_data_visualization2_files/figure-revealjs/unnamed-chunk-11-1.png" width="960"></p>
+</div>
+</div>
+</div>
+<div class="fragment">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="fu">ggplot</span>(titanic) <span class="sc">+</span></span>
+<span id="cb11-2"><a href="#cb11-2"></a>  <span class="fu">geom_violin</span>(<span class="fu">aes</span>(<span class="at">x =</span> survived, <span class="at">y =</span> age))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img data-src="lecture11_data_visualization2_files/figure-revealjs/unnamed-chunk-12-1.png" width="960"></p>
 </div>
 </div>
 </div>
@@ -559,10 +703,10 @@
 <h2>Survival by age &amp; sex</h2>
 <div class="fragment">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="fu">ggplot</span>(titanic) <span class="sc">+</span></span>
-<span id="cb10-2"><a href="#cb10-2"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> sex, <span class="at">y =</span> age, <span class="at">fill =</span> survived), <span class="at">alpha =</span> <span class="fl">0.5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="fu">ggplot</span>(titanic) <span class="sc">+</span></span>
+<span id="cb12-2"><a href="#cb12-2"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> sex, <span class="at">y =</span> age, <span class="at">fill =</span> survived), <span class="at">alpha =</span> <span class="fl">0.5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img data-src="lecture11_data_visualization2_files/figure-revealjs/unnamed-chunk-11-1.png" width="960"></p>
+<p><img data-src="lecture11_data_visualization2_files/figure-revealjs/unnamed-chunk-13-1.png" width="960"></p>
 </div>
 </div>
 </div>
@@ -571,10 +715,10 @@
 <h2>Survival by class &amp; age</h2>
 <div class="fragment">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="fu">ggplot</span>(titanic) <span class="sc">+</span></span>
-<span id="cb11-2"><a href="#cb11-2"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> class, <span class="at">y =</span> age, <span class="at">fill =</span> survived), <span class="at">alpha =</span> <span class="fl">0.5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="fu">ggplot</span>(titanic) <span class="sc">+</span></span>
+<span id="cb13-2"><a href="#cb13-2"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> class, <span class="at">y =</span> age, <span class="at">fill =</span> survived), <span class="at">alpha =</span> <span class="fl">0.5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img data-src="lecture11_data_visualization2_files/figure-revealjs/unnamed-chunk-12-1.png" width="960"></p>
+<p><img data-src="lecture11_data_visualization2_files/figure-revealjs/unnamed-chunk-14-1.png" width="960"></p>
 </div>
 </div>
 </div>
@@ -584,11 +728,11 @@
 <h1>Smoking and Pregnancy</h1>
 
 <img data-src="https://media.gettyimages.com/id/702551325/photo/pregnant-woman-finishing-cigarette.jpg?s=2048x2048&amp;w=gi&amp;k=20&amp;c=zUKT8g49WaCFyNnuyvyYRFTAuLB74IEwn9JQ8hg0Li0=" class="r-stretch"></section>
-<section id="load-the-dataset-1" class="slide level2">
-<h2>Load the dataset</h2>
+<section id="load-and-explore-the-dataset-1" class="slide level2">
+<h2>Load and explore the dataset</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>smoking <span class="ot">=</span> <span class="fu">read.csv</span>(<span class="st">"https://raw.githubusercontent.com/ahmedmoustafa/datasets/main/smoking/smoking.csv"</span>)</span>
-<span id="cb12-2"><a href="#cb12-2"></a><span class="fu">head</span>(smoking)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a>smoking <span class="ot">=</span> <span class="fu">read.csv</span>(<span class="st">"https://raw.githubusercontent.com/ahmedmoustafa/datasets/main/smoking/smoking.csv"</span>)</span>
+<span id="cb14-2"><a href="#cb14-2"></a><span class="fu">head</span>(smoking)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table>
 <colgroup>
@@ -775,14 +919,435 @@
 </div>
 </div>
 </section>
+<section class="slide level2">
+
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a>smoking<span class="sc">$</span>parity <span class="ot">=</span> <span class="fu">factor</span>(smoking<span class="sc">$</span>parity)</span>
+<span id="cb15-2"><a href="#cb15-2"></a>smoking<span class="sc">$</span>mom.race <span class="ot">=</span> <span class="fu">factor</span>(smoking<span class="sc">$</span>mom.race)</span>
+<span id="cb15-3"><a href="#cb15-3"></a>smoking<span class="sc">$</span>mom.edu <span class="ot">=</span> <span class="fu">factor</span>(smoking<span class="sc">$</span>mom.edu)</span>
+<span id="cb15-4"><a href="#cb15-4"></a>smoking<span class="sc">$</span>dad.race <span class="ot">=</span> <span class="fu">factor</span>(smoking<span class="sc">$</span>dad.race)</span>
+<span id="cb15-5"><a href="#cb15-5"></a>smoking<span class="sc">$</span>dad.edu <span class="ot">=</span> <span class="fu">factor</span>(smoking<span class="sc">$</span>dad.edu)</span>
+<span id="cb15-6"><a href="#cb15-6"></a>smoking<span class="sc">$</span>marital <span class="ot">=</span> <span class="fu">factor</span>(smoking<span class="sc">$</span>marital)</span>
+<span id="cb15-7"><a href="#cb15-7"></a>smoking<span class="sc">$</span>income <span class="ot">=</span> <span class="fu">factor</span>(smoking<span class="sc">$</span>income)</span>
+<span id="cb15-8"><a href="#cb15-8"></a>smoking<span class="sc">$</span>smoke <span class="ot">=</span> <span class="fu">factor</span>(smoking<span class="sc">$</span>smoke)</span>
+<span id="cb15-9"><a href="#cb15-9"></a>smoking<span class="sc">$</span>quit.time <span class="ot">=</span> <span class="fu">factor</span>(smoking<span class="sc">$</span>quit.time)</span>
+<span id="cb15-10"><a href="#cb15-10"></a>smoking<span class="sc">$</span>cigs <span class="ot">=</span> <span class="fu">factor</span>(smoking<span class="sc">$</span>cigs)</span>
+<span id="cb15-11"><a href="#cb15-11"></a><span class="fu">head</span>(smoking)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table>
+<colgroup>
+<col style="width: 2%">
+<col style="width: 2%">
+<col style="width: 5%">
+<col style="width: 4%">
+<col style="width: 4%">
+<col style="width: 5%">
+<col style="width: 4%">
+<col style="width: 4%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 5%">
+<col style="width: 4%">
+<col style="width: 4%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 4%">
+<col style="width: 4%">
+<col style="width: 9%">
+<col style="width: 5%">
+<col style="width: 2%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: right;">id</th>
+<th style="text-align: right;">date</th>
+<th style="text-align: right;">gestation</th>
+<th style="text-align: right;">weight</th>
+<th style="text-align: left;">parity</th>
+<th style="text-align: left;">mom.race</th>
+<th style="text-align: right;">mom.age</th>
+<th style="text-align: left;">mom.edu</th>
+<th style="text-align: right;">mom.height</th>
+<th style="text-align: right;">mom.weight</th>
+<th style="text-align: left;">dad.race</th>
+<th style="text-align: right;">dad.age</th>
+<th style="text-align: left;">dad.edu</th>
+<th style="text-align: right;">dad.height</th>
+<th style="text-align: right;">dad.weight</th>
+<th style="text-align: left;">marital</th>
+<th style="text-align: left;">income</th>
+<th style="text-align: left;">smoke</th>
+<th style="text-align: left;">quit.time</th>
+<th style="text-align: left;">cigs</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">15</td>
+<td style="text-align: right;">1411</td>
+<td style="text-align: right;">284</td>
+<td style="text-align: right;">120</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">asian</td>
+<td style="text-align: right;">27</td>
+<td style="text-align: left;">5</td>
+<td style="text-align: right;">62</td>
+<td style="text-align: right;">100</td>
+<td style="text-align: left;">asian</td>
+<td style="text-align: right;">31</td>
+<td style="text-align: left;">5</td>
+<td style="text-align: right;">65</td>
+<td style="text-align: right;">110</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">never</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">20</td>
+<td style="text-align: right;">1499</td>
+<td style="text-align: right;">282</td>
+<td style="text-align: right;">113</td>
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">white</td>
+<td style="text-align: right;">33</td>
+<td style="text-align: left;">5</td>
+<td style="text-align: right;">64</td>
+<td style="text-align: right;">135</td>
+<td style="text-align: left;">white</td>
+<td style="text-align: right;">38</td>
+<td style="text-align: left;">5</td>
+<td style="text-align: right;">70</td>
+<td style="text-align: right;">148</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">never</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">1673</td>
+<td style="text-align: right;">286</td>
+<td style="text-align: right;">136</td>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">white</td>
+<td style="text-align: right;">25</td>
+<td style="text-align: left;">2</td>
+<td style="text-align: right;">62</td>
+<td style="text-align: right;">93</td>
+<td style="text-align: left;">white</td>
+<td style="text-align: right;">28</td>
+<td style="text-align: left;">2</td>
+<td style="text-align: right;">64</td>
+<td style="text-align: right;">130</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">until_pregnancy</td>
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">2</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">129</td>
+<td style="text-align: right;">1562</td>
+<td style="text-align: right;">245</td>
+<td style="text-align: right;">132</td>
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">black</td>
+<td style="text-align: right;">23</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: right;">65</td>
+<td style="text-align: right;">140</td>
+<td style="text-align: left;">black</td>
+<td style="text-align: right;">23</td>
+<td style="text-align: left;">4</td>
+<td style="text-align: right;">71</td>
+<td style="text-align: right;">192</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">never</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">142</td>
+<td style="text-align: right;">1408</td>
+<td style="text-align: right;">289</td>
+<td style="text-align: right;">120</td>
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">white</td>
+<td style="text-align: right;">25</td>
+<td style="text-align: left;">4</td>
+<td style="text-align: right;">62</td>
+<td style="text-align: right;">125</td>
+<td style="text-align: left;">white</td>
+<td style="text-align: right;">26</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: right;">70</td>
+<td style="text-align: right;">180</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">never</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">171</td>
+<td style="text-align: right;">1593</td>
+<td style="text-align: right;">282</td>
+<td style="text-align: right;">144</td>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">white</td>
+<td style="text-align: right;">32</td>
+<td style="text-align: left;">2</td>
+<td style="text-align: right;">64</td>
+<td style="text-align: right;">124</td>
+<td style="text-align: left;">white</td>
+<td style="text-align: right;">36</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: right;">74</td>
+<td style="text-align: right;">185</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">now</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">1</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="fu">summary</span>(smoking)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table style="width:100%;">
+<colgroup>
+<col style="width: 1%">
+<col style="width: 4%">
+<col style="width: 4%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 4%">
+<col style="width: 4%">
+<col style="width: 5%">
+<col style="width: 3%">
+<col style="width: 4%">
+<col style="width: 5%">
+<col style="width: 4%">
+<col style="width: 5%">
+<col style="width: 4%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 3%">
+<col style="width: 4%">
+<col style="width: 7%">
+<col style="width: 4%">
+<col style="width: 4%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: left;">id</th>
+<th style="text-align: left;">date</th>
+<th style="text-align: left;">gestation</th>
+<th style="text-align: left;">weight</th>
+<th style="text-align: left;">parity</th>
+<th style="text-align: left;">mom.race</th>
+<th style="text-align: left;">mom.age</th>
+<th style="text-align: left;">mom.edu</th>
+<th style="text-align: left;">mom.height</th>
+<th style="text-align: left;">mom.weight</th>
+<th style="text-align: left;">dad.race</th>
+<th style="text-align: left;">dad.age</th>
+<th style="text-align: left;">dad.edu</th>
+<th style="text-align: left;">dad.height</th>
+<th style="text-align: left;">dad.weight</th>
+<th style="text-align: left;">marital</th>
+<th style="text-align: left;">income</th>
+<th style="text-align: left;">smoke</th>
+<th style="text-align: left;">quit.time</th>
+<th style="text-align: left;">cigs</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Min. : 15</td>
+<td style="text-align: left;">Min. :1350</td>
+<td style="text-align: left;">Min. :148.0</td>
+<td style="text-align: left;">Min. : 55.0</td>
+<td style="text-align: left;">1 :152</td>
+<td style="text-align: left;">asian : 24</td>
+<td style="text-align: left;">Min. :15.00</td>
+<td style="text-align: left;">0: 3</td>
+<td style="text-align: left;">Min. :54.0</td>
+<td style="text-align: left;">Min. : 87.0</td>
+<td style="text-align: left;">asian : 25</td>
+<td style="text-align: left;">Min. :18.00</td>
+<td style="text-align: left;">2 :189</td>
+<td style="text-align: left;">Min. :60.00</td>
+<td style="text-align: left;">Min. :110.0</td>
+<td style="text-align: left;">0: 2</td>
+<td style="text-align: left;">2 :101</td>
+<td style="text-align: left;">never :282</td>
+<td style="text-align: left;">0 :282</td>
+<td style="text-align: left;">0 :282</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">1st Qu.:5426</td>
+<td style="text-align: left;">1st Qu.:1469</td>
+<td style="text-align: left;">1st Qu.:272.2</td>
+<td style="text-align: left;">1st Qu.:108.2</td>
+<td style="text-align: left;">0 :145</td>
+<td style="text-align: left;">black :131</td>
+<td style="text-align: left;">1st Qu.:23.00</td>
+<td style="text-align: left;">1: 85</td>
+<td style="text-align: left;">1st Qu.:62.0</td>
+<td style="text-align: left;">1st Qu.:115.0</td>
+<td style="text-align: left;">black :132</td>
+<td style="text-align: left;">1st Qu.:25.00</td>
+<td style="text-align: left;">5 :165</td>
+<td style="text-align: left;">1st Qu.:68.00</td>
+<td style="text-align: left;">1st Qu.:155.0</td>
+<td style="text-align: left;">1:600</td>
+<td style="text-align: left;">1 :100</td>
+<td style="text-align: left;">now :216</td>
+<td style="text-align: left;">1 :216</td>
+<td style="text-align: left;">5 :101</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Median :6907</td>
+<td style="text-align: left;">Median :1574</td>
+<td style="text-align: left;">Median :280.0</td>
+<td style="text-align: left;">Median :120.0</td>
+<td style="text-align: left;">2 :117</td>
+<td style="text-align: left;">mexican: 18</td>
+<td style="text-align: left;">Median :27.00</td>
+<td style="text-align: left;">2:229</td>
+<td style="text-align: left;">Median :64.0</td>
+<td style="text-align: left;">Median :125.0</td>
+<td style="text-align: left;">mexican: 17</td>
+<td style="text-align: left;">Median :30.00</td>
+<td style="text-align: left;">4 :131</td>
+<td style="text-align: left;">Median :71.00</td>
+<td style="text-align: left;">Median :170.0</td>
+<td style="text-align: left;">2: 6</td>
+<td style="text-align: left;">3 :100</td>
+<td style="text-align: left;">once_not_now : 60</td>
+<td style="text-align: left;">2 : 52</td>
+<td style="text-align: left;">1 : 75</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Mean :6090</td>
+<td style="text-align: left;">Mean :1559</td>
+<td style="text-align: left;">Mean :278.8</td>
+<td style="text-align: left;">Mean :119.3</td>
+<td style="text-align: left;">3 : 82</td>
+<td style="text-align: left;">mixed : 14</td>
+<td style="text-align: left;">Mean :27.54</td>
+<td style="text-align: left;">3: 32</td>
+<td style="text-align: left;">Mean :64.1</td>
+<td style="text-align: left;">Mean :128.9</td>
+<td style="text-align: left;">mixed : 15</td>
+<td style="text-align: left;">Mean :30.44</td>
+<td style="text-align: left;">1 : 91</td>
+<td style="text-align: left;">Mean :70.27</td>
+<td style="text-align: left;">Mean :170.6</td>
+<td style="text-align: left;">3: 1</td>
+<td style="text-align: left;">7 : 90</td>
+<td style="text-align: left;">until_pregnancy: 52</td>
+<td style="text-align: left;">3 : 15</td>
+<td style="text-align: left;">2 : 73</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">3rd Qu.:7792</td>
+<td style="text-align: left;">3rd Qu.:1650</td>
+<td style="text-align: left;">3rd Qu.:288.0</td>
+<td style="text-align: left;">3rd Qu.:131.0</td>
+<td style="text-align: left;">4 : 49</td>
+<td style="text-align: left;">white :423</td>
+<td style="text-align: left;">3rd Qu.:31.00</td>
+<td style="text-align: left;">4:152</td>
+<td style="text-align: left;">3rd Qu.:66.0</td>
+<td style="text-align: left;">3rd Qu.:140.0</td>
+<td style="text-align: left;">white :421</td>
+<td style="text-align: left;">3rd Qu.:35.00</td>
+<td style="text-align: left;">3 : 20</td>
+<td style="text-align: left;">3rd Qu.:72.00</td>
+<td style="text-align: left;">3rd Qu.:185.0</td>
+<td style="text-align: left;">5: 1</td>
+<td style="text-align: left;">4 : 71</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">4 : 13</td>
+<td style="text-align: left;">3 : 40</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Max. :9263</td>
+<td style="text-align: left;">Max. :1714</td>
+<td style="text-align: left;">Max. :338.0</td>
+<td style="text-align: left;">Max. :174.0</td>
+<td style="text-align: left;">5 : 31</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">Max. :43.00</td>
+<td style="text-align: left;">5:109</td>
+<td style="text-align: left;">Max. :72.0</td>
+<td style="text-align: left;">Max. :220.0</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">Max. :53.00</td>
+<td style="text-align: left;">0 : 12</td>
+<td style="text-align: left;">Max. :78.00</td>
+<td style="text-align: left;">Max. :260.0</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">5 : 65</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">7 : 13</td>
+<td style="text-align: left;">6 : 17</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">(Other): 34</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">(Other): 2</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">(Other): 83</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">(Other): 19</td>
+<td style="text-align: left;">(Other): 22</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
 <section id="moms-smoking-and-babys-weight" class="slide level2">
 <h2>Mom’s smoking and baby’s weight</h2>
 <div class="fragment">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="fu">ggplot</span>(smoking) <span class="sc">+</span></span>
-<span id="cb13-2"><a href="#cb13-2"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> smoke, <span class="at">y =</span> weight))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="fu">ggplot</span>(smoking) <span class="sc">+</span></span>
+<span id="cb17-2"><a href="#cb17-2"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> smoke, <span class="at">y =</span> weight))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img data-src="lecture11_data_visualization2_files/figure-revealjs/unnamed-chunk-14-1.png" width="960"></p>
+<p><img data-src="lecture11_data_visualization2_files/figure-revealjs/unnamed-chunk-18-1.png" width="960"></p>
 </div>
 </div>
 </div>
@@ -791,10 +1356,10 @@
 <h2>Mom’s smoking and baby’s weight with reordered x-axis</h2>
 <div class="fragment">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="fu">ggplot</span>(smoking) <span class="sc">+</span></span>
-<span id="cb14-2"><a href="#cb14-2"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(smoke, weight, <span class="at">FUN =</span> median), <span class="at">y =</span> weight))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="fu">ggplot</span>(smoking) <span class="sc">+</span></span>
+<span id="cb18-2"><a href="#cb18-2"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(smoke, weight, <span class="at">FUN =</span> median), <span class="at">y =</span> weight))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img data-src="lecture11_data_visualization2_files/figure-revealjs/unnamed-chunk-15-1.png" width="960"></p>
+<p><img data-src="lecture11_data_visualization2_files/figure-revealjs/unnamed-chunk-19-1.png" width="960"></p>
 </div>
 </div>
 </div>
@@ -803,10 +1368,10 @@
 <h2>Mom’s race and baby’s weight</h2>
 <div class="fragment">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="fu">ggplot</span>(smoking) <span class="sc">+</span></span>
-<span id="cb15-2"><a href="#cb15-2"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(mom.race, weight, <span class="at">FUN =</span> median), <span class="at">y =</span> weight))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="fu">ggplot</span>(smoking) <span class="sc">+</span></span>
+<span id="cb19-2"><a href="#cb19-2"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(mom.race, weight, <span class="at">FUN =</span> median), <span class="at">y =</span> weight))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img data-src="lecture11_data_visualization2_files/figure-revealjs/unnamed-chunk-16-1.png" width="960"></p>
+<p><img data-src="lecture11_data_visualization2_files/figure-revealjs/unnamed-chunk-20-1.png" width="960"></p>
 </div>
 </div>
 </div>
@@ -815,10 +1380,10 @@
 <h2>Dad’s race and baby’s weight</h2>
 <div class="fragment">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="fu">ggplot</span>(smoking) <span class="sc">+</span></span>
-<span id="cb16-2"><a href="#cb16-2"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(dad.race, weight, <span class="at">FUN =</span> median), <span class="at">y =</span> weight))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a><span class="fu">ggplot</span>(smoking) <span class="sc">+</span></span>
+<span id="cb20-2"><a href="#cb20-2"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(dad.race, weight, <span class="at">FUN =</span> median), <span class="at">y =</span> weight))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img data-src="lecture11_data_visualization2_files/figure-revealjs/unnamed-chunk-17-1.png" width="960"></p>
+<p><img data-src="lecture11_data_visualization2_files/figure-revealjs/unnamed-chunk-21-1.png" width="960"></p>
 </div>
 </div>
 </div>
@@ -827,11 +1392,11 @@
 <h2>Mom’s race and baby’s weight and dad’s race</h2>
 <div class="fragment">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="fu">ggplot</span>(smoking) <span class="sc">+</span></span>
-<span id="cb17-2"><a href="#cb17-2"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(mom.race, weight, <span class="at">FUN =</span> median), <span class="at">y =</span> weight)) <span class="sc">+</span></span>
-<span id="cb17-3"><a href="#cb17-3"></a>  <span class="fu">geom_jitter</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(mom.race, weight, <span class="at">FUN =</span> median), <span class="at">y =</span> weight, <span class="at">color =</span> dad.race), <span class="at">alpha =</span> <span class="fl">0.5</span>, <span class="at">width =</span> <span class="fl">0.3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a><span class="fu">ggplot</span>(smoking) <span class="sc">+</span></span>
+<span id="cb21-2"><a href="#cb21-2"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(mom.race, weight, <span class="at">FUN =</span> median), <span class="at">y =</span> weight)) <span class="sc">+</span></span>
+<span id="cb21-3"><a href="#cb21-3"></a>  <span class="fu">geom_jitter</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(mom.race, weight, <span class="at">FUN =</span> median), <span class="at">y =</span> weight, <span class="at">color =</span> dad.race), <span class="at">alpha =</span> <span class="fl">0.5</span>, <span class="at">width =</span> <span class="fl">0.3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img data-src="lecture11_data_visualization2_files/figure-revealjs/unnamed-chunk-18-1.png" width="960"></p>
+<p><img data-src="lecture11_data_visualization2_files/figure-revealjs/unnamed-chunk-22-1.png" width="960"></p>
 </div>
 </div>
 </div>
@@ -840,16 +1405,16 @@
 <h2>Mom’s height and moms’s weight</h2>
 <div class="fragment">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="fu">ggplot</span>(smoking) <span class="sc">+</span></span>
-<span id="cb18-2"><a href="#cb18-2"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> mom.height, <span class="at">y =</span> mom.weight, <span class="at">color =</span> mom.race), <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
-<span id="cb18-3"><a href="#cb18-3"></a>  <span class="fu">geom_smooth</span>(<span class="fu">aes</span>(<span class="at">x =</span> mom.height, <span class="at">y =</span> mom.weight), <span class="at">method =</span> <span class="st">"lm"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a><span class="fu">ggplot</span>(smoking) <span class="sc">+</span></span>
+<span id="cb22-2"><a href="#cb22-2"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> mom.height, <span class="at">y =</span> mom.weight, <span class="at">color =</span> mom.race), <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb22-3"><a href="#cb22-3"></a>  <span class="fu">geom_smooth</span>(<span class="fu">aes</span>(<span class="at">x =</span> mom.height, <span class="at">y =</span> mom.weight), <span class="at">method =</span> <span class="st">"lm"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img data-src="lecture11_data_visualization2_files/figure-revealjs/unnamed-chunk-19-1.png" width="960"></p>
+<p><img data-src="lecture11_data_visualization2_files/figure-revealjs/unnamed-chunk-23-1.png" width="960"></p>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a>model <span class="ot">=</span> <span class="fu">lm</span> (<span class="at">data =</span> smoking, <span class="at">formula =</span> mom.weight <span class="sc">~</span> mom.height)</span>
-<span id="cb19-2"><a href="#cb19-2"></a><span class="fu">summary</span>(model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a>model <span class="ot">=</span> <span class="fu">lm</span> (<span class="at">data =</span> smoking, <span class="at">formula =</span> mom.weight <span class="sc">~</span> mom.height)</span>
+<span id="cb23-2"><a href="#cb23-2"></a><span class="fu">summary</span>(model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -877,16 +1442,16 @@ F-statistic: 132.8 on 1 and 608 DF,  p-value: &lt; 2.2e-16</code></pre>
 <h2>Dad’s height and dad’s weight</h2>
 <div class="fragment">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a><span class="fu">ggplot</span>(smoking) <span class="sc">+</span></span>
-<span id="cb21-2"><a href="#cb21-2"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> dad.height, <span class="at">y =</span> dad.weight, <span class="at">color =</span> mom.race), <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
-<span id="cb21-3"><a href="#cb21-3"></a>  <span class="fu">geom_smooth</span>(<span class="fu">aes</span>(<span class="at">x =</span> dad.height, <span class="at">y =</span> dad.weight), <span class="at">method =</span> <span class="st">"lm"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a><span class="fu">ggplot</span>(smoking) <span class="sc">+</span></span>
+<span id="cb25-2"><a href="#cb25-2"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> dad.height, <span class="at">y =</span> dad.weight, <span class="at">color =</span> mom.race), <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb25-3"><a href="#cb25-3"></a>  <span class="fu">geom_smooth</span>(<span class="fu">aes</span>(<span class="at">x =</span> dad.height, <span class="at">y =</span> dad.weight), <span class="at">method =</span> <span class="st">"lm"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img data-src="lecture11_data_visualization2_files/figure-revealjs/unnamed-chunk-21-1.png" width="960"></p>
+<p><img data-src="lecture11_data_visualization2_files/figure-revealjs/unnamed-chunk-25-1.png" width="960"></p>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a>model <span class="ot">=</span> <span class="fu">lm</span> (<span class="at">data =</span> smoking, <span class="at">formula =</span> dad.weight <span class="sc">~</span> dad.height)</span>
-<span id="cb22-2"><a href="#cb22-2"></a><span class="fu">summary</span>(model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a>model <span class="ot">=</span> <span class="fu">lm</span> (<span class="at">data =</span> smoking, <span class="at">formula =</span> dad.weight <span class="sc">~</span> dad.height)</span>
+<span id="cb26-2"><a href="#cb26-2"></a><span class="fu">summary</span>(model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -914,15 +1479,15 @@ F-statistic: 259.9 on 1 and 608 DF,  p-value: &lt; 2.2e-16</code></pre>
 <h2>Mom’s weight and dad’s weight</h2>
 <div class="fragment">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a><span class="fu">ggplot</span>(smoking) <span class="sc">+</span></span>
-<span id="cb24-2"><a href="#cb24-2"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> mom.weight, <span class="at">y =</span> dad.weight, <span class="at">color =</span> mom.race, <span class="at">shape =</span> dad.race), <span class="at">alpha =</span> <span class="fl">0.5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1"></a><span class="fu">ggplot</span>(smoking) <span class="sc">+</span></span>
+<span id="cb28-2"><a href="#cb28-2"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> mom.weight, <span class="at">y =</span> dad.weight, <span class="at">color =</span> mom.race, <span class="at">shape =</span> dad.race), <span class="at">alpha =</span> <span class="fl">0.5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img data-src="lecture11_data_visualization2_files/figure-revealjs/unnamed-chunk-23-1.png" width="960"></p>
+<p><img data-src="lecture11_data_visualization2_files/figure-revealjs/unnamed-chunk-27-1.png" width="960"></p>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a>model <span class="ot">=</span> <span class="fu">lm</span> (<span class="at">data =</span> smoking, <span class="at">formula =</span> dad.weight <span class="sc">~</span> mom.weight)</span>
-<span id="cb25-2"><a href="#cb25-2"></a><span class="fu">summary</span>(model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a>model <span class="ot">=</span> <span class="fu">lm</span> (<span class="at">data =</span> smoking, <span class="at">formula =</span> dad.weight <span class="sc">~</span> mom.weight)</span>
+<span id="cb29-2"><a href="#cb29-2"></a><span class="fu">summary</span>(model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -950,19 +1515,19 @@ F-statistic: 26.19 on 1 and 608 DF,  p-value: 4.159e-07</code></pre>
 <h2>Mom’s smoking and mom’s education</h2>
 <div class="fragment">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a><span class="fu">ggplot</span>(smoking) <span class="sc">+</span></span>
-<span id="cb27-2"><a href="#cb27-2"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x =</span> mom.edu, <span class="at">fill =</span> smoke), <span class="at">position =</span> <span class="st">"fill"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1"></a><span class="fu">ggplot</span>(smoking) <span class="sc">+</span></span>
+<span id="cb31-2"><a href="#cb31-2"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x =</span> mom.edu, <span class="at">fill =</span> smoke), <span class="at">position =</span> <span class="st">"fill"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img data-src="lecture11_data_visualization2_files/figure-revealjs/unnamed-chunk-25-1.png" width="960"></p>
+<p><img data-src="lecture11_data_visualization2_files/figure-revealjs/unnamed-chunk-29-1.png" width="960"></p>
 </div>
 </div>
 </div>
 <div class="fragment">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1"></a><span class="fu">ggplot</span>(smoking) <span class="sc">+</span></span>
-<span id="cb28-2"><a href="#cb28-2"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(mom.edu), <span class="at">fill =</span> smoke), <span class="at">position =</span> <span class="st">"fill"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1"></a><span class="fu">ggplot</span>(smoking) <span class="sc">+</span></span>
+<span id="cb32-2"><a href="#cb32-2"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(mom.edu), <span class="at">fill =</span> smoke), <span class="at">position =</span> <span class="st">"fill"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img data-src="lecture11_data_visualization2_files/figure-revealjs/unnamed-chunk-26-1.png" width="960"></p>
+<p><img data-src="lecture11_data_visualization2_files/figure-revealjs/unnamed-chunk-30-1.png" width="960"></p>
 </div>
 </div>
 </div>
@@ -971,10 +1536,10 @@ F-statistic: 26.19 on 1 and 608 DF,  p-value: 4.159e-07</code></pre>
 <h2>Mom’s smoking and the family’s income</h2>
 <div class="fragment">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a><span class="fu">ggplot</span>(smoking) <span class="sc">+</span></span>
-<span id="cb29-2"><a href="#cb29-2"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(income), <span class="at">fill =</span> smoke), <span class="at">position =</span> <span class="st">"fill"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1"></a><span class="fu">ggplot</span>(smoking) <span class="sc">+</span></span>
+<span id="cb33-2"><a href="#cb33-2"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(income), <span class="at">fill =</span> smoke), <span class="at">position =</span> <span class="st">"fill"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img data-src="lecture11_data_visualization2_files/figure-revealjs/unnamed-chunk-27-1.png" width="960"></p>
+<p><img data-src="lecture11_data_visualization2_files/figure-revealjs/unnamed-chunk-31-1.png" width="960"></p>
 </div>
 </div>
 </div>
@@ -983,10 +1548,10 @@ F-statistic: 26.19 on 1 and 608 DF,  p-value: 4.159e-07</code></pre>
 <h2>Mom’s race and mom’s weight</h2>
 <div class="fragment">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1"></a><span class="fu">ggplot</span>(smoking) <span class="sc">+</span></span>
-<span id="cb30-2"><a href="#cb30-2"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(mom.race, mom.weight, <span class="at">FUN =</span> median), <span class="at">y =</span> mom.weight))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1"></a><span class="fu">ggplot</span>(smoking) <span class="sc">+</span></span>
+<span id="cb34-2"><a href="#cb34-2"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(mom.race, mom.weight, <span class="at">FUN =</span> median), <span class="at">y =</span> mom.weight))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img data-src="lecture11_data_visualization2_files/figure-revealjs/unnamed-chunk-28-1.png" width="960"></p>
+<p><img data-src="lecture11_data_visualization2_files/figure-revealjs/unnamed-chunk-32-1.png" width="960"></p>
 </div>
 </div>
 </div>
@@ -995,10 +1560,10 @@ F-statistic: 26.19 on 1 and 608 DF,  p-value: 4.159e-07</code></pre>
 <h2>Dad’s race and dad’s weight</h2>
 <div class="fragment">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1"></a><span class="fu">ggplot</span>(smoking) <span class="sc">+</span></span>
-<span id="cb31-2"><a href="#cb31-2"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(dad.race, dad.weight, <span class="at">FUN =</span> median), <span class="at">y =</span> dad.weight))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1"></a><span class="fu">ggplot</span>(smoking) <span class="sc">+</span></span>
+<span id="cb35-2"><a href="#cb35-2"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(dad.race, dad.weight, <span class="at">FUN =</span> median), <span class="at">y =</span> dad.weight))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img data-src="lecture11_data_visualization2_files/figure-revealjs/unnamed-chunk-29-1.png" width="960"></p>
+<p><img data-src="lecture11_data_visualization2_files/figure-revealjs/unnamed-chunk-33-1.png" width="960"></p>
 </div>
 </div>
 </div>
