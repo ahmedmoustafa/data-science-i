@@ -23,7 +23,10 @@ library(printr)
 Let's first load the `ggplot2` package.
 
 ```{r echo=TRUE}
-library(ggplot2)
+if (!require(ggplot2)) {
+  install.packages("ggplot2") # install if not already installed
+}
+library (ggplot2)
 ```
 
 
@@ -50,6 +53,14 @@ ggplot(titanic) +
 
 :::
 
+::: {.fragment}
+
+```{r echo=TRUE}
+ggplot(titanic) +
+  geom_bar(aes(x = class, fill = survived), position = "fill")
+```
+
+:::
 
 ## Survival by sex
 
@@ -58,6 +69,16 @@ ggplot(titanic) +
 ```{r echo=TRUE}
 ggplot(titanic) +
   geom_bar(aes(x = sex, fill = survived), position = "dodge")
+```
+
+:::
+
+
+::: {.fragment}
+
+```{r echo=TRUE}
+ggplot(titanic) +
+  geom_bar(aes(x = sex, fill = survived), position = "fill")
 ```
 
 :::
@@ -73,8 +94,6 @@ ggplot(titanic) +
 
 :::
 
-## Survival by age
-
 ::: {.fragment}
 
 ```{r echo=TRUE}
@@ -83,8 +102,6 @@ ggplot(titanic) +
 ```
 
 :::
-
-## Survival by age
 
 ::: {.fragment}
 
@@ -240,7 +257,7 @@ summary(model)
 
 ```{r echo=TRUE}
 ggplot(smoking) +
-  geom_bar(aes(x = smoke, fill = mom.edu), position = "fill")
+  geom_bar(aes(x = mom.edu, fill = smoke), position = "fill")
 ```
 
 :::
@@ -249,7 +266,7 @@ ggplot(smoking) +
 
 ```{r echo=TRUE}
 ggplot(smoking) +
-  geom_bar(aes(x = smoke, fill = factor(mom.edu)), position = "fill")
+  geom_bar(aes(x = factor(mom.edu), fill = smoke), position = "fill")
 ```
 
 :::
@@ -260,7 +277,7 @@ ggplot(smoking) +
 
 ```{r echo=TRUE}
 ggplot(smoking) +
-  geom_bar(aes(x = smoke, fill = factor(income)), position = "fill")
+  geom_bar(aes(x = factor(income), fill = smoke), position = "fill")
 ```
 
 :::
