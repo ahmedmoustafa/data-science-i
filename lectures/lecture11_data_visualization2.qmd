@@ -1,0 +1,218 @@
+---
+title: "Storytelling"
+format:
+  revealjs:
+    slide-number: true
+    preview-links: true
+    scrollable: true
+---
+
+## Objective
+
+We are going to visualize two datasets, 1) `Titanc`, and 2) `Smoking` to see if we can tell stories from the visuals.
+
+![Storytelling](Storytelling.jpg)
+
+```{r echo=FALSE}
+library(printr)
+```
+
+## Load `ggplot2`
+
+Let's first load the `ggplot2` package.
+
+```{r echo=TRUE}
+library(ggplot2)
+```
+
+
+# Titanic Survival
+
+![](https://media.gettyimages.com/id/188056589/photo/digitally-restored-vintage-maritime-history-photo-of-the-rms-titantic-departing-southampton-on.jpg?s=2048x2048&w=gi&k=20&c=UUgRikYArk0uhrOMQbs994YaoRuCWU4TrcsjYGI8Tj0=)
+
+## Load the dataset
+
+```{r echo=TRUE}
+Titanic = read.csv ("https://raw.githubusercontent.com/ahmedmoustafa/datasets/main/titanic/titanic.csv")
+head(Titanic)
+```
+
+
+## Survival by class
+
+```{r echo=TRUE}
+ggplot(Titanic) +
+  geom_bar(aes(x = class, fill = survived), position = "dodge")
+```
+
+
+## Survival by sex
+
+```{r echo=TRUE}
+ggplot(Titanic) +
+  geom_bar(aes(x = sex, fill = survived), position = "dodge")
+```
+
+## Survival by age
+
+```{r echo=TRUE}
+ggplot(Titanic) +
+  geom_density(aes(x = age, fill = survived), alpha = 0.5)
+```
+
+## Survival by age
+
+```{r echo=TRUE}
+ggplot(Titanic) +
+  geom_boxplot(aes(x = survived, y = age))
+```
+
+## Survival by age
+
+```{r echo=TRUE}
+ggplot(Titanic) +
+  geom_violin(aes(x = survived, y = age))
+```
+
+## Survival by age & sex
+
+```{r echo=TRUE}
+ggplot(Titanic) +
+  geom_boxplot(aes(x = survived, y = age, fill = sex), alpha = 0.5)
+```
+
+## Survival by class & age
+
+```{r echo=TRUE}
+ggplot(Titanic) +
+  geom_boxplot(aes(x = class, y = age, fill = survived), alpha = 0.5)
+```
+
+# Smoking and Pregnancy
+
+![](https://media.gettyimages.com/id/702551325/photo/pregnant-woman-finishing-cigarette.jpg?s=2048x2048&w=gi&k=20&c=zUKT8g49WaCFyNnuyvyYRFTAuLB74IEwn9JQ8hg0Li0=)
+
+## Load the dataset
+
+```{r echo=TRUE}
+Babies = read.csv("https://raw.githubusercontent.com/ahmedmoustafa/datasets/main/smoking/smoking.csv")
+```
+
+## Let's take a glimpse of the dataset
+
+```{r echo=TRUE}
+head(Babies)
+```
+
+## Mom's smoking and baby's weight
+
+```{r echo=TRUE}
+ggplot(Babies) +
+  geom_boxplot(aes(x = smoke, y = weight))
+```
+
+## Mom's smoking and baby's weight with reordered x-axis
+
+```{r echo=TRUE}
+ggplot(Babies) +
+  geom_boxplot(aes(x = reorder(smoke, weight, FUN = median), y = weight))
+```
+
+## Mom's smoking and baby's weight with reordered x-axis
+
+```{r echo=TRUE}
+ggplot(Babies) +
+  geom_boxplot(aes(x = reorder(smoke, weight, FUN = median), y = weight, fill = smoke), alpha = 0.8) +
+  labs (x = "Mom's Smoking", y = "Baby's Weight") +
+  theme(legend.position = "none")
+```
+
+
+## Mom's race and baby's weight
+
+```{r echo=TRUE}
+ggplot(Babies) +
+  geom_boxplot(aes(x = reorder(mom.race, weight, FUN = median), y = weight))
+```
+
+## Dad's race and baby's weight
+
+```{r echo=TRUE}
+ggplot(Babies) +
+  geom_boxplot(aes(x = reorder(dad.race, weight, FUN = median), y = weight))
+```
+
+## Mom's race and baby's weight and dad's race
+
+```{r echo=TRUE}
+ggplot(Babies) +
+  geom_boxplot(aes(x = reorder(mom.race, weight, FUN = median), y = weight)) +
+  geom_jitter(aes(x = reorder(mom.race, weight, FUN = median), y = weight, color = dad.race), alpha = 0.5, width = 0.3)
+```
+
+## Mom's height and moms's weight
+
+```{r echo=TRUE}
+ggplot(Babies) +
+  geom_point(aes(x = mom.height, y = mom.weight, color = mom.race), alpha = 0.5) +
+  geom_smooth(aes(x = mom.height, y = mom.weight), method = "lm")
+```
+
+```{r echo=TRUE}
+model = lm (data = Babies, formula = mom.weight ~ mom.height)
+summary(model)
+```
+
+## Dad's height and dad's weight
+
+```{r echo=TRUE}
+ggplot(Babies) +
+  geom_point(aes(x = dad.height, y = dad.weight, color = mom.race), alpha = 0.5) +
+  geom_smooth(aes(x = dad.height, y = dad.weight), method = "lm")
+```
+
+```{r echo=TRUE}
+model = lm (data = Babies, formula = dad.weight ~ dad.height)
+summary(model)
+```
+
+## Mom's weight and dad's weight
+
+```{r echo=TRUE}
+ggplot(Babies) +
+  geom_point(aes(x = mom.weight, y = dad.weight, color = mom.race, shape = dad.race), alpha = 0.5)
+```
+
+```{r echo=TRUE}
+model = lm (data = Babies, formula = dad.weight ~ mom.weight)
+summary(model)
+```
+
+## Mom's smoking and mom's education
+
+```{r echo=TRUE}
+ggplot(Babies) +
+  geom_bar(aes(x = smoke, fill = mom.edu), position = "fill")
+```
+
+## Mom's smoking and the family's income
+
+```{r echo=TRUE}
+ggplot(Babies) +
+  geom_bar(aes(x = smoke, fill = income), position = "fill")
+```
+
+## Mom's race and mom's weight
+
+```{r echo=TRUE}
+ggplot(Babies) +
+  geom_boxplot(aes(x = reorder(mom.race, mom.weight, FUN = median), y = mom.weight))
+```
+
+## Dad's race and dad's weight
+
+```{r echo=TRUE}
+ggplot(Babies) +
+  geom_boxplot(aes(x = reorder(dad.race, dad.weight, FUN = median), y = dad.weight))
+```
+
