@@ -1,0 +1,51 @@
+---
+title: "Review"
+format:
+  revealjs:
+    slide-number: true
+    preview-links: true
+    scrollable: true
+---
+
+## Exercise: Data Frame Normalization Using sweep
+
+Normalize a data frame df (with columns `X1`, `X2`, `X3` each containing $10$ random integers between $1$ and $100$) by subtracting the median and dividing by the interquartile range of each column.
+
+::: {.fragment}
+
+### Creating a data frame
+
+```{r echo=TRUE,eval=TRUE}
+set.seed(123)
+df = data.frame(X1 = sample(1:100, 10), 
+                X2 = sample(1:100, 10), 
+                X3 = sample(1:100, 10))
+
+df
+```
+
+
+### Calculating medians and interquartile ranges
+```{r echo=TRUE,eval=TRUE}
+medians = sapply(df, median)
+medians
+iqrs = sapply(df, IQR)
+iqrs
+```
+
+### Normalizing the data frame
+```{r echo=TRUE,eval=TRUE}
+normalized_df = sweep(sweep(df, 2, medians, "-"), 2, iqrs, "/")
+normalized_df
+```
+
+:::
+
+
+## Exercise: Generating and Analyzing Height Data
+
+Generate a dataset that simulates the heights (in centimeters) of 1000 individuals. Assume an average height of 170 cm and a standard deviation of 10 cm. Follow the following steps:
+
+- Create the dataset using a normal distribution with the given mean and standard deviation using the `rnorm()` function.
+- Calculate the $Z$-scores for the entire dataset using the `sweep()` function.
+- Determine how many standard deviations away from the mean is a height of 185 cm.

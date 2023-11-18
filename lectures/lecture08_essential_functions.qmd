@@ -1,16 +1,23 @@
 ---
-title: "R Programming - Part 2"
-subtitle: "Essential Functions"
+title: "R Essential Functions"
 format:
-  revealjs:
-    slide-number: true
-    preview-links: true
-    scrollable: true
+  pdf:
+    toc: true
+    number-sections: true
+    colorlinks: true
+    fig-align: "center"
+    code-line-numbers: true
+include-in-header: 
+  text: |
+    \usepackage{fvextra}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{breaklines,commandchars=\\\{\}}
 ---
 
 ```{r echo=FALSE,message=FALSE}
 library(printr)
 ```
+
+# Miscellaneous Functions
 
 ## `unique()`
 - The `unique()` function removes duplicated elements from a vector or data frame.
@@ -23,153 +30,16 @@ unique(x)
 
 ## `any()` and `all()`
 - `any()` returns `TRUE` if any of the values are `TRUE`.
-- `all()` returns `TRUE` if all of the values are `TRUE`.
 
-- Example: `any()`
 ```{r echo=TRUE}
 v = c(FALSE, FALSE, TRUE)
 any(v)
 ```
 
-- Example: `all()`
+- `all()` returns `TRUE` if all of the values are `TRUE`.
+
 ```{r echo=TRUE}
 all(v)
-```
-
-## Set Functions
-- Set is a collection of distinct elements.
-- Set functions perform operations on sets of elements.
-
-![Set Theory](https://oercommons.s3.amazonaws.com/media/courseware/lesson/image/VENN_DIAGRAMS_8BzRaEe.png)
----
-
-### Union ($A \cup B$)
-- The set of all elements in A, or in B, or in both.
-- $A \cup B = \{x | x \in A \text{ or } x \in B\}$
-- `union()`
-- Example:
-
-```{r echo=TRUE}
-A = c(1, 2, 3, 4)
-B = c(3, 4, 5, 6)
-union(A, B)
-```
-
----
-
-### Intersection ($A \cap B$)
-- The set of all elements that are both in A and B.
-- $A \cap B = \{x | x \in A \text{ and } x \in B\}$
-- `intersect()`
-- Example:
-
-```{r echo=TRUE}
-A = c(1, 2, 3, 4)
-B = c(3, 4, 5, 6)
-intersect(A, B)
-```
-
----
-
-### Set Difference ($A - B$)
-- The set of all elements that are in A but not in B.
-- $A - B = \{x | x \in A \text{ and } x \notin B\}$
-- `setdiff()`
-- Example:
-
-```{r echo=TRUE}
-A = c(1, 2, 3, 4)
-B = c(3, 4, 5, 6)
-setdiff(A, B)
-```
-
----
-
-### Subset ($A \subseteq B$)
-- A is a subset of B if every element of A is also an element of B.
-- $A \subseteq B \iff (\forall x)(x \in A \implies x \in B)$
-- Example:
-
-```{r echo=TRUE}
-A = c(1, 2, 3, 4)
-all(A %in% c(1, 2, 3, 4, 5))
-```
-
-```{r echo=TRUE}
-all(A %in% c(1, 2, 3))
-```
-
----
-
-### Set Equality ($A = B$)
-- Two sets are equal if they have exactly the same elements.
-- $A = B \iff (A \subseteq B) \text{ and } (B \subseteq A)$
-- `setequal()`
-- Example:
-
-```{r echo=TRUE}
-A = c(1, 2, 3, 4)
-B = c(3, 4, 5, 6)
-setequal(A, B)
-```
-
-## Random Sampling
-
-**Simple Random Sample (SRS):** is a subset of a population, chosen in such a way that every possible sample of a given size has an equal chance of being selected. This method ensures that each individual or item within the population has an equal probability of being included in the sample, and the selection process is entirely by chance, without any bias.
-
-![Random Sampling](https://www.questionpro.com/blog/wp-content/uploads/2018/03/Simple-random-sampling-wt-logo.jpg)
----
-
-### With *vs.* Without Replacement
-
-**Sampling With Replacement (SWR):** In this method, after an individual or item is selected for the sample, it is placed back into the population before the next selection is made, allowing for the possibility of being chosen more than once. This method is particularly useful when dealing with small population sizes or when it's important to maintain the same population size for each draw.
-
-**Sampling Without Replacement (SWOR):** Contrary to SWR, in Sampling Without Replacement, once an individual or item is selected, it is not placed back into the population, and hence, cannot be selected again. This method is often utilized when the population size is large, or when maintaining the same population size for each draw is not crucial.
-
---- 
-
-### `sample()`
-
-- The `sample()` function draws random samples from a vector.
-
-- Syntax:
-
-```R
-sample(x, size, replace = FALSE, prob = NULL)
-```
-- Example:
-
-```{r}
-sample(1:10, 5)
-```
-
-## `cbind()` and `rbind()`
-- `cbind()` combines vectors, matrices, or data frames by columns.
-- `rbind()` combines vectors, matrices, or data frames by rows.
-
----
-
-### Example: `cbind`
-
-```{r echo=TRUE}
-A = matrix(1:4, ncol=2)
-A
-```
-
-```{r echo=TRUE}
-B = matrix(5:8, ncol=2)
-B
-```
-
-```{r echo=TRUE}
-cbind(A, B)
-```
-
----
-
-### Example: `rbind`
-```{r echo=TRUE}
-rbind(A, B)
 ```
 
 ## `ifelse()`
@@ -186,22 +56,128 @@ numbers
 ifelse(numbers %% 2 == 0, "Even", "Odd")
 ```
 
-## Testing Data Types
-- R provides functions to test the data type of a variable.
+## `cbind()` and `rbind()`
 
-- Examples:
+- `cbind()` combines vectors, matrices, or data frames by columns.
+- `rbind()` combines vectors, matrices, or data frames by rows.
 
 ```{r echo=TRUE}
-is.character("Hello")
-is.numeric(10)
-is.na(NA)
-is.vector(c(1, 2, 3))
-is.matrix(matrix(1:4, ncol=2))
-is.data.frame(data.frame(x=1:4, y=4:1))
-is.factor(factor(c("a", "b", "a")))
+A = matrix(1:4, ncol=2)
+A
 ```
 
-## Exercise: Coin Flip Simulation
+```{r echo=TRUE}
+B = matrix(5:8, ncol=2)
+B
+```
+
+```{r echo=TRUE}
+cbind(A, B)
+```
+
+```{r echo=TRUE}
+rbind(A, B)
+```
+
+# Set Functions
+- Set is a collection of distinct elements.
+- Set functions perform operations on sets of elements.
+
+![Set Theory](https://oercommons.s3.amazonaws.com/media/courseware/lesson/image/VENN_DIAGRAMS_8BzRaEe.png)
+
+## Union ($A \cup B$)
+- The set of all elements in A, or in B, or in both.
+- $A \cup B = \{x | x \in A \text{ or } x \in B\}$
+- `union()`
+- Example:
+
+```{r echo=TRUE}
+A = c(1, 2, 3, 4)
+B = c(3, 4, 5, 6)
+union(A, B)
+```
+
+
+## Intersection ($A \cap B$)
+- The set of all elements that are both in A and B.
+- $A \cap B = \{x | x \in A \text{ and } x \in B\}$
+- `intersect()`
+- Example:
+
+```{r echo=TRUE}
+A = c(1, 2, 3, 4)
+B = c(3, 4, 5, 6)
+intersect(A, B)
+```
+
+## Set Difference ($A - B$)
+- The set of all elements that are in A but not in B.
+- $A - B = \{x | x \in A \text{ and } x \notin B\}$
+- `setdiff()`
+- Example:
+
+```{r echo=TRUE}
+A = c(1, 2, 3, 4)
+B = c(3, 4, 5, 6)
+setdiff(A, B)
+```
+
+## Subset ($A \subseteq B$)
+- A is a subset of B if every element of A is also an element of B.
+- $A \subseteq B \iff (\forall x)(x \in A \implies x \in B)$
+- Example:
+
+```{r echo=TRUE}
+A = c(1, 2, 3, 4)
+all(A %in% c(1, 2, 3, 4, 5))
+```
+
+```{r echo=TRUE}
+all(A %in% c(1, 2, 3))
+```
+
+
+## Set Equality ($A = B$)
+- Two sets are equal if they have exactly the same elements.
+- $A = B \iff (A \subseteq B) \text{ and } (B \subseteq A)$
+- `setequal()`
+- Example:
+
+```{r echo=TRUE}
+A = c(1, 2, 3, 4)
+B = c(3, 4, 5, 6)
+setequal(A, B)
+```
+
+# Random Sampling
+
+**Simple Random Sample (SRS):** is a subset of a population, chosen in such a way that every possible sample of a given size has an equal chance of being selected. This method ensures that each individual or item within the population has an equal probability of being included in the sample, and the selection process is entirely by chance, without any bias.
+
+![Random Sampling](https://www.questionpro.com/blog/wp-content/uploads/2018/03/Simple-random-sampling-wt-logo.jpg)
+
+## With *vs.* Without Replacement
+
+**Sampling With Replacement (SWR):** In this method, after an individual or item is selected for the sample, it is placed back into the population before the next selection is made, allowing for the possibility of being chosen more than once. This method is particularly useful when dealing with small population sizes or when it's important to maintain the same population size for each draw.
+
+**Sampling Without Replacement (SWOR):** Contrary to SWR, in Sampling Without Replacement, once an individual or item is selected, it is not placed back into the population, and hence, cannot be selected again. This method is often utilized when the population size is large, or when maintaining the same population size for each draw is not crucial.
+
+
+## The `sample()` function
+
+- The `sample()` function draws random samples from a vector.
+
+- Syntax:
+
+```R
+sample(x, size, replace = FALSE, prob = NULL)
+```
+- Example:
+
+```{r}
+sample(1:10, 5)
+```
+
+## Example: Coin Flip Simulation
 
 ### Part 1: Single Simulation
 
@@ -216,8 +192,6 @@ coin_flip = function() {
 coin_flip()
 ```
 
----
-
 ### Part 2: Multiple Simulations
 
 Now, extend your function to perform multiple simulations of coin flips and return the number of heads and tails.
@@ -230,8 +204,6 @@ coin_flip = function(n) {
 
 coin_flip(5)
 ```
-
----
 
 ### Part 3: Analysis
 
@@ -253,3 +225,281 @@ coin_flip(1000)/1000
 coin_flip(10000)/10000
 ```
 
+# The Apply Functions
+
+The apply functions in R provide a concise and efficient way to apply a **function** to the elements of data structures such as vectors, lists, data frames, or matrix.
+
+## Comaprsion between the Apply Functions
+
+Apply functions provide a concise way to apply a **function** to data.
+
+| Function  | Description | Usage | Example |
+|-----------|-------------|-------|---------|
+| `apply()` | Applies a function over the margins of an array or matrix. | `apply(X, MARGIN, FUN, ...)` | `apply(matrix(1:9, nrow = 3), 1, sum)` |
+| `lapply()` | Applies a function to each element of a list, returning a list. | `lapply(X, FUN, ...)` | `lapply(list(1:5, 6:10), sum)` |
+| `sapply()` | Similar to `lapply()`, but tries to simplify the result. | `sapply(X, FUN, ..., simplify = TRUE)` | `sapply(list(1:5, 6:10), sum)` |
+
+## Example: Calculating summary statistics
+
+### Creating a numeric *named* `list`
+
+```{r echo=TRUE}
+numeric_list = list(a = 1:5, b = 3:7, c = 10:14)
+numeric_list
+```
+
+### Applying `mean()` using `lapply()`
+
+```{r echo=TRUE}
+lapply(numeric_list, mean)
+```
+
+### Applying `sum()` using `sapply()`
+
+```{r echo=TRUE}
+sapply(numeric_list, sum)
+```
+
+# The `sweep()` Function
+
+The `sweep()` function in R allows you to perform operations on arrays by "sweeping" out values of a summary statistic across margins.
+
+![](https://media.gettyimages.com/id/1464262190/photo/straw-broom.jpg?s=2048x2048&w=gi&k=20&c=JWmWRXtxcyn-52tjsuDOyeFlijTKzd_xcSc-1dCv7sk=)
+
+## Syntax of `sweep()`
+
+```R
+sweep(x, MARGIN, STATS, FUN = "-", ...)
+```
+
+- `x`: the array to sweep out statistics from.
+- `MARGIN`: the margin to apply the sweep on.
+- `STATS`: the summary statistic to be used.
+- `FUN`: the function to apply.
+
+## Example: Centering
+
+### Sample matrix
+
+```{r echo=TRUE}
+mat = matrix(1:9, nrow = 3)
+mat
+```
+
+### Calculate column means
+
+```{r echo=TRUE}
+col_means = apply(mat, 2, mean)
+col_means
+```
+
+### Center the matrix by subtracting column means
+
+```{r echo=TRUE}
+centered_mat = sweep(mat, 2, col_means)
+centered_mat
+```
+
+## Example: Scaling
+
+### Calculate max for each column
+
+```{r echo=TRUE}
+col_maxs = apply(mat, 2, max)
+col_maxs
+```
+
+### Scale the matrix by dividing by column maxs
+
+```{r echo=TRUE}
+scaled_mat = sweep(mat, 2, col_maxs, FUN = "/")
+scaled_mat
+```
+
+# The $Z$-scores
+
+The $Z$-score of an observation is a metric that indicates how many standard deviations an element is from the mean of the whole set.
+
+$z = \frac{x - \mu}{\sigma}$
+
+where:
+
+- $x$ is the raw score,
+- $\mu$ is the mean of the population, and
+- $\sigma$ is the standard deviation of the population.
+
+Note: The $Z$-score is **unitless** i.e., having no units of measurement
+
+## Steps to Calculate $Z$-scores
+
+1. Calculate means and standard deviations for each column.
+2. Center data by subtracting mean values using `sweep()`.
+3. Divide by standard deviation to standardize using `sweep()`.
+
+## Example: $Z$-score Calculation
+
+### Create a sample matrix with random data
+
+```{r echo=TRUE}
+data_matrix = matrix(rnorm(100), ncol=10)
+data_matrix
+```
+
+### Calculate column means
+
+```{r echo=TRUE}
+col_means = apply(data_matrix, 2, mean)
+col_means
+```
+
+### Calculate column standard deviations
+
+```{r echo=TRUE}
+col_sds = apply(data_matrix, 2, sd)
+col_means
+```
+
+### Center the matrix by subtracting column means
+
+```{r echo=TRUE}
+data_matrix_centered = sweep(data_matrix, 2, col_means, FUN = "-")
+data_matrix_centered
+```
+
+### Divide by the standard deviation to get z-scores
+
+```{r echo=TRUE}
+z_scores = sweep(data_matrix_centered, 2, col_sds, FUN = "/")
+z_scores
+```
+
+## Example: Data Frame Normalization Using `sweep()`
+
+Normalize a data frame `df` (with columns `X1`, `X2`, `X3` each containing $10$ random integers between $1$ and $100$) by subtracting the median and dividing by the interquartile range of each column.
+
+::: {.fragment}
+
+### Creating a data frame
+
+```{r echo=TRUE,eval=TRUE}
+set.seed(123)
+df = data.frame(X1 = sample(1:100, 10), 
+                X2 = sample(1:100, 10), 
+                X3 = sample(1:100, 10))
+
+df
+```
+
+
+### Calculating medians
+
+```{r echo=TRUE,eval=TRUE}
+medians = sapply(df, median) # or apply(df, 2, median)
+medians
+```
+
+### Calculating interquartile ranges
+
+```{r echo=TRUE,eval=TRUE}
+iqrs = sapply(df, IQR) # or apply(df, 2, IQR)
+iqrs
+```
+
+### Normalizing the data frame
+```{r echo=TRUE,eval=TRUE}
+normalized_df = sweep(sweep(df, 2, medians, "-"), 2, iqrs, "/")
+normalized_df
+```
+
+:::
+
+## Example: Generating and Analyzing Height Data
+
+Generate a dataset that simulates the heights (in centimeters) of 1000 individuals. Assume an average height of 170 cm and a standard deviation of 10 cm. Follow the following steps:
+
+- Create the dataset using a normal distribution with the given mean and standard deviation using the [`rnorm()`](https://www.geeksforgeeks.org/a-guide-to-dnorm-pnorm-rnorm-and-qnorm-in-r/) function.
+- Calculate the $Z$-scores for the entire dataset.
+- Determine how many standard deviations away from the mean is a height of 185 cm.
+
+::: {.fragment}
+
+### Generating the height dataset
+
+```{r echo=TRUE,eval=TRUE}
+heights = rnorm (1000, 170, 10)
+head(heights)
+```
+
+### Displaying the distribution of heights
+
+```{r echo=TRUE,eval=TRUE}
+hist(heights)
+```
+
+:::
+
+
+::: {.fragment}
+
+### Calculating the $Z$-scores
+
+```{r echo=TRUE,eval=TRUE}
+zscores = (heights - mean(heights))/sd(heights)
+head(zscores)
+```
+
+### Displaying the distribution of $Z$-scores
+
+```{r echo=TRUE,eval=TRUE}
+hist(zscores)
+```
+
+:::
+
+
+::: {.fragment}
+
+### Calculating the $Z$-score of a specific height
+
+```{r echo=TRUE,eval=TRUE}
+zscore = (185 - mean(heights))/sd(heights)
+zscore
+```
+
+### Displaying the $Z$-score of a specific height
+
+```{r echo=TRUE,eval=TRUE}
+hist(zscores)
+abline(v=zscore, col="red", lwd=2)
+```
+
+:::
+
+# Comparison between `apply()` and `sweep()`
+
+| Feature | `apply()` | `sweep()` |
+|-------------------|-----------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------|
+| Purpose | Apply a function over the margins of an array or matrix to summarize or transform it. | Apply arithmetic operations to an array "sweeping" out array summaries. |
+| Usage | Used for summarizing data with a function over specified margins (rows or columns) | Used for adjusting data using a summary statistic for operations like centering or scaling. |
+| Functionality | Used to apply a wide range of functions for summarizing or transforming data across dimensions | Used to perform arithmetic operations using a summary statistic and is often used after summarizing data with apply().|
+| Arguments | `apply(X, MARGIN, FUN, ...)` where `X` is the array, MARGIN specifies rows(1) or columns(2), and FUN is the function to be applied. | `sweep(x, MARGIN, STATS, FUN = "-", ...)` where `x` is the array, `MARGIN` specifies the dimension, STATS is the summary statistic, and `FUN` is the arithmetic function to be applied. |
+| Return Value | Returns an array, matrix, or list with the results of the function application, which may be of a different dimension from the input. | Returns an adjusted array with the same dimensions as the input, with element-wise arithmetic operations performed. |
+| Exclusive Actions | - Can return different structures (vector, array, list) based on the function and margin.<br>- Can work with higher-dimensional arrays beyond matrices. | - Directly performs arithmetic *sweep* operations using a summary statistic.<br>- Ideal for data adjustments after using `apply()` to calculate the summary statistic. |
+| Limitations | - Cannot directly adjust data using a summary statistic; additional steps are required to integrate the summary before or after using `apply()`. | - Not designed for summarizing data; it requires pre-calculated statistics to perform the sweep operation. |
+| Flexibility | - Can use any function, including user-defined ones, for summarization or transformation.<br>- More general-purpose in data manipulation. | - Limited to arithmetic *sweep* operations; custom functions must conform to the expected input and output format of `sweep()`. |
+| Common Use Case | - Computing aggregate statistics like means, sums, etc., across rows or columns.<br>- General data manipulation tasks requiring the application of a function. | - Standardizing or normalizing data.<br>- Centering data by subtracting the mean or dividing by a standard deviation after calculating these with `apply()`. |
+
+# Testing Data Types
+- R provides functions to test the data type of a variable.
+
+## Examples:
+
+```{r echo=TRUE}
+is.character("Hello")
+is.numeric(10)
+is.na(NA)
+is.vector(c(1, 2, 3))
+is.matrix(matrix(1:4, ncol=2))
+is.data.frame(data.frame(x=1:4, y=4:1))
+is.factor(factor(c("a", "b", "a")))
+```

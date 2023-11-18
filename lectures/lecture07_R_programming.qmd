@@ -242,36 +242,6 @@ User-defined functions in R allow you to create your own functions.
 
 - **Explanation**: A function `calculate_area()` is defined to calculate the area of a rectangle given its length and width.
 
-# The Apply Functions Family
-
-Apply functions in R provide a concise and efficient way to apply a function to the elements of data structures such as vectors, lists, data frames, or matrix.
-
-## Apply Functions
-
-Apply functions provide a concise way to apply a function to data.
-
-| Function  | Description | Usage | Example |
-|-----------|-------------|-------|---------|
-| `apply()` | Applies a function over the margins of an array or matrix. | `apply(X, MARGIN, FUN, ...)` | `apply(matrix(1:9, nrow = 3), 1, sum)` |
-| `lapply()` | Applies a function to each element of a list, returning a list. | `lapply(X, FUN, ...)` | `lapply(list(1:5, 6:10), sum)` |
-| `sapply()` | Similar to `lapply()`, but tries to simplify the result. | `sapply(X, FUN, ..., simplify = TRUE)` | `sapply(list(1:5, 6:10), sum)` |
-
-## Example: Apply Functions
-
-Calculate summary statistics for a list of numeric vectors.
-
-```{r echo=TRUE}
-numeric_list = list(a = 1:5, b = 3:7, c = 10:14)
-numeric_list
-```
-
-```{r echo=TRUE}
-lapply(numeric_list, mean)
-```
-
-```{r echo=TRUE}
-sapply(numeric_list, sum)
-```
 
 # Exercises
 

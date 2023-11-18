@@ -1,0 +1,350 @@
+---
+title: "DSCI 1411: Fundamentals of Data Science"
+subtitle: "Second Exam, Fall 2022 (Answers)"
+format:
+  pdf:
+    toc: true
+    number-sections: true
+    colorlinks: true
+    fig-align: "center"
+    code-line-numbers: true
+include-in-header: 
+  text: |
+    \usepackage{fvextra}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{breaklines,commandchars=\\\{\}}
+---
+
+# Q1 - Choose the correct answer
+
+## What would the following code print?
+
+```{r echo=TRUE}
+x<-c("T", "0", 1)
+as.logical(x)
+```
+
+**Answer**: (d) None of the above
+
+## What would be the output of the following code?
+
+```{r echo=TRUE}
+x<-1:3
+names(x)
+```
+
+**Answer**: (b) `NULL`
+
+Here is a named version of `x`:
+
+```{r echo=TRUE}
+x = c(a = 1, b = 2, c = 3)
+x
+```
+
+```{r echo=TRUE}
+names(x)
+```
+
+
+## Which of the following statement changes column name of a matrix `m` to `h` and `f` ?
+
+```{r echo=TRUE}
+m = matrix (1:6, ncol = 2)
+m
+```
+
+```{r echo=TRUE}
+colnames(m)<-c("h","f")
+m
+```
+
+**Answer**: (a) `colnames(m)<-c("h","f")`
+
+Similarly, rows can be named using the `rownames()` function:
+
+```{r echo=TRUE}
+rownames(m) = c("x", "y", "z")
+m
+```
+
+## The object `x` is a scalar defined in the work space. Which of the following code snippet will create a vector with NAs in it?
+
+
+```{r echo=TRUE}
+x<-c(1,2,NA,10,3)
+x
+```
+
+**Answer**: (c) `x<-c(1,2,NA,10,3)`
+
+## What is the class of a in the following R code? `a<-c(1,"a",FALSE)`
+
+```{r echo=TRUE}
+a<-c(1,"a",FALSE)
+a
+```
+
+```{r echo=TRUE}
+class(a)
+```
+
+
+**Answer**: (b) `character`
+
+## What is the class of b in the following R code? `b<-c(TRUE,TRUE,FALSE)`
+
+```{r echo=TRUE}
+b<-c(TRUE,TRUE,FALSE)
+b
+```
+
+```{r echo=TRUE}
+class(b)
+```
+
+
+**Answer**: (d) `logical`
+
+## If an object q is not defined in an R workspace, then the output of the command `class(q)` is:
+
+```{r echo=TRUE}
+q
+```
+
+**Answer**: (b) `function`
+
+## For the following array `y<-c(1,2,3,4,5)`, the R command to find the median is
+
+```{r echo=TRUE}
+y<-c(1,2,3,4,5)
+y
+```
+
+```{r echo=TRUE}
+median(y)
+```
+
+**Answer**: (a) `median(y)`
+
+What is the output of the code below?
+
+```{R}
+x=c("apples","pears","kiwis")
+y=c(10,6,12)
+z1=paste(x,y,sep=":")
+z2=paste0(x,y)
+z1;z2
+```
+
+```{r echo=TRUE}
+x=c("apples","pears","kiwis")
+x
+```
+
+```{r echo=TRUE}
+y=c(10,6,12)
+y
+```
+
+```{r echo=TRUE}
+z1=paste(x,y,sep=":")
+z1
+```
+
+```{r echo=TRUE}
+z2=paste0(x,y)
+z2
+```
+
+```{r echo=TRUE}
+z1;z2 # the semicolon is just to exectue more than function in the same line
+```
+
+**Answer**: (c)
+
+# Q2 - Write an R code to implement the following
+
+## Create the following matrix:
+
+$$
+\begin{pmatrix}
+1 & 3 & 5 & 7\\
+2 & 4 & 6 & 8
+\end{pmatrix}
+$$
+
+```{r echo=TRUE}
+matrix (1:8, nrow = 2)
+```
+
+## Compute the sum of last 5 numbers in an object `x` containing 51 numeric values.
+
+```{r echo=TRUE}
+set.seed (123)
+size = 51
+x = sample (1:100, size)
+x
+```
+
+```{r echo=TRUE}
+length(x)
+```
+
+```{r echo=TRUE}
+n = 5
+```
+
+```{r echo=TRUE}
+x[(length(x) - n + 1) : length(x)] # last 5 numbers
+```
+
+```{r echo=TRUE}
+sum(x[(length(x) - n + 1) : length(x)]) # sum of last 5 numbers
+```
+
+## Compute the sum of smallest 4 numbers in an object `x` containing 21 numeric values.
+
+```{r echo=TRUE}
+set.seed(123)
+size = 21
+x = sample (1:100, size)
+x
+```
+
+```{r echo=TRUE}
+length(x)
+```
+
+```{r echo=TRUE}
+sorted_x = sort(x)
+sorted_x
+```
+
+```{r echo=TRUE}
+smallest_four_numbers = sorted_x[1:4]
+smallest_four_numbers
+```
+
+
+```{r echo=TRUE}
+sum(smallest_four_numbers)
+```
+
+Or directly:
+
+```{r echo=TRUE}
+sum(sort(x)[1:4])
+```
+
+
+## Find the maximum value of the second column in a given data frame `df`.
+
+```{r echo=TRUE}
+set.seed(123)
+df = data.frame (X = sample(1:10, 5), Y = sample(1:10, 5))
+df
+```
+
+```{r echo=TRUE}
+max(df[, 2])
+```
+
+## Find the odd values in the second column in a given data frame `df`.
+
+```{r echo=TRUE}
+set.seed(456)
+df = data.frame (X = sample(1:10, 5), Y = sample(1:10, 5))
+df
+```
+
+```{r echo=TRUE}
+df[, 2] %% 2 != 0
+```
+
+
+```{r echo=TRUE}
+which(df[, 2] %% 2 != 0)
+```
+
+```{r echo=TRUE}
+df[which(df[, 2] %% 2 != 0), 2]
+```
+
+# Q3
+
+```{r echo=TRUE}
+b = c(78, 72, 78, 79, 105) # before
+b
+```
+
+```{r echo=TRUE}
+a = c(67, 65, 79, 70, 93) # after
+a
+```
+
+
+## Compute the amount of weight loss/gain for each participant.
+
+```{r echo=TRUE}
+c = b - a # loss (difference)
+c
+```
+
+
+## Compute the average amount of weight loss.
+
+```{r echo=TRUE}
+mean(c)
+```
+
+## Arrange the object `b` in ascending order.
+
+```{r echo=TRUE}
+sort(b)
+```
+
+## Rank the object `b` in ascending order.
+
+```{r echo=TRUE}
+rank(b)
+```
+
+
+**Note**: the `rank()` function averages the rank of entries of the same value. This is different from the `order()` function:
+
+```{r echo=TRUE}
+order(b)
+```
+
+## Create a matrix `m` that contains `b` and `a` as rows.
+
+```{r echo=TRUE}
+mat = matrix(c(b, a), nrow = 2, byrow = TRUE) # by default byrow is FALSE
+mat
+```
+
+## Compute the $Z$-score for both the rows of the above matrix.
+
+- **Version 1: normalization by row**
+
+```{r echo=TRUE}
+row_means = apply(mat, 1, mean)
+row_means
+```
+
+```{r echo=TRUE}
+row_sd = apply(mat, 1, sd)
+row_sd
+```
+
+```{r echo=TRUE}
+zscores_by_row = sweep(sweep(mat, 1, row_means, "-"), 1, row_sd, "/")
+zscores_by_row
+```
+
+- **Version 2: global normalization**
+
+```{r echo=TRUE}
+zscores_overall = (mat - mean(mat))/sd(mat)
+zscores_overall
+```

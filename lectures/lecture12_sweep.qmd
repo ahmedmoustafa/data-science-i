@@ -1,0 +1,155 @@
+---
+title: "The `sweep()` function"
+format:
+  revealjs:
+    slide-number: true
+    preview-links: true
+    scrollable: true
+---
+
+# The `sweep()` function
+
+The `sweep()` function in R allows you to perform operations on arrays by "sweeping" out values of a summary statistic across margins.
+
+![](https://media.gettyimages.com/id/1464262190/photo/straw-broom.jpg?s=2048x2048&w=gi&k=20&c=JWmWRXtxcyn-52tjsuDOyeFlijTKzd_xcSc-1dCv7sk=)
+
+# Syntax of `sweep()`
+
+```R
+sweep(x, MARGIN, STATS, FUN = "-", ...)
+```
+
+- `x`: the array to sweep out statistics from.
+- `MARGIN`: the margin to apply the sweep on.
+- `STATS`: the summary statistic to be used.
+- `FUN`: the function to apply.
+
+## Example 1: Centering
+
+### Sample matrix
+
+```{r echo=TRUE}
+mat = matrix(1:9, nrow = 3)
+mat
+```
+
+### Calculate column means
+
+```{r echo=TRUE}
+col_means = apply(mat, 2, mean)
+col_means
+```
+
+### Center the matrix by subtracting column means
+
+```{r echo=TRUE}
+centered_mat = sweep(mat, 2, col_means)
+centered_mat
+```
+
+## Example 2: Scaling
+
+### Calculate max for each column
+
+```{r echo=TRUE}
+col_maxs = apply(mat, 2, max)
+col_maxs
+```
+
+### Scale the matrix by dividing by column maxs
+
+```{r echo=TRUE}
+scaled_mat = sweep(mat, 2, col_maxs, FUN = "/")
+scaled_mat
+```
+
+## Example 3: Custom Functions
+
+### Define a custom function to subtract a fixed value
+
+```{r echo=TRUE}
+subtract_fixed_value = function(x, val) x - val
+subtract_fixed_value
+```
+
+### Use sweep with a custom function
+
+```{r echo=TRUE}
+fixed_value_sweep = sweep(mat, 1, 5, subtract_fixed_value)
+fixed_value_sweep
+```
+
+# Calculating $z$-scores
+
+The $z$-score of an observation is a metric that indicates how many standard deviations an element is from the mean of the whole set.
+
+$z = \frac{x - \mu}{\sigma}$
+
+where:
+
+- $x$ is the raw score,
+- $\mu$ is the mean of the population, and
+- $\sigma$ is the standard deviation of the population.
+
+## Steps to Calculate $z$-scores
+
+1. Calculate means and standard deviations for each column.
+2. Center data by subtracting mean values using `sweep()`.
+3. Divide by standard deviation to standardize using `sweep()`.
+
+## Example: $z$-score Calculation
+
+### Create a sample matrix with random data
+
+```{r echo=TRUE}
+data_matrix = matrix(rnorm(100), ncol=10)
+data_matrix
+```
+
+### Calculate column means
+
+```{r echo=TRUE}
+col_means = apply(data_matrix, 2, mean)
+col_means
+```
+
+### Calculate column standard deviations
+
+```{r echo=TRUE}
+col_sds = apply(data_matrix, 2, sd)
+col_means
+```
+
+### Center the matrix by subtracting column means
+
+```{r echo=TRUE}
+data_matrix_centered = sweep(data_matrix, 2, col_means, FUN = "-")
+data_matrix_centered
+```
+
+### Divide by the standard deviation to get z-scores
+
+```{r echo=TRUE}
+z_scores = sweep(data_matrix_centered, 2, col_sds, FUN = "/")
+z_scores
+```
+
+## Understanding Z-scores Output
+
+- Each value in the `z_scores` matrix is the z-score of that element in the data matrix.
+- A z-score of 0 represents an element equal to the mean.
+- Positive or negative z-scores represent elements above or below the mean, respectively.
+
+# Comparison Table
+
+| Feature | `apply()` | `sweep()` |
+|-------------------|-----------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------|
+| Purpose | Apply a function over the margins of an array or matrix to summarize or transform it. | Apply arithmetic operations to an array "sweeping" out array summaries. |
+| Usage | Used for summarizing data with a function over specified margins (rows or columns) | Used for adjusting data using a summary statistic for operations like centering or scaling. |
+| Functionality | Used to apply a wide range of functions for summarizing or transforming data across dimensions | Used to perform arithmetic operations using a summary statistic and is often used after summarizing data with apply().|
+| Arguments | `apply(X, MARGIN, FUN, ...)` where `X` is the array, MARGIN specifies rows(1) or columns(2), and FUN is the function to be applied. | `sweep(x, MARGIN, STATS, FUN = "-", ...)` where `x` is the array, `MARGIN` specifies the dimension, STATS is the summary statistic, and `FUN` is the arithmetic function to be applied. |
+| Return Value | Returns an array, matrix, or list with the results of the function application, which may be of a different dimension from the input. | Returns an adjusted array with the same dimensions as the input, with element-wise arithmetic operations performed. |
+| Exclusive Actions | - Can return different structures (vector, array, list) based on the function and margin.<br>- Can work with higher-dimensional arrays beyond matrices. | - Directly performs arithmetic *sweep* operations using a summary statistic.<br>- Ideal for data adjustments after using `apply()` to calculate the summary statistic. |
+| Limitations | - Cannot directly adjust data using a summary statistic; additional steps are required to integrate the summary before or after using `apply()`. | - Not designed for summarizing data; it requires pre-calculated statistics to perform the sweep operation. |
+| Flexibility | - Can use any function, including user-defined ones, for summarization or transformation.<br>- More general-purpose in data manipulation. | - Limited to arithmetic *sweep* operations; custom functions must conform to the expected input and output format of `sweep()`. |
+| Common Use Case | - Computing aggregate statistics like means, sums, etc., across rows or columns.<br>- General data manipulation tasks requiring the application of a function. | - Standardizing or normalizing data.<br>- Centering data by subtracting the mean or dividing by a standard deviation after calculating these with `apply()`. |
