@@ -1,0 +1,39 @@
+---
+title: "R Operators"
+format:
+  pdf:
+    fontsize: 6pt
+    toc: false
+    number-sections: true
+    colorlinks: true
+    fig-align: "center"
+    code-line-numbers: true
+include-in-header: 
+  text: |
+    \usepackage{fvextra}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{breaklines,commandchars=\\\{\}}
+---
+
+| Type            | Operator | Description                       | Example Usage         |
+|-----------------|----------|-----------------------------------|-----------------------|
+| Arithmetic      | `+`      | Addition                          | `3 + 2` -> 5          |
+|                 | `-`      | Subtraction                       | `5 - 2` -> 3          |
+|                 | `*`      | Multiplication                    | `3 * 2` -> 6          |
+|                 | `/`      | Division                          | `6 / 2` -> 3          |
+|                 | `^`      | Exponentiation                    | `2 ^ 3` -> 8          |
+|                 | `%%`     | Modulus (remainder of division)   | `5 %% 2` -> 1         |
+|                 | `%/%`    | Integer Division                  | `5 %/% 2` -> 2        |
+| Logical         | `&`      | Element-wise logical AND          | `TRUE & FALSE` -> FALSE|
+|                 | `\|\|`   | Element-wise logical OR           | `TRUE \| FALSE` -> TRUE|
+|                 | `!`      | Logical NOT                       | `!TRUE` -> FALSE      |
+| Comparison      | `==`     | Equal to                          | `3 == 2` -> FALSE     |
+|                 | `!=`     | Not equal to                      | `3 != 2` -> TRUE      |
+|                 | `<`      | Less than                         | `3 < 2` -> FALSE      |
+|                 | `<=`     | Less than or equal to             | `3 <= 2` -> FALSE     |
+|                 | `>`      | Greater than                      | `3 > 2` -> TRUE       |
+|                 | `>=`     | Greater than or equal to          | `3 >= 2` -> TRUE      |
+| Assignment      | `<-`     | Assigns value to a variable (leftward) | `x <- 3`          |
+|                 | `->`     | Assigns value to a variable (rightward)| `3 -> x`          |
+|                 | `=`      | Assigns value to a variable (less common) | `x = 3`       |
+| Miscellaneous   | `%in%`   | Checks if an element belongs to a vector | `3 %in% c(1, 2, 3)` -> TRUE|
+|                 | `:`      | Generates a series of numbers    | `1:5` -> 1, 2, 3, 4, 5|

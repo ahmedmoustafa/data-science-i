@@ -1,9 +1,10 @@
 ---
-title: "R Essentail Functions"
+title: "R Essentail Operators & Functions"
 format:
   pdf:
     fontsize: 6pt
-    toc: false
+    geometry: "top=1cm, bottom=1cm"
+    toc: true
     number-sections: true
     colorlinks: true
     fig-align: "center"
@@ -14,9 +15,36 @@ include-in-header:
     \DefineVerbatimEnvironment{Highlighting}{Verbatim}{breaklines,commandchars=\\\{\}}
 ---
 
+## Operators
+
+| Type            | Operator | Description                       | Example Usage         |
+|-----------------|----------|-----------------------------------|-----------------------|
+| **Arithmetic**  | `+`      | Addition                          | `3 + 2` -> 5          |
+|                 | `-`      | Subtraction                       | `5 - 2` -> 3          |
+|                 | `*`      | Multiplication                    | `3 * 2` -> 6          |
+|                 | `/`      | Division                          | `6 / 2` -> 3          |
+|                 | `^`      | Exponentiation                    | `2 ^ 3` -> 8          |
+|                 | `%%`     | Modulus (remainder of division)   | `5 %% 2` -> 1         |
+|                 | `%/%`    | Integer Division                  | `5 %/% 2` -> 2        |
+| **Logical**     | `&`      | Element-wise logical AND          | `TRUE & FALSE` -> FALSE|
+|                 | `\|\|`   | Element-wise logical OR           | `TRUE \| FALSE` -> TRUE|
+|                 | `!`      | Logical NOT                       | `!TRUE` -> FALSE      |
+| **Comparison**  | `==`     | Equal to                          | `3 == 2` -> FALSE     |
+|                 | `!=`     | Not equal to                      | `3 != 2` -> TRUE      |
+|                 | `<`      | Less than                         | `3 < 2` -> FALSE      |
+|                 | `<=`     | Less than or equal to             | `3 <= 2` -> FALSE     |
+|                 | `>`      | Greater than                      | `3 > 2` -> TRUE       |
+|                 | `>=`     | Greater than or equal to          | `3 >= 2` -> TRUE      |
+| **Assignment**  | `<-`     | Assigns value to a variable (leftward) | `x <- 3`          |
+|                 | `->`     | Assigns value to a variable (rightward)| `3 -> x`          |
+|                 | `=`      | Assigns value to a variable (less common) | `x = 3`       |
+| **Miscellaneous**   | `%in%`   | Checks if an element belongs to a vector | `3 %in% c(1, 2, 3)` -> TRUE|
+|                 | `:`      | Generates a series of numbers    | `1:5` -> 1, 2, 3, 4, 5|
+
+
 ## Mathematical Functions
 
-| Function  | Syntax                     | Description                                           | Example Execution              | Example Output           |
+| Function  | Syntax                     | Description                                           | Example Usage              | Example Output           |
 |-----------|----------------------------|-------------------------------------------------------|--------------------------------|--------------------------|
 | sum       | `sum(x)`                   | Calculates the sum of values in `x`.                | `sum(c(1, 2, 3, 4))`          | `10`                     |
 | mean      | `mean(x)`                  | Calculates the mean (average) of values in `x`.     | `mean(c(1, 2, 3, 4))`         | `2.5`                    |
@@ -38,7 +66,7 @@ include-in-header:
 
 ## String Functions
 
-| Function   | Syntax                     | Description                                         | Example Execution              | Example Output           |
+| Function   | Syntax                     | Description                                         | Example Usage              | Example Output           |
 |------------|----------------------------|-----------------------------------------------------|-------------------------------|--------------------------|
 | paste      | `paste(..., sep = " ")`    | Combines multiple strings or values.               | `paste("Hello", "World")`     | `"Hello World"`         |
 | paste0     | `paste0(...)`              | Combines multiple strings or values without space.| `paste0("Hello", "World")`    | `"HelloWorld"`           |
@@ -48,7 +76,7 @@ include-in-header:
 
 ## Data Structures
 
-| Function   | Syntax                     | Description                                         | Example Execution              | Example Output           |
+| Function   | Syntax                     | Description                                         | Example Usage              | Example Output           |
 |------------|----------------------------|-----------------------------------------------------|-------------------------------|--------------------------|
 | c          | `c(...)`                   | Combines values into a vector or list.             | `c(1, 2, 3)`                   | `1, 2, 3`               |
 | data.frame | `data.frame(...)`          | Creates a data frame from vectors or lists.        | `data.frame(Name=c("Alice", "Bob"), Age=c(25, 30))` | A data frame object     |
@@ -57,7 +85,7 @@ include-in-header:
 
 ## Data Manipulation Functions
 
-| Function   | Syntax                     | Description                                     | Example Execution            | Example Output  |
+| Function   | Syntax                     | Description                                     | Example Usage            | Example Output  |
 |------------|----------------------------|-------------------------------------------------|-----------------------------|-----------------|
 | length     | `length(x)`                | Returns the length of vector `x`.              | `length(c(1, 2, 3, 4))`     | `4`             |
 | sort       | `sort(x)`                  | Sorts the elements of vector `x` in ascending order. | `sort(c(3, 1, 4, 1, 5))` | `1, 1, 3, 4, 5` |
@@ -73,7 +101,7 @@ include-in-header:
 
 ## Set Functions
 
-| Function   | Syntax                     | Description                                     | Example Execution              | Example Output  |
+| Function   | Syntax                     | Description                                     | Example Usage              | Example Output  |
 |------------|----------------------------|-------------------------------------------------|-------------------------------|-----------------|
 | union      | `union(x, y)`              | Returns the union of sets `x` and `y`.         | `union(c(1, 2, 3), c(3, 4, 5))` | `1, 2, 3, 4, 5` |
 | intersect  | `intersect(x, y)`          | Returns the intersection of sets `x` and `y`.  | `intersect(c(1, 2, 3), c(3, 4, 5))` | `3`         |
@@ -82,7 +110,7 @@ include-in-header:
 
 ## Apply and Sweep Functions
 
-| Function   | Syntax                     | Description                                  | Example Execution                                     | Example Output    |
+| Function   | Syntax                     | Description                                  | Example Usage                                     | Example Output    |
 |------------|----------------------------|----------------------------------------------|------------------------------------------------------|-------------------|
 | apply      | `apply(X, MARGIN, FUN, ...)` | Applies a function `FUN` to rows or columns of a matrix `X`. | `apply(matrix(1:9, nrow = 3), 1, sum)` | `6, 15, 24` |
 | lapply     | `lapply(X, FUN, ...)`       | Applies a function `FUN` to each element of a list `X`. | `lapply(list(1, 2, 3), function(x) x * 2)` | `2, 4, 6` |
@@ -94,19 +122,15 @@ include-in-header:
 
 ## Logical Functions
 
-| Function   | Syntax                     | Description                                  | Example Execution           | Example Output  |
+| Function   | Syntax                     | Description                                  | Example Usage           | Example Output  |
 |------------|----------------------------|----------------------------------------------|----------------------------|-----------------|
 | is.element | `is.element(x, y)`         | Checks if elements of `x` are in set `y`.   | `is.element(1, c(1, 2, 3))` | `TRUE`          |
 | ifelse     | `ifelse(test, yes, no)`    | Returns `yes` if `test` is TRUE, `no` otherwise. | `ifelse(2 > 1, "Yes", "No")` | `"Yes"`       |
 | is.numeric | `is.numeric(x)`            | Checks if `x` is of numeric type.            | `is.numeric(123)`           | `TRUE`          |
-| is.integer | `is.integer(x)`            | Checks if `x` is of integer type.            | `is.integer(123)`           | `TRUE`          |
 | is.character | `is.character(x)`        | Checks if `x` is of character type.          | `is.character("Hello")`     | `TRUE`          |
 | is.logical | `is.logical(x)`            | Checks if `x` is of logical type.            | `is.logical(TRUE)`          | `TRUE`          |
 | is.factor  | `is.factor(x)`             | Checks if `x` is a factor.                  | `is.factor(factor("A"))`    | `TRUE`          |
 | is.matrix  | `is.matrix(x)`             | Checks if `x` is a matrix.                 | `is.matrix(matrix(1:6, nrow = 2))` | `TRUE`     |
-| is.data.frame | `is.data.frame(x)`      | Checks if `x` is a data frame.            | `is.data.frame(data.frame(a = 1:3))` | `TRUE`      |
-| is.list    | `is.list(x)`               | Checks if `x` is a list.                   | `is.list(list(1, 2, 3))`    | `TRUE`          |
-| is.vector  | `is.vector(x)`             | Checks if `x` is a vector.                 | `is.vector(c(1, 2, 3))`     | `TRUE`          |
+| ...        |                            |                                              |                             |                 |
 | is.null    | `is.null(x)`               | Checks if `x` is `NULL`.                   | `is.null(NULL)`             | `TRUE`          |
 | is.na      | `is.na(x)`                 | Checks for missing (NA) values in `x`.     | `is.na(c(1, NA, 3))`        | `TRUE, TRUE, FALSE` |
-
