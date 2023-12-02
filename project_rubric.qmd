@@ -1,0 +1,15 @@
+---
+title: "Data Analysis Project Grading Rubric"
+format:
+  pdf:
+    fontsize: 8pt
+---
+
+| Criteria                        | Points | Excellent (80-100%)                                               | Good (60-79%)                                                    | Satisfactory (40-59%)                                            | Poor (0-39%)                                                      |
+|---------------------------------|--------|-------------------------------------------------------------------|------------------------------------------------------------------|------------------------------------------------------------------|------------------------------------------------------------------|
+| **Data Set Acquisition and Quality** | 10     | Well-chosen, relevant dataset with diverse data types and well-documented source. | Meets minimum requirements but lacks in variety or depth. | Minimally acceptable, meeting few criteria. | Does not meet requirements or irrelevant. |
+| **R Script File**                    | 30     | Script includes advanced analysis techniques, addressing complex and original questions. Well-organized with detailed, insightful comments. | Analysis covers essential aspects but with less complexity or originality in questions. | Basic analysis, lacks depth in addressing complex questions. | Incomplete, hard to follow, or lacks insightful analysis. |
+| **Report Quality**                   | 30     | Report provides deep insights, with a focus on complex, original questions and thorough, analytical answers. Well-structured and clearly articulated. | Report covers key points but with less depth in insights or originality in questions. | Report covers basics but lacks depth and insight in analysis. | Incomplete, poorly written, or lacks coherence and insight. |
+| **Presentation and Organization**    | 20     | Excellently organized and presented, with clear, professional documentation of all materials. | Well-organized with minor issues in presentation or labeling. | Somewhat disorganized or unclear presentation. | Disorganized, poorly presented, or improperly labeled. |
+| **Adherence to Guidelines**          | 10     | Strict adherence to project guidelines and instructions. | Minor deviations from guidelines. | Some deviation, affecting quality. | Significant deviation or failure to follow instructions. |
+| **Total**                            | 100    | -                                                                 | -                                                                | -                                                                | -                                                                |
