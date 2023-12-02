@@ -1,0 +1,254 @@
+---
+title: "Principal Component Analysis (PCA) in R"
+format:
+  revealjs:
+    slide-number: true
+    preview-links: true
+    scrollable: true
+---
+
+```{r echo=FALSE,message=FALSE,warning=FALSE}
+library(tidyverse)
+library(printr)
+```
+
+<center>![](images/pizzahut.jpeg)</center>
+
+::: {.fragment}
+<center>Redundancy</center>
+:::
+
+
+## Introduction to PCA
+
+- Principal Component Analysis (PCA) is a statistical method used to reduce dimensionality while retaining most of the original variance.
+- In simple terms, PCA helps to simplify complex data sets by focusing on the most important parts that capture the majority of the variation in the data.
+
+## Dimensionality Reduction Simplified
+
+- Imagine you have a 3D teapot, which represents data in three dimensions: height, width, and depth.
+- Viewing the teapot from above, you see a 2D outline, reducing the dimensions from three to two, while still capturing the essential shape of the teapot.
+
+![](images/teapot.png)
+
+## How PCA Achieves Dimensionality Reduction
+
+- **Step 1: Find New View (PCA)**:
+    - PCA finds the best angle to view the teapot from above to see the most distinctive outline.
+
+- **Step 2: Keep Important Views**:
+    - Keeps the views (principal components) that show the most distinctive features, and ignores the rest.
+
+- **Step 3: Re-draw Data**:
+    - Re-draws the teapot using these new views, which are fewer in number (reduced dimensions) but still show most of the distinctive features.
+
+## The Purple Rock Crab Dataset
+
+![*Leptograpsus variegatus*](images/purple_rock_crab.jpg)
+
+## Dataset Description
+
+The dataset has 200 rows and 8 columns, describing **5** morphological measurements on 50 crab each of two color forms and both sexes:
+
+| Column  | Description                               |
+| ------  | -----------                               |
+| `sp`    | species – `B` or `O` for blue or orange   |
+| `sex`   | as it says                                |
+| `index` | index 1:50 within each of the four groups |
+| `FL`    | frontal lobe size (mm)                    |
+| `RW`    | rear width (mm)                           |
+| `CL`    | carapace length (mm)                      |
+| `CW`    | carapace width (mm)                       |
+| `BD`    | body depth (mm)                           |
+
+## Exploring the Dataset
+
+```{r echo=FALSE,eval=TRUE}
+library(MASS)
+data(crabs)
+```
+
+```{r echo=TRUE}
+head(crabs)
+```
+
+## Which morphological measurements can classify the species and the sex?
+
+- `FL` (frontal lobe size), `RW` (rear width), `CL` (carapace length), `CW` (carapace width), or `BD` (body depth)?
+- To simplify, let us introduce a new variable, `Type`, by combining `sp` and `sex`:
+
+::: {.fragment}
+
+```{r echo=TRUE}
+crabs$Type = paste0(crabs$sp, crabs$sex)
+head(crabs)
+```
+
+:::
+
+## `FL` & `RW`
+
+```{r echo=TRUE}
+ggplot(crabs) + geom_point (aes(x = FL, y = RW, color = Type)) + theme_minimal()
+```
+
+## All Pairs
+
+```{r echo=TRUE}
+GGally::ggpairs(crabs[4:8], mapping = aes(color = crabs$Type), upper = "blank") + theme_minimal()
+```
+
+## PCA of the Purple Rock Crab Dataset
+
+```{r echo=TRUE}
+result = prcomp(crabs[4:8])
+plot(result, main = "Variances of the PCs")
+```
+
+::: {.fragment}
+
+```{r echo=TRUE}
+summary(result)
+```
+:::
+
+## Elements of the `prcomp()` result
+
+| Element     | Description                                             |
+|------------ |---------------------------------------------------------|
+| `sdev`      | Standard deviations of the principal components.        |
+| `rotation`  | Loadings of original variables on principal components. |
+| `center`    | Logical indicating if data were centered.               |
+| `scale`     | Logical indicating if data were scaled.                 |
+| `x`         | Principal component scores (transformed data).          |
+| `rank`      | Rank of the original data matrix.                       |
+| `call`      | Call that generated the "prcomp" object.                |
+| `centering` | Centering values (mean values of original variables).   |
+| `scaling`   | Scaling values (standard deviations of variables).      |
+
+
+```{r echo=TRUE}
+str(result)
+```
+
+## Tranformed Data (Projections)
+
+```{r echo=TRUE}
+pca_df = data.frame(Type = crabs$Type, result$x)
+head(pca_df)
+```
+
+## PC1 & PC2
+
+```{r echo=TRUE}
+ggplot(pca_df) + geom_point (aes(x = PC1, y = PC2, color = Type)) + theme_minimal()
+```
+
+## PC1 & PC3
+
+```{r echo=TRUE}
+ggplot(pca_df) + geom_point (aes(x = PC1, y = PC3, color = Type)) + theme_minimal()
+```
+
+## PC2 & PC3
+
+```{r echo=TRUE}
+ggplot(pca_df) + geom_point (aes(x = PC2, y = PC3, color = Type)) + theme_minimal()
+```
+
+## Original Variables Loadings (or Weights) on the PCs
+
+```{r echo=TRUE}
+loadings = data.frame(Variable = colnames(crabs[4:8]), result$rotation)
+loadings
+```
+
+## Loadings on PC1
+
+```{r echo=TRUE}
+ggplot(loadings) + 
+  geom_bar(aes(x = Variable, y = PC1, fill = PC1), stat = "identity", alpha = 0.5) + 
+  scale_fill_distiller(palette = "RdBu") +
+  theme_light()
+```
+
+## Loadings on PC2
+
+```{r echo=TRUE}
+ggplot(loadings) + 
+  geom_bar(aes(x = Variable, y = PC2, fill = PC2), stat = "identity", alpha = 0.5) + 
+  scale_fill_distiller(palette = "RdBu") +
+  theme_light()
+```
+
+## Loadings on PC3
+
+```{r echo=TRUE}
+ggplot(loadings) + 
+  geom_bar(aes(x = Variable, y = PC3, fill = PC3), stat = "identity", alpha = 0.5) + 
+  scale_fill_distiller(palette = "RdBu") +
+  theme_light()
+```
+
+# Appendix
+
+## Mathematics of PCA
+
+- **Step 1: Standardization**:
+    - Shift and scale your data so that each trait has the same importance.
+    - **Formula**: $X_{\text{std}} = \frac{X - \bar{X}}{s}$
+
+- **Step 2: Covariance Matrix Computation**:
+    - Find relationships between different traits by calculating the covariance matrix.
+    - **Formula**: $\text{Covariance Matrix} = \frac{1}{n-1} \sum (X_{\text{std}} - \bar{X})(X_{\text{std}} - \bar{X})^T$
+
+- **Step 3: Eigen Decomposition**:
+    - Find the "main" patterns of variation (principal components).
+    - Formula: $\Sigma v = \lambda v$
+
+- **Step 4: Sort Eigenvectors**:
+    - Rank these patterns by how much variation they show.
+
+- **Step 5: Select Principal Components**:
+    - Pick the top patterns you are interested in.
+
+- **Step 6: Project Data**:
+    - Re-draw your data using these new patterns as axes.
+    - **Formula**: $Y = X_{\text{std}} W$
+
+## Covariance Matrix
+
+1. **Definition**:
+   - The covariance matrix is a square matrix that captures the relationships (or co-variances) between each pair of variables in a multi-dimensional dataset. Each entry in the matrix represents the covariance between two different variables.
+
+2. **Covariance**:
+   - Covariance is a measure that tells you how two variables change together. If they tend to increase together, the covariance is positive; if one decreases while the other increases, the covariance is negative.
+
+3. **Diagonal Elements**:
+   - The diagonal elements of the covariance matrix are the variances of each variable, i.e., the covariance of a variable with itself.
+
+4. **Symmetry**:
+   - The covariance matrix is symmetric, meaning the value of covariance between variable $i$ and variable $j$ is the same as the covariance between variable $j$ and variable $i$.
+
+## Eigenvectors in PCA
+
+1. **Direction of Maximum Variance**:
+   - The eigenvectors of the covariance matrix represent the directions of maximum variance in the data. These are the directions in which the data spread out the most.
+
+2. **Orthogonality**:
+   - The eigenvectors are orthogonal to each other, meaning they are at right angles to each other in the multi-dimensional space. This orthogonality ensures that each principal component (eigenvector) captures a unique and uncorrelated aspect of the data's structure.
+
+3. **Principal Components**:
+   - The eigenvectors, also known as the principal components in PCA, provide a new set of axes onto which the data is projected. This projection reduces the dimensionality of the data while retaining as much of the original variance as possible.
+
+4. **Ranking and Selection**:
+   - The eigenvalues associated with each eigenvector indicate the amount of variance explained by that eigenvector. By ranking the eigenvectors based on their eigenvalues, you can select the top eigenvectors that capture the most significant patterns of variance within the data.
+
+5. **Data Compression and Noise Reduction**:
+   - By selecting a subset of eigenvectors (principal components), you essentially compress the data, retaining only the most important features while discarding the noise.
+
+
+## Purple Rock Crab
+
+- Image credit: [Damon Tighe](https://www.flickr.com/photos/damon_tighe/)
+- Image source: [https://flic.kr/p/9eXoGK](https://flic.kr/p/9eXoGK)
