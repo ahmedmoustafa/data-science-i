@@ -410,10 +410,7 @@ REDUNDANCY
 <section>
 <section id="introduction-to-pca" class="title-slide slide level1 center">
 <h1>Introduction to PCA</h1>
-<ul>
-<li>Principal Component Analysis (PCA) is a statistical method used to reduce dimensionality while retaining most of the original variance.</li>
-<li>In simple terms, PCA helps to simplify complex data sets by focusing on the most important parts that capture the majority of the variation in the data.</li>
-</ul>
+<p>Principal Component Analysis (PCA) is a statistical method used to reduce dimensionality while retaining most of the original variance. In simple terms, PCA helps to simplify complex data sets by focusing on the most important parts that capture the majority of the variation in the data.</p>
 
 <img data-src="https://media.gettyimages.com/id/531356649/photo/black-hole-concept-with-deep-universe-galaxy-planets-stars.jpg?s=1024x1024&amp;w=gi&amp;k=20&amp;c=jaWCDNEIMMT35z-eV6nbMAvDGZR0F2lKnxvj_uswGB4=" class="r-stretch"></section>
 <section id="dimensionality-reduction-simplified" class="slide level2">
@@ -607,12 +604,12 @@ REDUNDANCY
 </div>
 <img data-src="lecture12_pca_files/figure-revealjs/unnamed-chunk-5-1.png" width="960" class="r-stretch"></section></section>
 <section>
-<section id="compute-pca-in-r" class="title-slide slide level1 center">
-<h1>Compute PCA in R</h1>
+<section id="computing-pca-in-r" class="title-slide slide level1 center">
+<h1>Computing PCA in R</h1>
 
 </section>
-<section id="compute-pca-of-the-purple-rock-crab-dataset" class="slide level2">
-<h2>Compute PCA of the Purple Rock Crab Dataset</h2>
+<section id="pca-of-the-purple-rock-crab-dataset" class="slide level2">
+<h2>PCA of the Purple Rock Crab Dataset</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>result <span class="ot">=</span> <span class="fu">prcomp</span>(crabs[<span class="dv">4</span><span class="sc">:</span><span class="dv">8</span>], <span class="at">scale. =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb4-2"><a href="#cb4-2"></a><span class="fu">plot</span>(result, <span class="at">main =</span> <span class="st">"Variances of the PCs"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -818,13 +815,13 @@ Cumulative Proportion  0.9578 0.98810 0.99743 0.99966 1.00000</code></pre>
 <section>
 <section id="loadings" class="title-slide slide level1 center">
 <h1>Loadings</h1>
-<p>Loadings in PCA are the coefficients that multiply each standard unit of your original variables to get the principal component scores. Loadings are weights indicating the contribution of each variable to each principal component.</p>
+<p>Loadings in PCA are the coefficients that multiply each standard unit of the original variables to get the principal component scores. Loadings are weights indicating the contribution of each variable to each principal component.</p>
 
 <img data-src="https://media.gettyimages.com/id/1211520654/photo/row-of-dumbbells-in-sport-club-exercise-in-gym-for-healthy-concept.jpg?s=1024x1024&amp;w=gi&amp;k=20&amp;c=s_sfCWXrLhJE1dtZZO_wW7bCGWBN-Fn5Q5Nc3XZ2m3s=" class="r-stretch"></section>
-<section id="measurements-loadings-on-the-pcs" class="slide level2">
-<h2>Measurements) Loadings on the PCs</h2>
+<section id="loadings-of-original-measurements-on-the-pcs" class="slide level2">
+<h2>Loadings of Original Measurements on the PCs</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>loadings <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">Variable =</span> <span class="fu">colnames</span>(crabs[<span class="dv">4</span><span class="sc">:</span><span class="dv">8</span>]), result<span class="sc">$</span>rotation)</span>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>loadings <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">Variable =</span> <span class="fu">row.names</span>(result<span class="sc">$</span>rotation), result<span class="sc">$</span>rotation)</span>
 <span id="cb13-2"><a href="#cb13-2"></a>loadings</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table style="width:100%;">

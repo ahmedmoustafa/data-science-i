@@ -19,11 +19,9 @@ theme_set(theme_light()) # Set the default ggplot theme to the light theme
 <center>REDUNDANCY</center>
 :::
 
-
 # Introduction to PCA
 
-- Principal Component Analysis (PCA) is a statistical method used to reduce dimensionality while retaining most of the original variance.
-- In simple terms, PCA helps to simplify complex data sets by focusing on the most important parts that capture the majority of the variation in the data.
+Principal Component Analysis (PCA) is a statistical method used to reduce dimensionality while retaining most of the original variance. In simple terms, PCA helps to simplify complex data sets by focusing on the most important parts that capture the majority of the variation in the data.
 
 ![](https://media.gettyimages.com/id/531356649/photo/black-hole-concept-with-deep-universe-galaxy-planets-stars.jpg?s=1024x1024&w=gi&k=20&c=jaWCDNEIMMT35z-eV6nbMAvDGZR0F2lKnxvj_uswGB4=)
 
@@ -101,9 +99,9 @@ GGally::ggpairs(crabs[4:8],
   scale_color_manual(values = c("blue", "orange"))
 ```
 
-# Compute PCA in R
+# Computing PCA in R
 
-## Compute PCA of the Purple Rock Crab Dataset
+## PCA of the Purple Rock Crab Dataset
 
 ```{r echo=TRUE}
 result = prcomp(crabs[4:8], scale. = TRUE)
@@ -175,14 +173,14 @@ ggplot(pca_df) +
 
 # Loadings
 
-Loadings in PCA are the coefficients that multiply each standard unit of your original variables to get the principal component scores. Loadings are weights indicating the contribution of each variable to each principal component.
+Loadings in PCA are the coefficients that multiply each standard unit of the original variables to get the principal component scores. Loadings are weights indicating the contribution of each variable to each principal component.
 
 ![](https://media.gettyimages.com/id/1211520654/photo/row-of-dumbbells-in-sport-club-exercise-in-gym-for-healthy-concept.jpg?s=1024x1024&w=gi&k=20&c=s_sfCWXrLhJE1dtZZO_wW7bCGWBN-Fn5Q5Nc3XZ2m3s=)
 
-## Measurements) Loadings on the PCs
+## Loadings of Original Measurements on the PCs
 
 ```{r echo=TRUE}
-loadings = data.frame(Variable = colnames(crabs[4:8]), result$rotation)
+loadings = data.frame(Variable = row.names(result$rotation), result$rotation)
 loadings
 ```
 
