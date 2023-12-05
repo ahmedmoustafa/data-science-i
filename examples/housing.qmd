@@ -1,6 +1,6 @@
 ---
 title: "Using PCA with the California Housing Dataset"
-format: gfm
+format: html
 ---
 
 ```{r echo=FALSE,message=FALSE,warning=FALSE}
