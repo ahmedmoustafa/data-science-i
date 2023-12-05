@@ -1,16 +1,10 @@
 ---
 title: "R Essential Functions"
 format:
-  pdf:
-    toc: true
-    number-sections: true
-    colorlinks: true
-    fig-align: "center"
-    code-line-numbers: true
-include-in-header: 
-  text: |
-    \usepackage{fvextra}
-    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{breaklines,commandchars=\\\{\}}
+  revealjs:
+    slide-number: true
+    preview-links: true
+    scrollable: true
 ---
 
 ```{r echo=FALSE,message=FALSE}

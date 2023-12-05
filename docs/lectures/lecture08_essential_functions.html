@@ -10,7 +10,7 @@
 <link href="lecture08_essential_functions_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.3.450">
 
-  <title>R Programming - Part 2</title>
+  <title>R Essential Functions</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -390,11 +390,15 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">R Programming - Part 2</h1>
-  <p class="subtitle">Essential Functions</p>
+  <h1 class="title">R Essential Functions</h1>
 
 <div class="quarto-title-authors">
 </div>
+
+</section>
+<section>
+<section id="miscellaneous-functions" class="title-slide slide level1 center">
+<h1>Miscellaneous Functions</h1>
 
 </section>
 <section id="unique" class="slide level2">
@@ -414,9 +418,7 @@
 <section id="any-and-all" class="slide level2">
 <h2><code>any()</code> and <code>all()</code></h2>
 <ul>
-<li><p><code>any()</code> returns <code>TRUE</code> if any of the values are <code>TRUE</code>.</p></li>
-<li><p><code>all()</code> returns <code>TRUE</code> if all of the values are <code>TRUE</code>.</p></li>
-<li><p>Example: <code>any()</code></p></li>
+<li><code>any()</code> returns <code>TRUE</code> if any of the values are <code>TRUE</code>.</li>
 </ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>v <span class="ot">=</span> <span class="fu">c</span>(<span class="cn">FALSE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>)</span>
@@ -426,239 +428,12 @@
 </div>
 </div>
 <ul>
-<li>Example: <code>all()</code></li>
+<li><code>all()</code> returns <code>TRUE</code> if all of the values are <code>TRUE</code>.</li>
 </ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="fu">all</span>(v)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] FALSE</code></pre>
-</div>
-</div>
-</section>
-<section id="set-functions" class="slide level2">
-<h2>Set Functions</h2>
-<ul>
-<li>Set is a collection of distinct elements.</li>
-<li>Set functions perform operations on sets of elements.</li>
-</ul>
-
-<img data-src="https://oercommons.s3.amazonaws.com/media/courseware/lesson/image/VENN_DIAGRAMS_8BzRaEe.png" class="r-stretch quarto-figure-center"><p class="caption">Set Theory</p></section>
-<section class="slide level2">
-
-<h3 id="union-a-cup-b">Union (<span class="math inline">\(A \cup B\)</span>)</h3>
-<ul>
-<li>The set of all elements in A, or in B, or in both.</li>
-<li><span class="math inline">\(A \cup B = \{x | x \in A \text{ or } x \in B\}\)</span></li>
-<li><code>union()</code></li>
-<li>Example:</li>
-</ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>A <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>)</span>
-<span id="cb7-2"><a href="#cb7-2"></a>B <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>)</span>
-<span id="cb7-3"><a href="#cb7-3"></a><span class="fu">union</span>(A, B)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 1 2 3 4 5 6</code></pre>
-</div>
-</div>
-</section>
-<section class="slide level2">
-
-<h3 id="intersection-a-cap-b">Intersection (<span class="math inline">\(A \cap B\)</span>)</h3>
-<ul>
-<li>The set of all elements that are both in A and B.</li>
-<li><span class="math inline">\(A \cap B = \{x | x \in A \text{ and } x \in B\}\)</span></li>
-<li><code>intersect()</code></li>
-<li>Example:</li>
-</ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>A <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>)</span>
-<span id="cb9-2"><a href="#cb9-2"></a>B <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>)</span>
-<span id="cb9-3"><a href="#cb9-3"></a><span class="fu">intersect</span>(A, B)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 3 4</code></pre>
-</div>
-</div>
-</section>
-<section class="slide level2">
-
-<h3 id="set-difference-a---b">Set Difference (<span class="math inline">\(A - B\)</span>)</h3>
-<ul>
-<li>The set of all elements that are in A but not in B.</li>
-<li><span class="math inline">\(A - B = \{x | x \in A \text{ and } x \notin B\}\)</span></li>
-<li><code>setdiff()</code></li>
-<li>Example:</li>
-</ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>A <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>)</span>
-<span id="cb11-2"><a href="#cb11-2"></a>B <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>)</span>
-<span id="cb11-3"><a href="#cb11-3"></a><span class="fu">setdiff</span>(A, B)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 1 2</code></pre>
-</div>
-</div>
-</section>
-<section class="slide level2">
-
-<h3 id="subset-a-subseteq-b">Subset (<span class="math inline">\(A \subseteq B\)</span>)</h3>
-<ul>
-<li>A is a subset of B if every element of A is also an element of B.</li>
-<li><span class="math inline">\(A \subseteq B \iff (\forall x)(x \in A \implies x \in B)\)</span></li>
-<li>Example:</li>
-</ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>A <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>)</span>
-<span id="cb13-2"><a href="#cb13-2"></a><span class="fu">all</span>(A <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] TRUE</code></pre>
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="fu">all</span>(A <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] FALSE</code></pre>
-</div>
-</div>
-</section>
-<section class="slide level2">
-
-<h3 id="set-equality-a-b">Set Equality (<span class="math inline">\(A = B\)</span>)</h3>
-<ul>
-<li>Two sets are equal if they have exactly the same elements.</li>
-<li><span class="math inline">\(A = B \iff (A \subseteq B) \text{ and } (B \subseteq A)\)</span></li>
-<li><code>setequal()</code></li>
-<li>Example:</li>
-</ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a>A <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>)</span>
-<span id="cb17-2"><a href="#cb17-2"></a>B <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>)</span>
-<span id="cb17-3"><a href="#cb17-3"></a><span class="fu">setequal</span>(A, B)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] FALSE</code></pre>
-</div>
-</div>
-</section>
-<section id="random-sampling" class="slide level2">
-<h2>Random Sampling</h2>
-<p><strong>Simple Random Sample (SRS):</strong> is a subset of a population, chosen in such a way that every possible sample of a given size has an equal chance of being selected. This method ensures that each individual or item within the population has an equal probability of being included in the sample, and the selection process is entirely by chance, without any bias.</p>
-
-<img data-src="https://www.questionpro.com/blog/wp-content/uploads/2018/03/Simple-random-sampling-wt-logo.jpg" class="r-stretch quarto-figure-center"><p class="caption">Random Sampling</p></section>
-<section class="slide level2">
-
-<h3 id="with-vs.-without-replacement">With <em>vs.</em> Without Replacement</h3>
-<p><strong>Sampling With Replacement (SWR):</strong> In this method, after an individual or item is selected for the sample, it is placed back into the population before the next selection is made, allowing for the possibility of being chosen more than once. This method is particularly useful when dealing with small population sizes or when it’s important to maintain the same population size for each draw.</p>
-<p><strong>Sampling Without Replacement (SWOR):</strong> Contrary to SWR, in Sampling Without Replacement, once an individual or item is selected, it is not placed back into the population, and hence, cannot be selected again. This method is often utilized when the population size is large, or when maintaining the same population size for each draw is not crucial.</p>
-</section>
-<section class="slide level2">
-
-<h3 id="sample"><code>sample()</code></h3>
-<ul>
-<li><p>The <code>sample()</code> function draws random samples from a vector.</p></li>
-<li><p>Syntax:</p></li>
-</ul>
-<div class="sourceCode" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="fu">sample</span>(x, size, <span class="at">replace =</span> <span class="cn">FALSE</span>, <span class="at">prob =</span> <span class="cn">NULL</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<ul>
-<li>Example:</li>
-</ul>
-<div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 4 5 1 6 3</code></pre>
-</div>
-</div>
-</section>
-<section id="cbind-and-rbind" class="slide level2">
-<h2><code>cbind()</code> and <code>rbind()</code></h2>
-<ul>
-<li><code>cbind()</code> combines vectors, matrices, or data frames by columns.</li>
-<li><code>rbind()</code> combines vectors, matrices, or data frames by rows.</li>
-</ul>
-</section>
-<section class="slide level2">
-
-<h3 id="example-cbind">Example: <code>cbind</code></h3>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a>A <span class="ot">=</span> <span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>, <span class="at">ncol=</span><span class="dv">2</span>)</span>
-<span id="cb21-2"><a href="#cb21-2"></a>A</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<table>
-<tbody>
-<tr class="odd">
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">3</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">2</td>
-<td style="text-align: right;">4</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a>B <span class="ot">=</span> <span class="fu">matrix</span>(<span class="dv">5</span><span class="sc">:</span><span class="dv">8</span>, <span class="at">ncol=</span><span class="dv">2</span>)</span>
-<span id="cb22-2"><a href="#cb22-2"></a>B</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<table>
-<tbody>
-<tr class="odd">
-<td style="text-align: right;">5</td>
-<td style="text-align: right;">7</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">6</td>
-<td style="text-align: right;">8</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a><span class="fu">cbind</span>(A, B)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<table>
-<tbody>
-<tr class="odd">
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">3</td>
-<td style="text-align: right;">5</td>
-<td style="text-align: right;">7</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">2</td>
-<td style="text-align: right;">4</td>
-<td style="text-align: right;">6</td>
-<td style="text-align: right;">8</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</section>
-<section class="slide level2">
-
-<h3 id="example-rbind">Example: <code>rbind</code></h3>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a><span class="fu">rbind</span>(A, B)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<table>
-<tbody>
-<tr class="odd">
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">3</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">2</td>
-<td style="text-align: right;">4</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">5</td>
-<td style="text-align: right;">7</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">6</td>
-<td style="text-align: right;">8</td>
-</tr>
-</tbody>
-</table>
 </div>
 </div>
 </section>
@@ -669,83 +444,257 @@
 <li><p>Example:</p></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a>numbers <span class="ot">=</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
-<span id="cb25-2"><a href="#cb25-2"></a>numbers</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>numbers <span class="ot">=</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
+<span id="cb7-2"><a href="#cb7-2"></a>numbers</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a><span class="fu">ifelse</span>(numbers <span class="sc">%%</span> <span class="dv">2</span> <span class="sc">==</span> <span class="dv">0</span>, <span class="st">"Even"</span>, <span class="st">"Odd"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="fu">ifelse</span>(numbers <span class="sc">%%</span> <span class="dv">2</span> <span class="sc">==</span> <span class="dv">0</span>, <span class="st">"Even"</span>, <span class="st">"Odd"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] "Odd"  "Even" "Odd"  "Even" "Odd"  "Even" "Odd"  "Even" "Odd"  "Even"</code></pre>
 </div>
 </div>
 </section>
-<section id="testing-data-types" class="slide level2">
-<h2>Testing Data Types</h2>
+<section id="cbind-and-rbind" class="slide level2">
+<h2><code>cbind()</code> and <code>rbind()</code></h2>
 <ul>
-<li><p>R provides functions to test the data type of a variable.</p></li>
-<li><p>Examples:</p></li>
+<li><code>cbind()</code> combines vectors, matrices, or data frames by columns.</li>
+<li><code>rbind()</code> combines vectors, matrices, or data frames by rows.</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a><span class="fu">is.character</span>(<span class="st">"Hello"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] TRUE</code></pre>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>A <span class="ot">=</span> <span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>, <span class="at">ncol=</span><span class="dv">2</span>)</span>
+<span id="cb11-2"><a href="#cb11-2"></a>A</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">3</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">4</td>
+</tr>
+</tbody>
+</table>
 </div>
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1"></a><span class="fu">is.numeric</span>(<span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] TRUE</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1"></a><span class="fu">is.na</span>(<span class="cn">NA</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] TRUE</code></pre>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>B <span class="ot">=</span> <span class="fu">matrix</span>(<span class="dv">5</span><span class="sc">:</span><span class="dv">8</span>, <span class="at">ncol=</span><span class="dv">2</span>)</span>
+<span id="cb12-2"><a href="#cb12-2"></a>B</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">7</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">8</td>
+</tr>
+</tbody>
+</table>
 </div>
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1"></a><span class="fu">is.vector</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] TRUE</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1"></a><span class="fu">is.matrix</span>(<span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>, <span class="at">ncol=</span><span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] TRUE</code></pre>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="fu">cbind</span>(A, B)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">7</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">8</td>
+</tr>
+</tbody>
+</table>
 </div>
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1"></a><span class="fu">is.data.frame</span>(<span class="fu">data.frame</span>(<span class="at">x=</span><span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>, <span class="at">y=</span><span class="dv">4</span><span class="sc">:</span><span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] TRUE</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1"></a><span class="fu">is.factor</span>(<span class="fu">factor</span>(<span class="fu">c</span>(<span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"a"</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="fu">rbind</span>(A, B)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">3</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">4</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">7</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">8</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section></section>
+<section>
+<section id="set-functions" class="title-slide slide level1 center">
+<h1>Set Functions</h1>
+<ul>
+<li>Set is a collection of distinct elements.</li>
+<li>Set functions perform operations on sets of elements.</li>
+</ul>
+
+<img data-src="https://oercommons.s3.amazonaws.com/media/courseware/lesson/image/VENN_DIAGRAMS_8BzRaEe.png" class="r-stretch quarto-figure-center"><p class="caption">Set Theory</p></section>
+<section id="union-a-cup-b" class="slide level2">
+<h2>Union (<span class="math inline">\(A \cup B\)</span>)</h2>
+<ul>
+<li>The set of all elements in A, or in B, or in both.</li>
+<li><span class="math inline">\(A \cup B = \{x | x \in A \text{ or } x \in B\}\)</span></li>
+<li><code>union()</code></li>
+<li>Example:</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a>A <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>)</span>
+<span id="cb15-2"><a href="#cb15-2"></a>B <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>)</span>
+<span id="cb15-3"><a href="#cb15-3"></a><span class="fu">union</span>(A, B)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] TRUE</code></pre>
+<pre><code>[1] 1 2 3 4 5 6</code></pre>
 </div>
 </div>
 </section>
-<section id="exercise-coin-flip-simulation" class="slide level2">
-<h2>Exercise: Coin Flip Simulation</h2>
+<section id="intersection-a-cap-b" class="slide level2">
+<h2>Intersection (<span class="math inline">\(A \cap B\)</span>)</h2>
+<ul>
+<li>The set of all elements that are both in A and B.</li>
+<li><span class="math inline">\(A \cap B = \{x | x \in A \text{ and } x \in B\}\)</span></li>
+<li><code>intersect()</code></li>
+<li>Example:</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a>A <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>)</span>
+<span id="cb17-2"><a href="#cb17-2"></a>B <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>)</span>
+<span id="cb17-3"><a href="#cb17-3"></a><span class="fu">intersect</span>(A, B)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 3 4</code></pre>
+</div>
+</div>
+</section>
+<section id="set-difference-a---b" class="slide level2">
+<h2>Set Difference (<span class="math inline">\(A - B\)</span>)</h2>
+<ul>
+<li>The set of all elements that are in A but not in B.</li>
+<li><span class="math inline">\(A - B = \{x | x \in A \text{ and } x \notin B\}\)</span></li>
+<li><code>setdiff()</code></li>
+<li>Example:</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a>A <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>)</span>
+<span id="cb19-2"><a href="#cb19-2"></a>B <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>)</span>
+<span id="cb19-3"><a href="#cb19-3"></a><span class="fu">setdiff</span>(A, B)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1 2</code></pre>
+</div>
+</div>
+</section>
+<section id="subset-a-subseteq-b" class="slide level2">
+<h2>Subset (<span class="math inline">\(A \subseteq B\)</span>)</h2>
+<ul>
+<li>A is a subset of B if every element of A is also an element of B.</li>
+<li><span class="math inline">\(A \subseteq B \iff (\forall x)(x \in A \implies x \in B)\)</span></li>
+<li>Example:</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a>A <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>)</span>
+<span id="cb21-2"><a href="#cb21-2"></a><span class="fu">all</span>(A <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] TRUE</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a><span class="fu">all</span>(A <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] FALSE</code></pre>
+</div>
+</div>
+</section>
+<section id="set-equality-a-b" class="slide level2">
+<h2>Set Equality (<span class="math inline">\(A = B\)</span>)</h2>
+<ul>
+<li>Two sets are equal if they have exactly the same elements.</li>
+<li><span class="math inline">\(A = B \iff (A \subseteq B) \text{ and } (B \subseteq A)\)</span></li>
+<li><code>setequal()</code></li>
+<li>Example:</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a>A <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>)</span>
+<span id="cb25-2"><a href="#cb25-2"></a>B <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>)</span>
+<span id="cb25-3"><a href="#cb25-3"></a><span class="fu">setequal</span>(A, B)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] FALSE</code></pre>
+</div>
+</div>
+</section></section>
+<section>
+<section id="random-sampling" class="title-slide slide level1 center">
+<h1>Random Sampling</h1>
+<p><strong>Simple Random Sample (SRS):</strong> is a subset of a population, chosen in such a way that every possible sample of a given size has an equal chance of being selected. This method ensures that each individual or item within the population has an equal probability of being included in the sample, and the selection process is entirely by chance, without any bias.</p>
+
+<img data-src="https://www.questionpro.com/blog/wp-content/uploads/2018/03/Simple-random-sampling-wt-logo.jpg" class="r-stretch quarto-figure-center"><p class="caption">Random Sampling</p></section>
+<section id="with-vs.-without-replacement" class="slide level2">
+<h2>With <em>vs.</em> Without Replacement</h2>
+<p><strong>Sampling With Replacement (SWR):</strong> In this method, after an individual or item is selected for the sample, it is placed back into the population before the next selection is made, allowing for the possibility of being chosen more than once. This method is particularly useful when dealing with small population sizes or when it’s important to maintain the same population size for each draw.</p>
+<p><strong>Sampling Without Replacement (SWOR):</strong> Contrary to SWR, in Sampling Without Replacement, once an individual or item is selected, it is not placed back into the population, and hence, cannot be selected again. This method is often utilized when the population size is large, or when maintaining the same population size for each draw is not crucial.</p>
+</section>
+<section id="the-sample-function" class="slide level2">
+<h2>The <code>sample()</code> function</h2>
+<ul>
+<li><p>The <code>sample()</code> function draws random samples from a vector.</p></li>
+<li><p>Syntax:</p></li>
+</ul>
+<div class="sourceCode" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a><span class="fu">sample</span>(x, size, <span class="at">replace =</span> <span class="cn">FALSE</span>, <span class="at">prob =</span> <span class="cn">NULL</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>Example:</li>
+</ul>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>[1]  3  9  7 10  5</code></pre>
+</div>
+</div>
+</section>
+<section id="example-coin-flip-simulation" class="slide level2">
+<h2>Example: Coin Flip Simulation</h2>
 <h3 id="part-1-single-simulation">Part 1: Single Simulation</h3>
 <p>Write an R function <code>coin_flip()</code> that simulates flipping a coin. The function should return <code>H</code> (for head) or <code>T</code> (for tail).</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1"></a>coin_flip <span class="ot">=</span> <span class="cf">function</span>() {</span>
-<span id="cb43-2"><a href="#cb43-2"></a>  flip <span class="ot">=</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">"H"</span>, <span class="st">"T"</span>), <span class="at">size =</span> <span class="dv">1</span>)</span>
-<span id="cb43-3"><a href="#cb43-3"></a>  <span class="fu">return</span> (flip)</span>
-<span id="cb43-4"><a href="#cb43-4"></a>}</span>
-<span id="cb43-5"><a href="#cb43-5"></a></span>
-<span id="cb43-6"><a href="#cb43-6"></a><span class="fu">coin_flip</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a>coin_flip <span class="ot">=</span> <span class="cf">function</span>() {</span>
+<span id="cb29-2"><a href="#cb29-2"></a>  flip <span class="ot">=</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">"H"</span>, <span class="st">"T"</span>), <span class="at">size =</span> <span class="dv">1</span>)</span>
+<span id="cb29-3"><a href="#cb29-3"></a>  <span class="fu">return</span> (flip)</span>
+<span id="cb29-4"><a href="#cb29-4"></a>}</span>
+<span id="cb29-5"><a href="#cb29-5"></a></span>
+<span id="cb29-6"><a href="#cb29-6"></a><span class="fu">coin_flip</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "T"</code></pre>
 </div>
 </div>
-</section>
-<section class="slide level2">
-
 <h3 id="part-2-multiple-simulations">Part 2: Multiple Simulations</h3>
 <p>Now, extend your function to perform multiple simulations of coin flips and return the number of heads and tails.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1"></a>coin_flip <span class="ot">=</span> <span class="cf">function</span>(n) {</span>
-<span id="cb45-2"><a href="#cb45-2"></a>  flips <span class="ot">=</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">"H"</span>, <span class="st">"T"</span>), <span class="at">size =</span> n, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb45-3"><a href="#cb45-3"></a>  <span class="fu">return</span>(<span class="fu">table</span>(flips))</span>
-<span id="cb45-4"><a href="#cb45-4"></a>}</span>
-<span id="cb45-5"><a href="#cb45-5"></a></span>
-<span id="cb45-6"><a href="#cb45-6"></a><span class="fu">coin_flip</span>(<span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1"></a>coin_flip <span class="ot">=</span> <span class="cf">function</span>(n) {</span>
+<span id="cb31-2"><a href="#cb31-2"></a>  flips <span class="ot">=</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">"H"</span>, <span class="st">"T"</span>), <span class="at">size =</span> n, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb31-3"><a href="#cb31-3"></a>  <span class="fu">return</span>(<span class="fu">table</span>(flips))</span>
+<span id="cb31-4"><a href="#cb31-4"></a>}</span>
+<span id="cb31-5"><a href="#cb31-5"></a></span>
+<span id="cb31-6"><a href="#cb31-6"></a><span class="fu">coin_flip</span>(<span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table>
 <thead>
@@ -756,98 +705,1101 @@
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: right;">2</td>
 <td style="text-align: right;">3</td>
+<td style="text-align: right;">2</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<h3 id="part-3-analysis">Part 3: Analysis</h3>
+<p>Analyze the results of your multiple simulations. What do you observe as the number of flips increases?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1"></a><span class="fu">coin_flip</span>(<span class="dv">10</span>)<span class="sc">/</span><span class="dv">10</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: right;">H</th>
+<th style="text-align: right;">T</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">0.7</td>
+<td style="text-align: right;">0.3</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1"></a><span class="fu">coin_flip</span>(<span class="dv">100</span>)<span class="sc">/</span><span class="dv">100</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: right;">H</th>
+<th style="text-align: right;">T</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">0.49</td>
+<td style="text-align: right;">0.51</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1"></a><span class="fu">coin_flip</span>(<span class="dv">1000</span>)<span class="sc">/</span><span class="dv">1000</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: right;">H</th>
+<th style="text-align: right;">T</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">0.482</td>
+<td style="text-align: right;">0.518</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1"></a><span class="fu">coin_flip</span>(<span class="dv">10000</span>)<span class="sc">/</span><span class="dv">10000</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: right;">H</th>
+<th style="text-align: right;">T</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">0.4993</td>
+<td style="text-align: right;">0.5007</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section></section>
+<section>
+<section id="the-apply-functions" class="title-slide slide level1 center">
+<h1>The Apply Functions</h1>
+<p>The apply functions in R provide a concise and efficient way to apply a <strong>function</strong> to the elements of data structures such as vectors, lists, data frames, or matrix.</p>
+</section>
+<section id="comaprsion-between-the-apply-functions" class="slide level2">
+<h2>Comaprsion between the Apply Functions</h2>
+<p>Apply functions provide a concise way to apply a <strong>function</strong> to data.</p>
+<table style="width:100%;">
+<colgroup>
+<col style="width: 27%">
+<col style="width: 32%">
+<col style="width: 17%">
+<col style="width: 22%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Function</th>
+<th>Description</th>
+<th>Usage</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>apply()</code></td>
+<td>Applies a function over the margins of an array or matrix.</td>
+<td><code>apply(X, MARGIN, FUN, ...)</code></td>
+<td><code>apply(matrix(1:9, nrow = 3), 1, sum)</code></td>
+</tr>
+<tr class="even">
+<td><code>lapply()</code></td>
+<td>Applies a function to each element of a list, returning a list.</td>
+<td><code>lapply(X, FUN, ...)</code></td>
+<td><code>lapply(list(1:5, 6:10), sum)</code></td>
+</tr>
+<tr class="odd">
+<td><code>sapply()</code></td>
+<td>Similar to <code>lapply()</code>, but tries to simplify the result.</td>
+<td><code>sapply(X, FUN, ..., simplify = TRUE)</code></td>
+<td><code>sapply(list(1:5, 6:10), sum)</code></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="example-calculating-summary-statistics" class="slide level2">
+<h2>Example: Calculating summary statistics</h2>
+<h3 id="creating-a-numeric-named-list">Creating a numeric <em>named</em> <code>list</code></h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1"></a>numeric_list <span class="ot">=</span> <span class="fu">list</span>(<span class="at">a =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="at">b =</span> <span class="dv">3</span><span class="sc">:</span><span class="dv">7</span>, <span class="at">c =</span> <span class="dv">10</span><span class="sc">:</span><span class="dv">14</span>)</span>
+<span id="cb36-2"><a href="#cb36-2"></a>numeric_list</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$a
+[1] 1 2 3 4 5
+
+$b
+[1] 3 4 5 6 7
+
+$c
+[1] 10 11 12 13 14</code></pre>
+</div>
+</div>
+<h3 id="applying-mean-using-lapply">Applying <code>mean()</code> using <code>lapply()</code></h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1"></a><span class="fu">lapply</span>(numeric_list, mean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$a
+[1] 3
+
+$b
+[1] 5
+
+$c
+[1] 12</code></pre>
+</div>
+</div>
+<h3 id="applying-sum-using-sapply">Applying <code>sum()</code> using <code>sapply()</code></h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1"></a><span class="fu">sapply</span>(numeric_list, sum)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> a  b  c 
+15 25 60 </code></pre>
+</div>
+</div>
+</section></section>
+<section>
+<section id="the-sweep-function" class="title-slide slide level1 center">
+<h1>The <code>sweep()</code> Function</h1>
+<p>The <code>sweep()</code> function in R allows you to perform operations on arrays by “sweeping” out values of a summary statistic across margins.</p>
+
+<img data-src="https://media.gettyimages.com/id/1464262190/photo/straw-broom.jpg?s=2048x2048&amp;w=gi&amp;k=20&amp;c=JWmWRXtxcyn-52tjsuDOyeFlijTKzd_xcSc-1dCv7sk=" class="r-stretch"></section>
+<section id="syntax-of-sweep" class="slide level2">
+<h2>Syntax of <code>sweep()</code></h2>
+<div class="sourceCode" id="cb42"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1"></a><span class="fu">sweep</span>(x, MARGIN, STATS, <span class="at">FUN =</span> <span class="st">"-"</span>, ...)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li><code>x</code>: the array to sweep out statistics from.</li>
+<li><code>MARGIN</code>: the margin to apply the sweep on.</li>
+<li><code>STATS</code>: the summary statistic to be used.</li>
+<li><code>FUN</code>: the function to apply.</li>
+</ul>
+</section>
+<section id="example-centering" class="slide level2">
+<h2>Example: Centering</h2>
+<h3 id="sample-matrix">Sample matrix</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1"></a>mat <span class="ot">=</span> <span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>, <span class="at">nrow =</span> <span class="dv">3</span>)</span>
+<span id="cb43-2"><a href="#cb43-2"></a>mat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">7</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">8</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">9</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<h3 id="calculate-column-means">Calculate column means</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1"></a>col_means <span class="ot">=</span> <span class="fu">apply</span>(mat, <span class="dv">2</span>, mean)</span>
+<span id="cb44-2"><a href="#cb44-2"></a>col_means</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2 5 8</code></pre>
+</div>
+</div>
+<h3 id="center-the-matrix-by-subtracting-column-means">Center the matrix by subtracting column means</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1"></a>centered_mat <span class="ot">=</span> <span class="fu">sweep</span>(mat, <span class="dv">2</span>, col_means)</span>
+<span id="cb46-2"><a href="#cb46-2"></a>centered_mat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">-1</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
 </section>
-<section class="slide level2">
+<section id="example-scaling" class="slide level2">
+<h2>Example: Scaling</h2>
+<h3 id="calculate-max-for-each-column">Calculate max for each column</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1"></a>col_maxs <span class="ot">=</span> <span class="fu">apply</span>(mat, <span class="dv">2</span>, max)</span>
+<span id="cb47-2"><a href="#cb47-2"></a>col_maxs</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 3 6 9</code></pre>
+</div>
+</div>
+<h3 id="scale-the-matrix-by-dividing-by-column-maxs">Scale the matrix by dividing by column maxs</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1"></a>scaled_mat <span class="ot">=</span> <span class="fu">sweep</span>(mat, <span class="dv">2</span>, col_maxs, <span class="at">FUN =</span> <span class="st">"/"</span>)</span>
+<span id="cb49-2"><a href="#cb49-2"></a>scaled_mat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">0.3333333</td>
+<td style="text-align: right;">0.6666667</td>
+<td style="text-align: right;">0.7777778</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">0.6666667</td>
+<td style="text-align: right;">0.8333333</td>
+<td style="text-align: right;">0.8888889</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">1.0000000</td>
+<td style="text-align: right;">1.0000000</td>
+<td style="text-align: right;">1.0000000</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section></section>
+<section>
+<section id="the-z-scores" class="title-slide slide level1 center">
+<h1>The <span class="math inline">\(Z\)</span>-scores</h1>
+<p>The <span class="math inline">\(Z\)</span>-score of an observation is a metric that indicates how many standard deviations an element is from the mean of the whole set.</p>
+<p><span class="math inline">\(z = \frac{x - \mu}{\sigma}\)</span></p>
+<p>where:</p>
+<ul>
+<li><span class="math inline">\(x\)</span> is the raw score,</li>
+<li><span class="math inline">\(\mu\)</span> is the mean of the population, and</li>
+<li><span class="math inline">\(\sigma\)</span> is the standard deviation of the population.</li>
+</ul>
+<p>Note: The <span class="math inline">\(Z\)</span>-score is <strong>unitless</strong> i.e., having no units of measurement</p>
+</section>
+<section id="steps-to-calculate-z-scores" class="slide level2">
+<h2>Steps to Calculate <span class="math inline">\(Z\)</span>-scores</h2>
+<ol type="1">
+<li>Calculate means and standard deviations for each column.</li>
+<li>Center data by subtracting mean values using <code>sweep()</code>.</li>
+<li>Divide by standard deviation to standardize using <code>sweep()</code>.</li>
+</ol>
+</section>
+<section id="example-z-score-calculation" class="slide level2">
+<h2>Example: <span class="math inline">\(Z\)</span>-score Calculation</h2>
+<h3 id="create-a-sample-matrix-with-random-data">Create a sample matrix with random data</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1"></a>data_matrix <span class="ot">=</span> <span class="fu">matrix</span>(<span class="fu">rnorm</span>(<span class="dv">100</span>), <span class="at">ncol=</span><span class="dv">10</span>)</span>
+<span id="cb50-2"><a href="#cb50-2"></a>data_matrix</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table style="width:100%;">
+<colgroup>
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">0.7720323</td>
+<td style="text-align: right;">-0.0236110</td>
+<td style="text-align: right;">0.0700578</td>
+<td style="text-align: right;">0.5499061</td>
+<td style="text-align: right;">-0.8822566</td>
+<td style="text-align: right;">-0.5208829</td>
+<td style="text-align: right;">1.2807723</td>
+<td style="text-align: right;">-2.2090599</td>
+<td style="text-align: right;">1.3172705</td>
+<td style="text-align: right;">-0.7553829</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1.1352704</td>
+<td style="text-align: right;">0.9457801</td>
+<td style="text-align: right;">1.0327003</td>
+<td style="text-align: right;">0.9907401</td>
+<td style="text-align: right;">0.5247179</td>
+<td style="text-align: right;">-0.0071550</td>
+<td style="text-align: right;">-1.0176867</td>
+<td style="text-align: right;">2.6768273</td>
+<td style="text-align: right;">-0.2675364</td>
+<td style="text-align: right;">-0.8119132</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">-0.3556700</td>
+<td style="text-align: right;">-1.3081242</td>
+<td style="text-align: right;">-0.2164506</td>
+<td style="text-align: right;">0.1440630</td>
+<td style="text-align: right;">0.9130161</td>
+<td style="text-align: right;">-0.0147323</td>
+<td style="text-align: right;">2.1405846</td>
+<td style="text-align: right;">-1.1328485</td>
+<td style="text-align: right;">-0.1673459</td>
+<td style="text-align: right;">-0.6183830</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">0.3695155</td>
+<td style="text-align: right;">3.1066999</td>
+<td style="text-align: right;">-2.7725347</td>
+<td style="text-align: right;">-0.7530670</td>
+<td style="text-align: right;">0.1043633</td>
+<td style="text-align: right;">0.6799525</td>
+<td style="text-align: right;">-0.8807629</td>
+<td style="text-align: right;">1.8317829</td>
+<td style="text-align: right;">-0.4001457</td>
+<td style="text-align: right;">-1.4748364</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">1.5371188</td>
+<td style="text-align: right;">-1.4549000</td>
+<td style="text-align: right;">-0.9155727</td>
+<td style="text-align: right;">-0.8977446</td>
+<td style="text-align: right;">-1.1268794</td>
+<td style="text-align: right;">-1.8834163</td>
+<td style="text-align: right;">0.2358407</td>
+<td style="text-align: right;">-1.1359993</td>
+<td style="text-align: right;">0.9284241</td>
+<td style="text-align: right;">-0.5760723</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">0.4551764</td>
+<td style="text-align: right;">0.9378018</td>
+<td style="text-align: right;">0.8704419</td>
+<td style="text-align: right;">1.2940218</td>
+<td style="text-align: right;">-0.0578897</td>
+<td style="text-align: right;">0.4757888</td>
+<td style="text-align: right;">-0.6402558</td>
+<td style="text-align: right;">-0.2850556</td>
+<td style="text-align: right;">2.0390161</td>
+<td style="text-align: right;">0.4287817</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">2.0869911</td>
+<td style="text-align: right;">1.4019592</td>
+<td style="text-align: right;">0.8649523</td>
+<td style="text-align: right;">0.0084196</td>
+<td style="text-align: right;">0.2193383</td>
+<td style="text-align: right;">-1.8027268</td>
+<td style="text-align: right;">2.0185865</td>
+<td style="text-align: right;">-0.7242505</td>
+<td style="text-align: right;">-0.5220771</td>
+<td style="text-align: right;">-1.5277922</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">-2.0259216</td>
+<td style="text-align: right;">-0.6943732</td>
+<td style="text-align: right;">-0.7830958</td>
+<td style="text-align: right;">-0.2226866</td>
+<td style="text-align: right;">0.1012604</td>
+<td style="text-align: right;">-1.6709143</td>
+<td style="text-align: right;">0.0444366</td>
+<td style="text-align: right;">0.2291196</td>
+<td style="text-align: right;">-0.4010404</td>
+<td style="text-align: right;">-0.3937708</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">-0.3312715</td>
+<td style="text-align: right;">0.4724834</td>
+<td style="text-align: right;">-0.6503196</td>
+<td style="text-align: right;">-0.9633905</td>
+<td style="text-align: right;">1.1221714</td>
+<td style="text-align: right;">-0.6869030</td>
+<td style="text-align: right;">0.0825795</td>
+<td style="text-align: right;">1.6361345</td>
+<td style="text-align: right;">-0.1416749</td>
+<td style="text-align: right;">0.3748363</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1.0570444</td>
+<td style="text-align: right;">1.5559028</td>
+<td style="text-align: right;">0.3398075</td>
+<td style="text-align: right;">-0.2588452</td>
+<td style="text-align: right;">-0.0381289</td>
+<td style="text-align: right;">-0.5262985</td>
+<td style="text-align: right;">1.0498150</td>
+<td style="text-align: right;">-0.3115017</td>
+<td style="text-align: right;">-0.1811098</td>
+<td style="text-align: right;">-0.0527232</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<h3 id="calculate-column-means-1">Calculate column means</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1"></a>col_means <span class="ot">=</span> <span class="fu">apply</span>(data_matrix, <span class="dv">2</span>, mean)</span>
+<span id="cb51-2"><a href="#cb51-2"></a>col_means</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1]  0.47002857  0.49396187 -0.21600136 -0.01085833  0.08797128 -0.59572878
+ [7]  0.43139097  0.05751487  0.22037806 -0.54072559</code></pre>
+</div>
+</div>
+<h3 id="calculate-column-standard-deviations">Calculate column standard deviations</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1"></a>col_sds <span class="ot">=</span> <span class="fu">apply</span>(data_matrix, <span class="dv">2</span>, sd)</span>
+<span id="cb53-2"><a href="#cb53-2"></a>col_means</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1]  0.47002857  0.49396187 -0.21600136 -0.01085833  0.08797128 -0.59572878
+ [7]  0.43139097  0.05751487  0.22037806 -0.54072559</code></pre>
+</div>
+</div>
+<h3 id="center-the-matrix-by-subtracting-column-means-1">Center the matrix by subtracting column means</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1"></a>data_matrix_centered <span class="ot">=</span> <span class="fu">sweep</span>(data_matrix, <span class="dv">2</span>, col_means, <span class="at">FUN =</span> <span class="st">"-"</span>)</span>
+<span id="cb55-2"><a href="#cb55-2"></a>data_matrix_centered</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table style="width:100%;">
+<colgroup>
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">0.3020037</td>
+<td style="text-align: right;">-0.5175729</td>
+<td style="text-align: right;">0.2860591</td>
+<td style="text-align: right;">0.5607645</td>
+<td style="text-align: right;">-0.9702279</td>
+<td style="text-align: right;">0.0748459</td>
+<td style="text-align: right;">0.8493813</td>
+<td style="text-align: right;">-2.2665748</td>
+<td style="text-align: right;">1.0968924</td>
+<td style="text-align: right;">-0.2146573</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">0.6652418</td>
+<td style="text-align: right;">0.4518182</td>
+<td style="text-align: right;">1.2487017</td>
+<td style="text-align: right;">1.0015984</td>
+<td style="text-align: right;">0.4367466</td>
+<td style="text-align: right;">0.5885738</td>
+<td style="text-align: right;">-1.4490777</td>
+<td style="text-align: right;">2.6193124</td>
+<td style="text-align: right;">-0.4879144</td>
+<td style="text-align: right;">-0.2711876</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">-0.8256986</td>
+<td style="text-align: right;">-1.8020861</td>
+<td style="text-align: right;">-0.0004493</td>
+<td style="text-align: right;">0.1549214</td>
+<td style="text-align: right;">0.8250448</td>
+<td style="text-align: right;">0.5809965</td>
+<td style="text-align: right;">1.7091936</td>
+<td style="text-align: right;">-1.1903634</td>
+<td style="text-align: right;">-0.3877239</td>
+<td style="text-align: right;">-0.0776574</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">-0.1005131</td>
+<td style="text-align: right;">2.6127380</td>
+<td style="text-align: right;">-2.5565334</td>
+<td style="text-align: right;">-0.7422087</td>
+<td style="text-align: right;">0.0163920</td>
+<td style="text-align: right;">1.2756813</td>
+<td style="text-align: right;">-1.3121539</td>
+<td style="text-align: right;">1.7742681</td>
+<td style="text-align: right;">-0.6205237</td>
+<td style="text-align: right;">-0.9341108</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">1.0670902</td>
+<td style="text-align: right;">-1.9488618</td>
+<td style="text-align: right;">-0.6995713</td>
+<td style="text-align: right;">-0.8868863</td>
+<td style="text-align: right;">-1.2148507</td>
+<td style="text-align: right;">-1.2876875</td>
+<td style="text-align: right;">-0.1955503</td>
+<td style="text-align: right;">-1.1935142</td>
+<td style="text-align: right;">0.7080460</td>
+<td style="text-align: right;">-0.0353468</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">-0.0148522</td>
+<td style="text-align: right;">0.4438399</td>
+<td style="text-align: right;">1.0864433</td>
+<td style="text-align: right;">1.3048802</td>
+<td style="text-align: right;">-0.1458610</td>
+<td style="text-align: right;">1.0715176</td>
+<td style="text-align: right;">-1.0716467</td>
+<td style="text-align: right;">-0.3425705</td>
+<td style="text-align: right;">1.8186380</td>
+<td style="text-align: right;">0.9695073</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">1.6169625</td>
+<td style="text-align: right;">0.9079973</td>
+<td style="text-align: right;">1.0809537</td>
+<td style="text-align: right;">0.0192779</td>
+<td style="text-align: right;">0.1313670</td>
+<td style="text-align: right;">-1.2069980</td>
+<td style="text-align: right;">1.5871955</td>
+<td style="text-align: right;">-0.7817654</td>
+<td style="text-align: right;">-0.7424552</td>
+<td style="text-align: right;">-0.9870666</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">-2.4959502</td>
+<td style="text-align: right;">-1.1883350</td>
+<td style="text-align: right;">-0.5670945</td>
+<td style="text-align: right;">-0.2118283</td>
+<td style="text-align: right;">0.0132891</td>
+<td style="text-align: right;">-1.0751855</td>
+<td style="text-align: right;">-0.3869544</td>
+<td style="text-align: right;">0.1716047</td>
+<td style="text-align: right;">-0.6214184</td>
+<td style="text-align: right;">0.1469548</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">-0.8013000</td>
+<td style="text-align: right;">-0.0214784</td>
+<td style="text-align: right;">-0.4343183</td>
+<td style="text-align: right;">-0.9525322</td>
+<td style="text-align: right;">1.0342001</td>
+<td style="text-align: right;">-0.0911742</td>
+<td style="text-align: right;">-0.3488115</td>
+<td style="text-align: right;">1.5786196</td>
+<td style="text-align: right;">-0.3620529</td>
+<td style="text-align: right;">0.9155619</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">0.5870158</td>
+<td style="text-align: right;">1.0619410</td>
+<td style="text-align: right;">0.5558089</td>
+<td style="text-align: right;">-0.2479869</td>
+<td style="text-align: right;">-0.1261002</td>
+<td style="text-align: right;">0.0694302</td>
+<td style="text-align: right;">0.6184240</td>
+<td style="text-align: right;">-0.3690166</td>
+<td style="text-align: right;">-0.4014878</td>
+<td style="text-align: right;">0.4880023</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<h3 id="divide-by-the-standard-deviation-to-get-z-scores">Divide by the standard deviation to get z-scores</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1"></a>z_scores <span class="ot">=</span> <span class="fu">sweep</span>(data_matrix_centered, <span class="dv">2</span>, col_sds, <span class="at">FUN =</span> <span class="st">"/"</span>)</span>
+<span id="cb56-2"><a href="#cb56-2"></a>z_scores</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table style="width:100%;">
+<colgroup>
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">0.2594376</td>
+<td style="text-align: right;">-0.3669410</td>
+<td style="text-align: right;">0.2494626</td>
+<td style="text-align: right;">0.7242210</td>
+<td style="text-align: right;">-1.3855529</td>
+<td style="text-align: right;">0.0806603</td>
+<td style="text-align: right;">0.7410379</td>
+<td style="text-align: right;">-1.4707892</td>
+<td style="text-align: right;">1.2424232</td>
+<td style="text-align: right;">-0.3215159</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">0.5714790</td>
+<td style="text-align: right;">0.3203233</td>
+<td style="text-align: right;">1.0889509</td>
+<td style="text-align: right;">1.2935530</td>
+<td style="text-align: right;">0.6237045</td>
+<td style="text-align: right;">0.6342973</td>
+<td style="text-align: right;">-1.2642395</td>
+<td style="text-align: right;">1.6996821</td>
+<td style="text-align: right;">-0.5526487</td>
+<td style="text-align: right;">-0.4061875</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">-0.7093201</td>
+<td style="text-align: right;">-1.2776158</td>
+<td style="text-align: right;">-0.0003918</td>
+<td style="text-align: right;">0.2000792</td>
+<td style="text-align: right;">1.1782214</td>
+<td style="text-align: right;">0.6261313</td>
+<td style="text-align: right;">1.4911762</td>
+<td style="text-align: right;">-0.7724314</td>
+<td style="text-align: right;">-0.4391654</td>
+<td style="text-align: right;">-0.1163160</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">-0.0863462</td>
+<td style="text-align: right;">1.8523396</td>
+<td style="text-align: right;">-2.2294670</td>
+<td style="text-align: right;">-0.9585541</td>
+<td style="text-align: right;">0.0234089</td>
+<td style="text-align: right;">1.3747829</td>
+<td style="text-align: right;">-1.1447812</td>
+<td style="text-align: right;">1.1513295</td>
+<td style="text-align: right;">-0.7028520</td>
+<td style="text-align: right;">-1.3991208</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">0.9166887</td>
+<td style="text-align: right;">-1.3816747</td>
+<td style="text-align: right;">-0.6100727</td>
+<td style="text-align: right;">-1.1454036</td>
+<td style="text-align: right;">-1.7348913</td>
+<td style="text-align: right;">-1.3877218</td>
+<td style="text-align: right;">-0.1706067</td>
+<td style="text-align: right;">-0.7744760</td>
+<td style="text-align: right;">0.8019864</td>
+<td style="text-align: right;">-0.0529427</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">-0.0127588</td>
+<td style="text-align: right;">0.3146669</td>
+<td style="text-align: right;">0.9474508</td>
+<td style="text-align: right;">1.6852379</td>
+<td style="text-align: right;">-0.2082996</td>
+<td style="text-align: right;">1.1547587</td>
+<td style="text-align: right;">-0.9349521</td>
+<td style="text-align: right;">-0.2222953</td>
+<td style="text-align: right;">2.0599267</td>
+<td style="text-align: right;">1.4521380</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">1.3890589</td>
+<td style="text-align: right;">0.6437382</td>
+<td style="text-align: right;">0.9426635</td>
+<td style="text-align: right;">0.0248972</td>
+<td style="text-align: right;">0.1876013</td>
+<td style="text-align: right;">-1.3007640</td>
+<td style="text-align: right;">1.3847397</td>
+<td style="text-align: right;">-0.5072906</td>
+<td style="text-align: right;">-0.8409608</td>
+<td style="text-align: right;">-1.4784385</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">-2.1441573</td>
+<td style="text-align: right;">-0.8424878</td>
+<td style="text-align: right;">-0.4945441</td>
+<td style="text-align: right;">-0.2735738</td>
+<td style="text-align: right;">0.0189778</td>
+<td style="text-align: right;">-1.1587116</td>
+<td style="text-align: right;">-0.3375962</td>
+<td style="text-align: right;">0.1113550</td>
+<td style="text-align: right;">-0.7038654</td>
+<td style="text-align: right;">0.2201104</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">-0.6883604</td>
+<td style="text-align: right;">-0.0152275</td>
+<td style="text-align: right;">-0.3787544</td>
+<td style="text-align: right;">-1.2301845</td>
+<td style="text-align: right;">1.4769097</td>
+<td style="text-align: right;">-0.0982571</td>
+<td style="text-align: right;">-0.3043186</td>
+<td style="text-align: right;">1.0243724</td>
+<td style="text-align: right;">-0.4100885</td>
+<td style="text-align: right;">1.3713381</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">0.5042786</td>
+<td style="text-align: right;">0.7528789</td>
+<td style="text-align: right;">0.4847023</td>
+<td style="text-align: right;">-0.3202722</td>
+<td style="text-align: right;">-0.1800798</td>
+<td style="text-align: right;">0.0748239</td>
+<td style="text-align: right;">0.5395405</td>
+<td style="text-align: right;">-0.2394563</td>
+<td style="text-align: right;">-0.4547554</td>
+<td style="text-align: right;">0.7309349</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="example-data-frame-normalization-using-sweep" class="slide level2">
+<h2>Example: Data Frame Normalization Using <code>sweep()</code></h2>
+<p>Normalize a data frame <code>df</code> (with columns <code>X1</code>, <code>X2</code>, <code>X3</code> each containing <span class="math inline">\(10\)</span> random integers between <span class="math inline">\(1\)</span> and <span class="math inline">\(100\)</span>) by subtracting the median and dividing by the interquartile range of each column.</p>
+<div class="fragment">
+<!-- -->
+<h3 id="creating-a-data-frame">Creating a data frame</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb57-2"><a href="#cb57-2"></a>df <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">X1 =</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>, <span class="dv">10</span>), </span>
+<span id="cb57-3"><a href="#cb57-3"></a>                <span class="at">X2 =</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>, <span class="dv">10</span>), </span>
+<span id="cb57-4"><a href="#cb57-4"></a>                <span class="at">X3 =</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>, <span class="dv">10</span>))</span>
+<span id="cb57-5"><a href="#cb57-5"></a></span>
+<span id="cb57-6"><a href="#cb57-6"></a>df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: right;">X1</th>
+<th style="text-align: right;">X2</th>
+<th style="text-align: right;">X3</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">31</td>
+<td style="text-align: right;">90</td>
+<td style="text-align: right;">7</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">79</td>
+<td style="text-align: right;">91</td>
+<td style="text-align: right;">42</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">51</td>
+<td style="text-align: right;">69</td>
+<td style="text-align: right;">9</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">14</td>
+<td style="text-align: right;">99</td>
+<td style="text-align: right;">83</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">67</td>
+<td style="text-align: right;">57</td>
+<td style="text-align: right;">36</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">42</td>
+<td style="text-align: right;">92</td>
+<td style="text-align: right;">78</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">50</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">81</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">43</td>
+<td style="text-align: right;">93</td>
+<td style="text-align: right;">43</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">97</td>
+<td style="text-align: right;">72</td>
+<td style="text-align: right;">76</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">25</td>
+<td style="text-align: right;">26</td>
+<td style="text-align: right;">15</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<h3 id="calculating-medians">Calculating medians</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1"></a>medians <span class="ot">=</span> <span class="fu">sapply</span>(df, median) <span class="co"># or apply(df, 2, median)</span></span>
+<span id="cb58-2"><a href="#cb58-2"></a>medians</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  X1   X2   X3 
+46.5 81.0 42.5 </code></pre>
+</div>
+</div>
+<h3 id="calculating-interquartile-ranges">Calculating interquartile ranges</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1"></a>iqrs <span class="ot">=</span> <span class="fu">sapply</span>(df, IQR) <span class="co"># or apply(df, 2, IQR)</span></span>
+<span id="cb60-2"><a href="#cb60-2"></a>iqrs</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   X1    X2    X3 
+29.25 31.75 57.25 </code></pre>
+</div>
+</div>
+<h3 id="normalizing-the-data-frame">Normalizing the data frame</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1"></a>normalized_df <span class="ot">=</span> <span class="fu">sweep</span>(<span class="fu">sweep</span>(df, <span class="dv">2</span>, medians, <span class="st">"-"</span>), <span class="dv">2</span>, iqrs, <span class="st">"/"</span>)</span>
+<span id="cb62-2"><a href="#cb62-2"></a>normalized_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: right;">X1</th>
+<th style="text-align: right;">X2</th>
+<th style="text-align: right;">X3</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">-0.5299145</td>
+<td style="text-align: right;">0.2834646</td>
+<td style="text-align: right;">-0.6200873</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1.1111111</td>
+<td style="text-align: right;">0.3149606</td>
+<td style="text-align: right;">-0.0087336</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">0.1538462</td>
+<td style="text-align: right;">-0.3779528</td>
+<td style="text-align: right;">-0.5851528</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">-1.1111111</td>
+<td style="text-align: right;">0.5669291</td>
+<td style="text-align: right;">0.7074236</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">0.7008547</td>
+<td style="text-align: right;">-0.7559055</td>
+<td style="text-align: right;">-0.1135371</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">-0.1538462</td>
+<td style="text-align: right;">0.3464567</td>
+<td style="text-align: right;">0.6200873</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">0.1196581</td>
+<td style="text-align: right;">-2.2677165</td>
+<td style="text-align: right;">0.6724891</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">-0.1196581</td>
+<td style="text-align: right;">0.3779528</td>
+<td style="text-align: right;">0.0087336</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">1.7264957</td>
+<td style="text-align: right;">-0.2834646</td>
+<td style="text-align: right;">0.5851528</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">-0.7350427</td>
+<td style="text-align: right;">-1.7322835</td>
+<td style="text-align: right;">-0.4803493</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</section>
+<section id="example-generating-and-analyzing-height-data" class="slide level2">
+<h2>Example: Generating and Analyzing Height Data</h2>
+<p>Generate a dataset that simulates the heights (in centimeters) of 1000 individuals. Assume an average height of 170 cm and a standard deviation of 10 cm. Follow the following steps:</p>
+<ul>
+<li>Create the dataset using a normal distribution with the given mean and standard deviation using the <a href="https://www.geeksforgeeks.org/a-guide-to-dnorm-pnorm-rnorm-and-qnorm-in-r/"><code>rnorm()</code></a> function.</li>
+<li>Calculate the <span class="math inline">\(Z\)</span>-scores for the entire dataset.</li>
+<li>Determine how many standard deviations away from the mean is a height of 185 cm.</li>
+</ul>
+<div class="fragment">
+<!-- -->
+<h3 id="generating-the-height-dataset">Generating the height dataset</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1"></a>heights <span class="ot">=</span> <span class="fu">rnorm</span> (<span class="dv">1000</span>, <span class="dv">170</span>, <span class="dv">10</span>)</span>
+<span id="cb63-2"><a href="#cb63-2"></a><span class="fu">head</span>(heights)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 167.8413 166.6509 159.1430 169.1458 180.7061 168.5461</code></pre>
+</div>
+</div>
+<h3 id="displaying-the-distribution-of-heights">Displaying the distribution of heights</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1"></a><span class="fu">hist</span>(heights)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img data-src="lecture08_essential_functions_files/figure-revealjs/unnamed-chunk-42-1.png" width="960"></p>
+</div>
+</div>
+</div>
+<div class="fragment">
+<!-- -->
+<h3 id="calculating-the-z-scores">Calculating the <span class="math inline">\(Z\)</span>-scores</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1"></a>zscores <span class="ot">=</span> (heights <span class="sc">-</span> <span class="fu">mean</span>(heights))<span class="sc">/</span><span class="fu">sd</span>(heights)</span>
+<span id="cb66-2"><a href="#cb66-2"></a><span class="fu">head</span>(zscores)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] -0.17243735 -0.29236253 -1.04868498 -0.04103338  1.12352467 -0.10144587</code></pre>
+</div>
+</div>
+<h3 id="displaying-the-distribution-of-z-scores">Displaying the distribution of <span class="math inline">\(Z\)</span>-scores</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1"></a><span class="fu">hist</span>(zscores)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img data-src="lecture08_essential_functions_files/figure-revealjs/unnamed-chunk-44-1.png" width="960"></p>
+</div>
+</div>
+</div>
+<div class="fragment">
+<!-- -->
+<h3 id="calculating-the-z-score-of-a-specific-height">Calculating the <span class="math inline">\(Z\)</span>-score of a specific height</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a href="#cb69-1"></a>zscore <span class="ot">=</span> (<span class="dv">185</span> <span class="sc">-</span> <span class="fu">mean</span>(heights))<span class="sc">/</span><span class="fu">sd</span>(heights)</span>
+<span id="cb69-2"><a href="#cb69-2"></a>zscore</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1.55608</code></pre>
+</div>
+</div>
+<h3 id="displaying-the-z-score-of-a-specific-height">Displaying the <span class="math inline">\(Z\)</span>-score of a specific height</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1"></a><span class="fu">hist</span>(zscores)</span>
+<span id="cb71-2"><a href="#cb71-2"></a><span class="fu">abline</span>(<span class="at">v=</span>zscore, <span class="at">col=</span><span class="st">"red"</span>, <span class="at">lwd=</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img data-src="lecture08_essential_functions_files/figure-revealjs/unnamed-chunk-46-1.png" width="960"></p>
+</div>
+</div>
+</div>
+</section></section>
+<section id="comparison-between-apply-and-sweep" class="title-slide slide level1 center">
+<h1>Comparison between <code>apply()</code> and <code>sweep()</code></h1>
+<table>
+<colgroup>
+<col style="width: 7%">
+<col style="width: 38%">
+<col style="width: 53%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Feature</th>
+<th><code>apply()</code></th>
+<th><code>sweep()</code></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Purpose</td>
+<td>Apply a function over the margins of an array or matrix to summarize or transform it.</td>
+<td>Apply arithmetic operations to an array “sweeping” out array summaries.</td>
+</tr>
+<tr class="even">
+<td>Usage</td>
+<td>Used for summarizing data with a function over specified margins (rows or columns)</td>
+<td>Used for adjusting data using a summary statistic for operations like centering or scaling.</td>
+</tr>
+<tr class="odd">
+<td>Functionality</td>
+<td>Used to apply a wide range of functions for summarizing or transforming data across dimensions</td>
+<td>Used to perform arithmetic operations using a summary statistic and is often used after summarizing data with apply().</td>
+</tr>
+<tr class="even">
+<td>Arguments</td>
+<td><code>apply(X, MARGIN, FUN, ...)</code> where <code>X</code> is the array, MARGIN specifies rows(1) or columns(2), and FUN is the function to be applied.</td>
+<td><code>sweep(x, MARGIN, STATS, FUN = "-", ...)</code> where <code>x</code> is the array, <code>MARGIN</code> specifies the dimension, STATS is the summary statistic, and <code>FUN</code> is the arithmetic function to be applied.</td>
+</tr>
+<tr class="odd">
+<td>Return Value</td>
+<td>Returns an array, matrix, or list with the results of the function application, which may be of a different dimension from the input.</td>
+<td>Returns an adjusted array with the same dimensions as the input, with element-wise arithmetic operations performed.</td>
+</tr>
+<tr class="even">
+<td>Exclusive Actions</td>
+<td>- Can return different structures (vector, array, list) based on the function and margin.<br>- Can work with higher-dimensional arrays beyond matrices.</td>
+<td>- Directly performs arithmetic <em>sweep</em> operations using a summary statistic.<br>- Ideal for data adjustments after using <code>apply()</code> to calculate the summary statistic.</td>
+</tr>
+<tr class="odd">
+<td>Limitations</td>
+<td>- Cannot directly adjust data using a summary statistic; additional steps are required to integrate the summary before or after using <code>apply()</code>.</td>
+<td>- Not designed for summarizing data; it requires pre-calculated statistics to perform the sweep operation.</td>
+</tr>
+<tr class="even">
+<td>Flexibility</td>
+<td>- Can use any function, including user-defined ones, for summarization or transformation.<br>- More general-purpose in data manipulation.</td>
+<td>- Limited to arithmetic <em>sweep</em> operations; custom functions must conform to the expected input and output format of <code>sweep()</code>.</td>
+</tr>
+<tr class="odd">
+<td>Common Use Case</td>
+<td>- Computing aggregate statistics like means, sums, etc., across rows or columns.<br>- General data manipulation tasks requiring the application of a function.</td>
+<td>- Standardizing or normalizing data.<br>- Centering data by subtracting the mean or dividing by a standard deviation after calculating these with <code>apply()</code>.</td>
+</tr>
+</tbody>
+</table>
+</section>
 
-<h3 id="part-3-analysis">Part 3: Analysis</h3>
-<p>Analyze the results of your multiple simulations. What do you observe as the number of flips increases?</p>
+<section>
+<section id="testing-data-types" class="title-slide slide level1 center">
+<h1>Testing Data Types</h1>
+<ul>
+<li>R provides functions to test the data type of a variable.</li>
+</ul>
+</section>
+<section id="examples" class="slide level2">
+<h2>Examples:</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1"></a><span class="fu">coin_flip</span>(<span class="dv">10</span>)<span class="sc">/</span><span class="dv">10</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<table>
-<thead>
-<tr class="header">
-<th style="text-align: right;">H</th>
-<th style="text-align: right;">T</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: right;">0.5</td>
-<td style="text-align: right;">0.5</td>
-</tr>
-</tbody>
-</table>
+<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1"></a><span class="fu">is.character</span>(<span class="st">"Hello"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] TRUE</code></pre>
 </div>
+<div class="sourceCode cell-code" id="cb74"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1"></a><span class="fu">is.numeric</span>(<span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] TRUE</code></pre>
 </div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1"></a><span class="fu">coin_flip</span>(<span class="dv">100</span>)<span class="sc">/</span><span class="dv">100</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<table>
-<thead>
-<tr class="header">
-<th style="text-align: right;">H</th>
-<th style="text-align: right;">T</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: right;">0.54</td>
-<td style="text-align: right;">0.46</td>
-</tr>
-</tbody>
-</table>
+<div class="sourceCode cell-code" id="cb76"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb76-1"><a href="#cb76-1"></a><span class="fu">is.na</span>(<span class="cn">NA</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] TRUE</code></pre>
 </div>
+<div class="sourceCode cell-code" id="cb78"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb78-1"><a href="#cb78-1"></a><span class="fu">is.vector</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] TRUE</code></pre>
 </div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1"></a><span class="fu">coin_flip</span>(<span class="dv">1000</span>)<span class="sc">/</span><span class="dv">1000</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<table>
-<thead>
-<tr class="header">
-<th style="text-align: right;">H</th>
-<th style="text-align: right;">T</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: right;">0.506</td>
-<td style="text-align: right;">0.494</td>
-</tr>
-</tbody>
-</table>
+<div class="sourceCode cell-code" id="cb80"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb80-1"><a href="#cb80-1"></a><span class="fu">is.matrix</span>(<span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>, <span class="at">ncol=</span><span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] TRUE</code></pre>
 </div>
+<div class="sourceCode cell-code" id="cb82"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb82-1"><a href="#cb82-1"></a><span class="fu">is.data.frame</span>(<span class="fu">data.frame</span>(<span class="at">x=</span><span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>, <span class="at">y=</span><span class="dv">4</span><span class="sc">:</span><span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] TRUE</code></pre>
 </div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1"></a><span class="fu">coin_flip</span>(<span class="dv">10000</span>)<span class="sc">/</span><span class="dv">10000</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<table>
-<thead>
-<tr class="header">
-<th style="text-align: right;">H</th>
-<th style="text-align: right;">T</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: right;">0.5023</td>
-<td style="text-align: right;">0.4977</td>
-</tr>
-</tbody>
-</table>
+<div class="sourceCode cell-code" id="cb84"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb84-1"><a href="#cb84-1"></a><span class="fu">is.factor</span>(<span class="fu">factor</span>(<span class="fu">c</span>(<span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"a"</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] TRUE</code></pre>
 </div>
 </div>
 <div class="footer footer-default">
 
 </div>
-</section>
+</section></section>
     </div>
   </div>
 
