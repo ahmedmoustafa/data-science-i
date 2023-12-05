@@ -1,0 +1,168 @@
+---
+title: "Using PCA with the California Housing Dataset"
+format: gfm
+---
+
+```{r echo=FALSE,message=FALSE,warning=FALSE}
+library(printr)
+```
+
+# Objective
+
+The aim is to apply Principal Component Analysis (PCA) to [the California Housing dataset](https://github.com/ahmedmoustafa/datasets/tree/main/housing), with the goal of exploring structures and reducing dimensionality. This analysis is to identify the principal components that best capture the variability in the housing data, which can provide insights into the most influential factors affecting housing values across California.
+
+# Starting up
+
+So let's first make sure that the required packages are installed. If they are not already installed, they will be installed.
+
+```{r}
+if (!require("ggplot2")) install.packages("ggplot2")
+```
+
+```{r}
+library(ggplot2)
+theme_set(theme_light()) # Set the default ggplot theme to the light theme
+```
+
+# Loading the dataset
+
+```{r}
+df1 = read.csv ("https://raw.githubusercontent.com/ahmedmoustafa/datasets/main/housing/housing.csv")
+dim(df1)
+```
+
+```{r}
+head(df1)
+```
+
+# Cleaning the dataset
+
+To ensure the quality of our analysis, it is essential to address missing values within our dataset. So, we implement a user-defined function named `is_any_na()`. This function will detect the presence of missing values in each row of the dataset. Identifying rows with missing data is a crucial **preprocessing** step, as incomplete information can significantly skew PCA results and lead to inaccurate interpretations.
+
+```{r}
+is_any_na = function (x) {
+  return (any(is.na(x)))
+}
+```
+
+We will now utilize our user-defined function `is_any_na()` to systematically **apply** across the dataset, identifying which rows contain missing values.
+
+```{r}
+missing = apply(df1, 1, is_any_na)
+head(missing)
+```
+
+The vector `missing` is a list of Boolean values, where `TRUE` entries correspond to rows in `df1` that contain at least one missing (i.e., `NA`) entry.
+
+**Note**: If we pass a list of Boolean values to the `sum()` function, it will return the **number** of `TRUE` values. So the number of rows in `df1` with missing values:
+
+```{r}
+sum(missing)
+```
+
+An overview of the rows with missing values
+
+```{r}
+head(df1[missing, ])
+```
+
+Now let's extract the rows without any missingness by, basically, negating (with the `!` operator) the `missing` vector i.e., switching `TRUE` to `FALSE` and switching `FALSE` to `TRUE`:
+
+```{r}
+df2 = df1[!missing, ]
+dim(df2)
+```
+
+Dataframe `df2` has `r nrow(df2)` without any missing value &check;
+
+It is almost ready for performing the PCA analysis; however, the input matrix to the `procomp()` function must be **numeric** and our dataset contains a categorical a variable/column/feature `ocean_proximity` with the following values:
+
+```{r}
+table(df2$ocean_proximity)
+```
+
+To be able to proceed with the PCA analysis, we must to convert `ocean_proximity` to `numeric` but first we need to convert to `factor` with the appropriate `levels` the convert the `factor` to `numeric`:
+
+```{r}
+df2$ocean_proximity = as.numeric(factor(df2$ocean_proximity, 
+                                        levels = c("ISLAND", # The closest to the ocean
+                                                   "NEAR BAY", 
+                                                   "NEAR OCEAN", 
+                                                   "<1H OCEAN", 
+                                                   "INLAND" # The farthest from the ocean
+                                                   )
+                                        )
+                                 )
+head(df2)
+```
+
+Notice the converted `numeric` values under the `ocean_proximity` column.
+
+# Calculating the PCA
+
+Since the `median_house_value` column is the target variable in the dataset, it should not be part of the input matrix to the `prcomp()` function to perform the PCA analysis. Therefore, we will exclude it by referencing its column number (column #9) with the negative sign.
+
+```{r}
+pca_result = prcomp(df2[, -9], scale. = TRUE)
+summary(pca_result)
+```
+
+```{r echo=FALSE}
+variances = pca_result$sdev^2
+variances_sum = sum(variances)
+```
+
+The above PCA summary shows that PC1 explains about `r round(100*variances[1]/variances_sum,1)`% of the total variance in the dataset, followed by PC2 which explains about `r round(100*variances[2]/variances_sum,1)`%, then PC3 which explains about `r round(100*variances[3]/variances_sum,1)`%. And the first three PCs (PC1, PC2, and PC3) together (cumulatively) explain about `r round(sum(100*variances[1:3]/variances_sum),1)`% of the total variance in the dataset.
+
+# Visualizing the PCA
+
+In this section, our goal is to explore whether there's any inherent structure, clustering, or grouping in the transformed dataset, as represented by the projections (or scores) of the housing data onto the principal components (PCs). A key step in this exploration is overlaying the original features, particularly the target variable `median_house_value`, onto the transformed PCA space. This approach provides a visual representation of how the target variable relates to the principal components. To achieve this, we will construct an augmented dataframe that combines the principal components with the feature of interest, `median_house_value`.
+
+
+```{r}
+pca_df = data.frame(Price = df2$median_house_value, pca_result$x)
+head(pca_df)
+```
+
+## PC1 & PC2
+
+Now, let's create a scatter plot to visualize the distribution of houses based on their projections onto the first two principal components, PC1 and PC2. In this plot, each house will be represented by a point, with the position determined by its scores on these principal components. To gain more insights, we will color-code these points based on the `median_house_value`
+
+```{r}
+ggplot(pca_df) +
+  geom_point(aes(x = PC1, y = PC2, color = Price), alpha = 0.7) +
+  scale_color_distiller(palette = "RdYlBu")
+```
+
+## PC1 & PC3
+
+Now that we have visualized and analyzed the distribution of house prices along PC1 and PC2, let's proceed to explore another dimension. We will create a similar scatter plot, this time projecting the houses onto PC1 and PC3.
+
+```{r}
+ggplot(pca_df) +
+  geom_point(aes(x = PC1, y = PC3, color = Price), alpha = 0.7) +
+  scale_color_distiller(palette = "RdYlBu")
+```
+
+In above visualization, we can observe a distribution where higher house prices (darker red points) are primarily concentrated at the lower end of PC3 while spread out along PC1. This suggests that PC3 captures aspects of the data that inversely relate to house prices, with lower scores on PC3 potentially associated with higher house values.
+
+# Loadings onto the Principal Components
+
+To understand the influence of the original variables on the principal components, we will examine the loadings, which reflect how each variable contributes to, or weighs upon, each principal component. Our focus is particularly on PC3, as our visual analysis suggested it has a significant relationship with house prices. By analyzing the loadings for PC3, we can find out which features most strongly drive this component and, by extension, may have a more direct impact on the housing values in the dataset.
+
+```{r}
+pca_result$rotation
+```
+
+```{r}
+loadings = data.frame (Feature = row.names(pca_result$rotation), pca_result$rotation)
+loadings
+```
+
+```{r}
+ggplot(loadings) +
+  geom_bar(aes(x = Feature, y = PC3), stat = "identity", alpha = 0.7) +
+  theme(axis.text.x = element_text(angle = 90))
+```
+
+We can see from the above plot, `ocean_proximity` holds the most positive loading among the features, suggests that `ocean_proximity` has a strong positive correlation with PC3, pointing to a significant impact of ocean proximity on the housing values as captured by this principal component. On the other hand, `housing_median_age` shows a substantial negative loading which means that areas with older houses tend to have lower scores on PC3, possibly reflecting housing market dynamics related to the age of properties.
