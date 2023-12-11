@@ -1,0 +1,126 @@
+---
+title: "Review"
+subtitle: "Plots"
+format:
+  revealjs:
+    slide-number: true
+    preview-links: true
+    scrollable: true
+---
+
+```{r echo=FALSE,message=FALSE,warning=FALSE}
+# Load necessary libraries
+library(tidyverse)
+library(printr)
+theme_set(theme_minimal())
+```
+
+```{r echo=FALSE}
+# Set seed for reproducibility
+set.seed(0)
+
+# Generate data for Uganda - right-skewed distribution
+uganda_ages <- rgamma(1000, shape = 2, scale = 10)
+uganda_ages <- pmin(pmax(uganda_ages, 0), 100) # Truncate ages to range 0-100
+uganda_data <- data.frame(Age = uganda_ages, Country = 'Uganda')
+
+# Generate data for USA - symmetric distribution
+usa_ages <- rnorm(1000, mean = 40, sd = 15)
+usa_ages <- pmin(pmax(usa_ages, 0), 100) # Truncate ages to range 0-100
+usa_data <- data.frame(Age = usa_ages, Country = 'USA')
+
+# Combine data
+ages = rbind(uganda_data, usa_data)
+```
+
+## Anatomy of a Boxplot
+
+![](https://i0.wp.com/quantgirl.blog/wp-content/uploads/2019/02/box_anatomy-3-e1549228924225.png?)
+
+## Age Distributions: Uganda vs. USA
+
+```{r echo=FALSE}
+ages %>% group_by(Country) %>%
+  summarise(count = n(),
+            min = round(min(Age),2),
+            mean = round(mean(Age),2),
+            median = round(median(Age),2),
+            max = round(max(Age),2))
+```
+
+
+
+## Boxplot of Age Distributions: Uganda vs. USA
+
+```{r echo=TRUE}
+ggplot(ages) +
+  geom_boxplot(aes(x = Country, y = Age, fill = Country), alpha = 0.7)
+```
+
+
+## Outliers in Age Distributions
+
+```{r echo=FALSE}
+ages %>% group_by(Country) %>%
+  summarise(count = n(),
+            min = round(min(Age),2),
+            mean = round(mean(Age),2),
+            median = round(median(Age),2),
+            max = round(max(Age),2))
+```
+
+$$
+\text{Outliers} = 
+\begin{cases} 
+x_i & \text{if } x_i < Q1 - 1.5 \times \text{IQR} \\
+x_i & \text{if } x_i > Q3 + 1.5 \times \text{IQR}
+\end{cases}
+$$
+
+
+::: {.fragment}
+
+### Outliers in Uganda Ages
+
+```{r echo=TRUE}
+uganda_Q1 = quantile(uganda_ages, 0.25)
+uganda_Q3 = quantile(uganda_ages, 0.75)
+uganda_IQR = IQR(uganda_ages)
+uganda_lower_bound = uganda_Q1 - 1.5 * uganda_IQR
+uganda_upper_bound = uganda_Q3 + 1.5 * uganda_IQR
+
+uganda_outliers = uganda_ages[uganda_ages < uganda_lower_bound | uganda_ages > uganda_upper_bound]
+sort(uganda_outliers)
+```
+
+:::
+
+::: {.fragment}
+### Outliers in USA Ages
+
+```{r echo=TRUE}
+usa_Q1 = quantile(usa_ages, 0.25)
+usa_Q3 = quantile(usa_ages, 0.75)
+usa_IQR = IQR(usa_ages)
+usa_lower_bound = usa_Q1 - 1.5 * usa_IQR
+usa_upper_bound = usa_Q3 + 1.5 * usa_IQR
+
+usa_outliers = usa_ages[usa_ages < usa_lower_bound | usa_ages > usa_upper_bound]
+sort(usa_outliers)
+```
+
+:::
+
+## Histogram of Age Distributions: Uganda vs. USA
+
+```{r echo=TRUE}
+ggplot(ages) +
+  geom_density(aes(x = Age, fill = Country), alpha = 0.7)
+```
+
+## Dotplot of Age Distributions: Uganda vs. USA
+
+```{r echo=TRUE}
+ggplot(ages) +
+  geom_dotplot(aes(x = Age, fill = Country), alpha = 0.7, binwidth = 1)
+```
